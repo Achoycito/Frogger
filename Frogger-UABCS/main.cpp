@@ -4,10 +4,13 @@
 #include <conio.h>
 #include <stdio.h>
 #include <cstdlib>
+#include <mmsystem.h>
 
 #define tecla_Arriba 72
 #define tecla_Abajo 80
 #define tecla_Enter 13
+
+//PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC); (para los sonidos)
 
 using namespace std;
 
@@ -47,6 +50,9 @@ void gotoxy(int x, int y){
     coord.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
+
+
+
 void letras();
 int menu (const char *titulo, const char *opciones[], int n);
 void jugar();
