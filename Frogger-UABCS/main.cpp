@@ -70,10 +70,10 @@ int menu (const char *titulo, const char *opciones[], int n){
 
         for(int i = 0; i < 4; i++){
             gotoxy(48, 20 + i ); cout<<i + 1<< ") "<<opciones[i];
-    }
-    do{
-        tecla = getch();
-    }while(tecla != tecla_Arriba && tecla != tecla_Abajo && tecla != tecla_Enter);
+    	}
+    		do{
+        		tecla = getch();
+    		}while(tecla != tecla_Arriba && tecla != tecla_Abajo && tecla != tecla_Enter);
 
     switch (tecla){
         case tecla_Arriba:
