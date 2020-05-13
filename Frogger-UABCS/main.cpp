@@ -8,6 +8,8 @@
 
 #define tecla_Arriba 72
 #define tecla_Abajo 80
+#define tecla_Izq 75
+#define tecla_Der 77
 #define tecla_Enter 13
 
 using namespace std;
@@ -109,26 +111,37 @@ int menu (const char *titulo, const char *opciones[], int n){
 
 void jugar(){
     int tecla;
-    system("cls");
-
-    cout<<"Error 404 - Not Found"<<endl;
-    cout<<"Work In Progress"<<endl;
-
-    gotoxy(25,7);
-    SetConsoleTextAttribute(h, 3);
-    cout<<"-->";
-    SetConsoleTextAttribute(h, 15);
-    gotoxy(29, 7);
-    cout<<"Presione Enter para volver al menu principal";
-
+    int xRana=10, yRana=10;
+    bool repeticion=true;
     do{
-        tecla = getch();
-    }while(tecla != tecla_Enter);
+        system("cls");
+        SetConsoleTextAttribute(h, 2);
+        gotoxy(xRana, yRana);printf("%c\n",219);
+        gotoxy(xRana+1, yRana);printf("%c\n",219);
+        gotoxy(xRana, yRana+1);printf("%c\n",93);
+        gotoxy(xRana+1, yRana+1);printf("%c\n",91);
+        do{
+            tecla = getch();
+        }while(tecla != tecla_Arriba && tecla != tecla_Abajo && tecla != tecla_Izq && tecla != tecla_Der && tecla != tecla_Enter);
 
-    if(tecla == tecla_Enter){
-        PlaySound(TEXT("Select.wav"), NULL, SND_ASYNC);
-        menu_principal();
-    }
+        switch(tecla){
+        case tecla_Arriba:
+            yRana--;
+            break;
+        case tecla_Abajo:
+            yRana++;
+            break;
+        case tecla_Der:
+            xRana++;
+            break;
+        case tecla_Izq:
+            xRana--;
+            break;
+        case tecla_Enter:
+            menu_principal();
+            break;
+        }
+    }while(repeticion);
 
 }
 
