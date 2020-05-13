@@ -127,15 +127,19 @@ void jugar(){
         switch(tecla){
         case tecla_Arriba:
             yRana--;
+            PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
             break;
         case tecla_Abajo:
             yRana++;
+            PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
             break;
         case tecla_Der:
             xRana++;
+            PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
             break;
         case tecla_Izq:
             xRana--;
+            PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
             break;
         case tecla_Enter:
             menu_principal();
