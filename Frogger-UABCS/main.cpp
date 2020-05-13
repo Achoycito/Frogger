@@ -10,7 +10,8 @@
 #define tecla_Abajo 80
 #define tecla_Enter 13
 
-
+//Esto es una linea vacía
+//Esta tambien UwUr
 
 using namespace std;
 
@@ -29,10 +30,12 @@ void jugar();
 void instrucciones();
 void creditos();
 void menu_principal();
+bool AjustarVentana(int Ancho, int Alto);
 
 
 int main (){
     menu_principal();
+    AjustarVentana(120,30);  //ajusta el tamaño de la pantalla :o   
 }
 
 
@@ -263,6 +266,27 @@ void menu_principal(){
     }while (repetir);
 }
 
+bool AjustarVentana(int Ancho, int Alto) {
+    _COORD Coordenada;
+    Coordenada.X = Ancho;
+    Coordenada.Y = Alto;
+
+    _SMALL_RECT Rect;
+    Rect.Top = 0;
+    Rect.Left = 0;
+    Rect.Right = Ancho - 1;
+    Rect.Bottom = Alto - 1;
+
+    // Obtener el handle de la consola
+    HANDLE hConsola = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // Ajustar el buffer al nuevo tamaño
+    SetConsoleScreenBufferSize(hConsola, Coordenada);
+
+    // Cambiar tamaño de consola a lo especificado en el buffer
+    SetConsoleWindowInfo(hConsola, TRUE, &Rect);
+    return TRUE;
+}
 
 
 
