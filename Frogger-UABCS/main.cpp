@@ -198,7 +198,7 @@ void creditos(){
     gotoxy(xGoto, yGoto+8);
     cout<<"Desarrollado por:"<<endl;
     gotoxy(xGoto+4, yGoto+9);
-    cout<<"*Francisco Díaz de la Peña";
+    cout<<"*Francisco Javier Díaz de la Peña";
     gotoxy(xGoto+4, yGoto+10);
     cout<<"*Alan González de la Llave Achoy";
     gotoxy(xGoto+4, yGoto+11);
