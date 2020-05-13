@@ -10,39 +10,11 @@
 #define tecla_Abajo 80
 #define tecla_Enter 13
 
-//PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC); (para los sonidos)
+
 
 using namespace std;
 
 HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-
-/*
-Well, I never thought that it'd be so simple but
-I found a way, I found a way
-And I always thought that it'd be too crazy but
-I found a way, I found a way
-If you open up your mind
-See what's inside
-It's gonna take some time to realign
-But if you look inside, I'm sure you'll find
-Over your shoulder you know that I told you
-I'll always be pickin' you up when you're down
-So just turn around
-Now that I know that anything's possible
-I found a way, I found a way
-No one can break what's so unbreakable
-I found a way, I found a way
-If you open up your mind
-See what's inside
-It's gonna take some time to realign
-But if you look inside, I'm sure you'll find
-Over your shoulder you know that I told you
-I'll always be pickin' you up when you're down
-So just turn around
-No one…
-*/
-
-
 
 void gotoxy(int x, int y){
     COORD coord;
@@ -50,8 +22,6 @@ void gotoxy(int x, int y){
     coord.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
-
-
 
 void letras();
 int menu (const char *titulo, const char *opciones[], int n);
@@ -111,18 +81,21 @@ int menu (const char *titulo, const char *opciones[], int n){
 
     switch (tecla){
         case tecla_Arriba:
+            PlaySound(TEXT("Change.wav"), NULL, SND_ASYNC);
             opcionSelect--;
             if (opcionSelect < 1){
                 opcionSelect = n;
             }
             break;
         case tecla_Abajo:
+            PlaySound(TEXT("Change.wav"), NULL, SND_ASYNC);
             opcionSelect++;
             if (opcionSelect > n){
                 opcionSelect = 1;
             }
             break;
         case tecla_Enter:
+            PlaySound(TEXT("Select.wav"), NULL, SND_ASYNC);
             repeticion = false;
             break;
     }
@@ -152,6 +125,7 @@ void jugar(){
     }while(tecla != tecla_Enter);
 
     if(tecla == tecla_Enter){
+        PlaySound(TEXT("Select.wav"), NULL, SND_ASYNC);
         menu_principal();
     }
 
@@ -160,39 +134,42 @@ void jugar(){
 void instrucciones(){
     int tecla;
     system("cls");
-    int xgoto = 30;
+    int xgoto = 8;
     int ygoto = 4;
 
     setlocale(LC_ALL, "spanish");
-    gotoxy(45, 4);
     SetConsoleTextAttribute(h, 3);
-    cout<<"{------INSTRUCCIONES------}"<<endl;
+    gotoxy(xgoto, ygoto);  cout<<"######  ######  ######  ######  ######  ##  ##  ######  ######  ######  ######  ######  ######  ######"<<endl;
+    gotoxy(xgoto, ygoto+1);cout<<"  ##    ##  ##  ##        ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ##  ##  ##      ##    "<<endl;
+    gotoxy(xgoto, ygoto+2);cout<<"  ##    ##  ##  ######    ##    ####    ##  ##  ##      ##        ##    ##  ##  ##  ##  ####    ######"<<endl;
+    gotoxy(xgoto, ygoto+3);cout<<"  ##    ##  ##      ##    ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ##  ##  ##          ##"<<endl;
+    gotoxy(xgoto, ygoto+4);cout<<"######  ##  ##  ######    ##    ##  ##  ######  ######  ######  ######  ######  ##  ##  ######  ######"<<endl;
     SetConsoleTextAttribute(h, 15);
-    gotoxy(xgoto, ygoto+2);
+    gotoxy(xgoto, ygoto+8);
     cout<<"Controles:";
-    gotoxy(xgoto+2, ygoto+3);
+    gotoxy(xgoto+2, ygoto+9);
     cout<<"-Flecha arriba: moverse hacia adelante";
-    gotoxy(xgoto+2, ygoto+4);
+    gotoxy(xgoto+2, ygoto+10);
     cout<<"-Flecha abajo: moverse hacia atras";
-    gotoxy(xgoto+2, ygoto+5);
+    gotoxy(xgoto+2, ygoto+11);
     cout<<"-Flecha izquierda: moverse a la izquierda";
-    gotoxy(xgoto+2, ygoto+6);
+    gotoxy(xgoto+2, ygoto+12);
     cout<<"-Flecha derecha: moverse a la derecha";
 
-    gotoxy(xgoto, ygoto+8);
+    gotoxy(xgoto, ygoto+14);
     cout<<"Consigue puntos:";
-    gotoxy(xgoto+2, ygoto+9);
+    gotoxy(xgoto+2, ygoto+15);
     cout<<"-Completando el nivel en poco tiempo";
-    gotoxy(xgoto+2, ygoto+10);
+    gotoxy(xgoto+2, ygoto+16);
     cout<<"-Recogiendo objetos especiales";
-    gotoxy(xgoto+2, ygoto+11);
+    gotoxy(xgoto+2, ygoto+17);
     cout<<"-Ganando con varias vidas restantes";
 
-    gotoxy(25,20);
+    gotoxy(25,24);
     SetConsoleTextAttribute(h, 3);
     cout<<"-->";
     SetConsoleTextAttribute(h, 15);
-    gotoxy(29, 20);
+    gotoxy(29, 24);
     cout<<"Presione Enter para volver al menu principal";
 
     do{
@@ -200,6 +177,7 @@ void instrucciones(){
     }while(tecla != tecla_Enter);
 
     if(tecla == tecla_Enter){
+        PlaySound(TEXT("Select.wav"), NULL, SND_ASYNC);
         menu_principal();
     }
 }
@@ -210,32 +188,35 @@ void creditos(){
     int yGoto=4;
     system("cls");
     setlocale(LC_ALL, "spanish");
-    gotoxy(xGoto+7, yGoto);
     SetConsoleTextAttribute(h, 3);
-    cout<<"{------CRÉDITOS------}"<<endl;
+    gotoxy(xGoto-10, yGoto);  cout<<"######  ######  ######  ####    ######  ######  ######  ######"<<endl;
+    gotoxy(xGoto-10, yGoto+1);cout<<"##      ##  ##  ##      ##  ##    ##      ##    ##  ##  ##    "<<endl;
+    gotoxy(xGoto-10, yGoto+2);cout<<"##      ####    ####    ##  ##    ##      ##    ##  ##  ######"<<endl;
+    gotoxy(xGoto-10, yGoto+3);cout<<"##      ##  ##  ##      ##  ##    ##      ##    ##  ##      ##"<<endl;
+    gotoxy(xGoto-10, yGoto+4);cout<<"######  ##  ##  ######  ####    ######    ##    ######  ######"<<endl;
     SetConsoleTextAttribute(h, 15);
-    gotoxy(xGoto, yGoto+2);
+    gotoxy(xGoto, yGoto+8);
     cout<<"Desarrollado por:"<<endl;
-    gotoxy(xGoto+4, yGoto+3);
+    gotoxy(xGoto+4, yGoto+9);
     cout<<"*Francisco Díaz de la Peña";
-    gotoxy(xGoto+4, yGoto+4);
+    gotoxy(xGoto+4, yGoto+10);
     cout<<"*Alan González de la Llave Achoy";
-    gotoxy(xGoto+4, yGoto+5);
+    gotoxy(xGoto+4, yGoto+11);
     cout<<"*Moises Moreno Quirarte";
 
-    gotoxy(xGoto, yGoto+7);
+    gotoxy(xGoto, yGoto+14);
     cout<<"Estudiantes de la carrera de";
-    gotoxy(xGoto, yGoto+8);
+    gotoxy(xGoto, yGoto+15);
     cout<<"Ingeniería en Desarrollo de Software en la ";
-    gotoxy(xGoto, yGoto+9);
+    gotoxy(xGoto, yGoto+16);
     cout<<"Universidad Autonoma de Baja California Sur";
 
 
-    gotoxy(25,20);
+    gotoxy(25,23);
     SetConsoleTextAttribute(h, 3);
     cout<<"-->";
     SetConsoleTextAttribute(h, 15);
-    gotoxy(29, 20);
+    gotoxy(29, 23);
     cout<<"Presione Enter para volver al menu principal";
 
     do{
@@ -243,6 +224,7 @@ void creditos(){
     }while(tecla != tecla_Enter);
 
     if(tecla == tecla_Enter){
+        PlaySound(TEXT("Select.wav"), NULL, SND_ASYNC);
         menu_principal();
     }
 }
