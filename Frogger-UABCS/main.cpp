@@ -10,12 +10,10 @@
 #define tecla_Abajo 80
 #define tecla_Enter 13
 
-//Esto es una linea vacía
-//Esta tambien UwUr
-
 using namespace std;
 
 HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+int opcionSelect = 1;
 
 void gotoxy(int x, int y){
     COORD coord;
@@ -35,7 +33,7 @@ bool AjustarVentana(int Ancho, int Alto);
 
 int main (){
     menu_principal();
-    AjustarVentana(120,30);  //ajusta el tamaño de la pantalla :o   
+    AjustarVentana(120,30);
 }
 
 
@@ -61,7 +59,7 @@ void letras(){
 }
 
 int menu (const char *titulo, const char *opciones[], int n){
-    int opcionSelect = 1;
+
     int tecla;
     bool repeticion = true;
 
@@ -148,24 +146,24 @@ void instrucciones(){
     gotoxy(xgoto, ygoto+3);cout<<"  ##    ##  ##      ##    ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ##  ##  ##          ##"<<endl;
     gotoxy(xgoto, ygoto+4);cout<<"######  ##  ##  ######    ##    ##  ##  ######  ######  ######  ######  ######  ##  ##  ######  ######"<<endl;
     SetConsoleTextAttribute(h, 15);
-    gotoxy(xgoto, ygoto+8);
+    gotoxy(xgoto+28, ygoto+8);
     cout<<"Controles:";
-    gotoxy(xgoto+2, ygoto+9);
+    gotoxy(xgoto+30, ygoto+9);
     cout<<"-Flecha arriba: moverse hacia adelante";
-    gotoxy(xgoto+2, ygoto+10);
+    gotoxy(xgoto+30, ygoto+10);
     cout<<"-Flecha abajo: moverse hacia atras";
-    gotoxy(xgoto+2, ygoto+11);
+    gotoxy(xgoto+30, ygoto+11);
     cout<<"-Flecha izquierda: moverse a la izquierda";
-    gotoxy(xgoto+2, ygoto+12);
+    gotoxy(xgoto+30, ygoto+12);
     cout<<"-Flecha derecha: moverse a la derecha";
 
-    gotoxy(xgoto, ygoto+14);
+    gotoxy(xgoto+28, ygoto+14);
     cout<<"Consigue puntos:";
-    gotoxy(xgoto+2, ygoto+15);
+    gotoxy(xgoto+30, ygoto+15);
     cout<<"-Completando el nivel en poco tiempo";
-    gotoxy(xgoto+2, ygoto+16);
+    gotoxy(xgoto+30, ygoto+16);
     cout<<"-Recogiendo objetos especiales";
-    gotoxy(xgoto+2, ygoto+17);
+    gotoxy(xgoto+30, ygoto+17);
     cout<<"-Ganando con varias vidas restantes";
 
     gotoxy(25,24);
@@ -198,20 +196,20 @@ void creditos(){
     gotoxy(xGoto-10, yGoto+3);cout<<"##      ##  ##  ##      ##  ##    ##      ##    ##  ##      ##"<<endl;
     gotoxy(xGoto-10, yGoto+4);cout<<"######  ##  ##  ######  ####    ######    ##    ######  ######"<<endl;
     SetConsoleTextAttribute(h, 15);
-    gotoxy(xGoto, yGoto+8);
+    gotoxy(xGoto+2, yGoto+8);
     cout<<"Desarrollado por:"<<endl;
-    gotoxy(xGoto+4, yGoto+9);
-    cout<<"*Francisco Díaz de la Peña";
-    gotoxy(xGoto+4, yGoto+10);
+    gotoxy(xGoto+6, yGoto+9);
+    cout<<"*Francisco Javier Díaz de la Peña";
+    gotoxy(xGoto+6, yGoto+10);
     cout<<"*Alan González de la Llave Achoy";
-    gotoxy(xGoto+4, yGoto+11);
+    gotoxy(xGoto+6, yGoto+11);
     cout<<"*Moises Moreno Quirarte";
 
-    gotoxy(xGoto, yGoto+14);
+    gotoxy(xGoto+2, yGoto+14);
     cout<<"Estudiantes de la carrera de";
-    gotoxy(xGoto, yGoto+15);
+    gotoxy(xGoto+2, yGoto+15);
     cout<<"Ingeniería en Desarrollo de Software en la ";
-    gotoxy(xGoto, yGoto+16);
+    gotoxy(xGoto+2, yGoto+16);
     cout<<"Universidad Autonoma de Baja California Sur";
 
 
