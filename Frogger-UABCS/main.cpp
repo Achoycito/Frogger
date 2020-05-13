@@ -17,6 +17,15 @@ using namespace std;
 HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 int opcionSelect = 1;
 
+void ocultarCursor()
+{
+   HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+   CONSOLE_CURSOR_INFO info;
+   info.dwSize = 100;
+   info.bVisible = FALSE;
+   SetConsoleCursorInfo(consoleHandle, &info);
+}
+
 void gotoxy(int x, int y){
     COORD coord;
     coord.X = x;
@@ -34,6 +43,7 @@ bool AjustarVentana(int Ancho, int Alto);
 
 
 int main (){
+	ocultarCursor();
     menu_principal();
     AjustarVentana(120,30);
 }
@@ -134,11 +144,11 @@ void jugar(){
             PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
             break;
         case tecla_Der:
-            xRana++;
+            xRana+=2;
             PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
             break;
         case tecla_Izq:
-            xRana--;
+            xRana-=2;
             PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
             break;
         case tecla_Enter:
