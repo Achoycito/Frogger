@@ -165,7 +165,7 @@ void instrucciones(){
     int xgoto = 8;
     int ygoto = 4;
 
-    setlocale(LC_ALL, "spanish");
+   // setlocale(LC_ALL, "spanish");
     SetConsoleTextAttribute(h, 3);
     gotoxy(xgoto, ygoto);  cout<<"######  ######  ######  ######  ######  ##  ##  ######  ######  ######  ######  ######  ######  ######"<<endl;
     gotoxy(xgoto, ygoto+1);cout<<"  ##    ##  ##  ##        ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ##  ##  ##      ##    "<<endl;
@@ -178,7 +178,7 @@ void instrucciones(){
     gotoxy(xgoto+30, ygoto+9);
     cout<<"-Flecha arriba: moverse hacia adelante";
     gotoxy(xgoto+30, ygoto+10);
-    cout<<"-Flecha abajo: moverse hacia atras";
+    printf("-Flecha abajo: moverse hacia atr%cs", 160);
     gotoxy(xgoto+30, ygoto+11);
     cout<<"-Flecha izquierda: moverse a la izquierda";
     gotoxy(xgoto+30, ygoto+12);
@@ -198,7 +198,7 @@ void instrucciones(){
     cout<<"-->";
     SetConsoleTextAttribute(h, 15);
     gotoxy(29, 24);
-    cout<<"Presione Enter para volver al menu principal";
+    printf("Presione Enter para volver al men%c principal", 163);
 
     do{
         tecla = getch();
@@ -215,7 +215,7 @@ void creditos(){
     int xGoto=39;
     int yGoto=4;
     system("cls");
-    setlocale(LC_ALL, "spanish");
+  //  setlocale(LC_ALL, "spanish");
     SetConsoleTextAttribute(h, 3);
     gotoxy(xGoto-10, yGoto);  cout<<"######  ######  ######  ####    ######  ######  ######  ######"<<endl;
     gotoxy(xGoto-10, yGoto+1);cout<<"##      ##  ##  ##      ##  ##    ##      ##    ##  ##  ##    "<<endl;
@@ -226,16 +226,16 @@ void creditos(){
     gotoxy(xGoto+2, yGoto+8);
     cout<<"Desarrollado por:"<<endl;
     gotoxy(xGoto+6, yGoto+9);
-    cout<<"*Francisco Javier Díaz de la Peña";
+    printf("*Francisco Javier D%Caz de la Pe%ca", 161, 164);
     gotoxy(xGoto+6, yGoto+10);
-    cout<<"*Alan González de la Llave Achoy";
+    printf("*Alan Gonz%clez de la Llave Achoy", 160);
     gotoxy(xGoto+6, yGoto+11);
     cout<<"*Moises Moreno Quirarte";
 
     gotoxy(xGoto+2, yGoto+14);
     cout<<"Estudiantes de la carrera de";
     gotoxy(xGoto+2, yGoto+15);
-    cout<<"Ingeniería en Desarrollo de Software en la ";
+    printf("Ingenier%ca en Desarrollo de Software en la ", 161);
     gotoxy(xGoto+2, yGoto+16);
     cout<<"Universidad Autonoma de Baja California Sur";
 
@@ -245,7 +245,7 @@ void creditos(){
     cout<<"-->";
     SetConsoleTextAttribute(h, 15);
     gotoxy(29, 23);
-    cout<<"Presione Enter para volver al menu principal";
+    printf("Presione Enter para volver al men%c principal", 163);
 
     do{
         tecla = getch();
@@ -312,8 +312,6 @@ bool AjustarVentana(int Ancho, int Alto) {
     SetConsoleWindowInfo(hConsola, TRUE, &Rect);
     return TRUE;
 }
-
-
 
 
 
