@@ -1,0 +1,32 @@
+#include <iostream>
+#include <windows.h>
+#include <sstream>
+#include <string>
+
+using namespace std;
+
+int alarma(int segundos)
+{
+    int temporizador = 10;
+    while (true) {
+        cout <<"quedan: "<< temporizador <<" segundos"<< endl;
+        if (temporizador == segundos) {
+            cout << "**** GAME OVER ****" << endl;
+            return 0;
+        }
+
+
+        Sleep(1000); //1 segundo
+        temporizador--;
+    }
+}
+
+int main()
+{
+    int s = 0;
+    int segundos;
+
+        alarma(s);
+        
+    return 0;
+}
