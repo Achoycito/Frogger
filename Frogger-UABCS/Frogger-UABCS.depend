@@ -7,7 +7,7 @@
 	<stdio.h>
 	<cstdlib>
 
-1589345868 source:c:\users\alang\documents\github\frogger\frogger-uabcs\main.cpp
+1589430296 source:c:\users\alang\documents\github\frogger\frogger-uabcs\main.cpp
 	<iostream>
 	<windows.h>
 	<stdlib.h>
@@ -15,4 +15,9 @@
 	<stdio.h>
 	<cstdlib>
 	<mmsystem.h>
+
+1589425940 source:c:\users\alang\documents\github\frogger\frogger-uabcs\auto.cpp
+	"Auto.h"
+
+1589425645 c:\users\alang\documents\github\frogger\frogger-uabcs\auto.h
 

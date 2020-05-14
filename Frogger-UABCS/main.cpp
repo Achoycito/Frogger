@@ -17,8 +17,7 @@ using namespace std;
 HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 int opcionSelect = 1;
 
-void ocultarCursor()
-{
+void ocultarCursor(){
    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
    CONSOLE_CURSOR_INFO info;
    info.dwSize = 100;
@@ -35,6 +34,8 @@ void gotoxy(int x, int y){
 
 void letras();
 int menu (const char *titulo, const char *opciones[], int n);
+void primeraLinea(int x, int y);
+void imprimirMapa();
 void jugar();
 void instrucciones();
 void creditos();
@@ -42,11 +43,13 @@ void menu_principal();
 bool AjustarVentana(int Ancho, int Alto);
 
 
-int main (){
+
+            int main (){
 	ocultarCursor();
     menu_principal();
-    AjustarVentana(120,30);
+    AjustarVentana(120,31);
 }
+
 
 
 void letras(){
@@ -70,7 +73,7 @@ void letras(){
     SetConsoleTextAttribute(h, 15);
 }
 
-int menu (const char *titulo, const char *opciones[], int n){
+int menu(const char *titulo, const char *opciones[], int n){
 
     int tecla;
     bool repeticion = true;
@@ -119,12 +122,102 @@ int menu (const char *titulo, const char *opciones[], int n){
     return opcionSelect;
 }
 
+void menu_principal(){
+
+    bool repetir = true;
+    int opcion;
+    const char *titulo = "FROGGER";
+    const char *opciones[] = {"Iniciar juego", "Instrucciones", "Creditos", "Salir"};
+    int n = 4;
+
+    opcion = menu(titulo, opciones, n);
+
+    do {
+        switch (opcion){
+            case 1:
+                repetir = false;
+                jugar();
+                break;
+            case 2:
+                repetir = false;
+                instrucciones();
+                break;
+            case 3:
+                repetir = false;
+                creditos();
+                break;
+            case 4:
+                system("cls");
+                gotoxy(48, 7);
+                cout<<"Gracias por jugar"<<endl<<endl<<endl<<endl<<endl<<endl;
+                repetir = false;
+                break;
+        }
+    }while (repetir);
+}
+
+void primeraLinea(int x, int y){
+    SetConsoleTextAttribute(h, 2);
+    gotoxy(x,y-1);
+    for(int i=0; i<66; i++){
+        printf("%c", 219);
+    }
+    for(int i=0; i<2; i++){
+        gotoxy(x,y);
+        for(int j=0; j<66; j++){
+            if((j>=6 && j<12) || (j>=18 && j<24) || (j>=30 && j<36) || (j>=42 && j<48) || (j>=54 && j<60)){
+                SetConsoleTextAttribute(h, 3);
+            }
+            else{
+                SetConsoleTextAttribute(h, 2);
+            }
+            printf("%c", 219);
+        }
+        y++;
+    }
+}
+
+void imprimirMapa(){
+    int xMap=10, yMap=2;
+    primeraLinea(xMap, yMap);
+    yMap+=2;
+    SetConsoleTextAttribute(h, 8);
+    for(int i=0; i<2; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            printf("%c", 219);
+        }
+        yMap++;
+    }
+    yMap+=8;
+    for(int i=0; i<2; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            printf("%c", 219);
+        }
+        yMap++;
+    }
+    yMap+=10;
+    for(int i=0; i<2; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            printf("%c", 219);
+        }
+        yMap++;
+    }
+
+
+
+    SetConsoleTextAttribute(h, 15);
+}
+
 void jugar(){
     int tecla;
-    int xRana=10, yRana=10;
+    int xRana=42, yRana=26;
     bool repeticion=true;
     do{
         system("cls");
+        imprimirMapa();
         SetConsoleTextAttribute(h, 2);
         gotoxy(xRana, yRana);printf("%c\n",219);
         gotoxy(xRana+1, yRana);printf("%c\n",219);
@@ -136,22 +229,23 @@ void jugar(){
 
         switch(tecla){
         case tecla_Arriba:
-            yRana--;
+            yRana-=2;
             PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
             break;
         case tecla_Abajo:
-            yRana++;
+            yRana+=2;
             PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
             break;
         case tecla_Der:
-            xRana+=2;
+            xRana+=6;
             PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
             break;
         case tecla_Izq:
-            xRana-=2;
+            xRana-=6;
             PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
             break;
         case tecla_Enter:
+            repeticion=false;
             menu_principal();
             break;
         }
@@ -165,11 +259,10 @@ void instrucciones(){
     int xgoto = 8;
     int ygoto = 4;
 
-   // setlocale(LC_ALL, "spanish");
     SetConsoleTextAttribute(h, 3);
     gotoxy(xgoto, ygoto);  cout<<"######  ######  ######  ######  ######  ##  ##  ######  ######  ######  ######  ######  ######  ######"<<endl;
     gotoxy(xgoto, ygoto+1);cout<<"  ##    ##  ##  ##        ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ##  ##  ##      ##    "<<endl;
-    gotoxy(xgoto, ygoto+2);cout<<"  ##    ##  ##  ######    ##    ####    ##  ##  ##      ##        ##    ##  ##  ##  ##  ####    ######"<<endl;
+    gotoxy(xgoto, ygoto+2);cout<<"  ##    ##  ##  ######    ##    #####   ##  ##  ##      ##        ##    ##  ##  ##  ##  ####    ######"<<endl;
     gotoxy(xgoto, ygoto+3);cout<<"  ##    ##  ##      ##    ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ##  ##  ##          ##"<<endl;
     gotoxy(xgoto, ygoto+4);cout<<"######  ##  ##  ######    ##    ##  ##  ######  ######  ######  ######  ######  ##  ##  ######  ######"<<endl;
     SetConsoleTextAttribute(h, 15);
@@ -217,11 +310,11 @@ void creditos(){
     system("cls");
   //  setlocale(LC_ALL, "spanish");
     SetConsoleTextAttribute(h, 3);
-    gotoxy(xGoto-10, yGoto);  cout<<"######  ######  ######  ####    ######  ######  ######  ######"<<endl;
+    gotoxy(xGoto-10, yGoto);  cout<<"######  ######  ######  #####   ######  ######  ######  ######"<<endl;
     gotoxy(xGoto-10, yGoto+1);cout<<"##      ##  ##  ##      ##  ##    ##      ##    ##  ##  ##    "<<endl;
-    gotoxy(xGoto-10, yGoto+2);cout<<"##      ####    ####    ##  ##    ##      ##    ##  ##  ######"<<endl;
+    gotoxy(xGoto-10, yGoto+2);cout<<"##      #####   ####    ##  ##    ##      ##    ##  ##  ######"<<endl;
     gotoxy(xGoto-10, yGoto+3);cout<<"##      ##  ##  ##      ##  ##    ##      ##    ##  ##      ##"<<endl;
-    gotoxy(xGoto-10, yGoto+4);cout<<"######  ##  ##  ######  ####    ######    ##    ######  ######"<<endl;
+    gotoxy(xGoto-10, yGoto+4);cout<<"######  ##  ##  ######  #####   ######    ##    ######  ######"<<endl;
     SetConsoleTextAttribute(h, 15);
     gotoxy(xGoto+2, yGoto+8);
     cout<<"Desarrollado por:"<<endl;
@@ -257,40 +350,6 @@ void creditos(){
     }
 }
 
-void menu_principal(){
-
-    bool repetir = true;
-    int opcion;
-    const char *titulo = "FROGGER";
-    const char *opciones[] = {"Iniciar juego", "Instrucciones", "Creditos", "Salir"};
-    int n = 4;
-
-    opcion = menu(titulo, opciones, n);
-
-    do {
-        switch (opcion){
-            case 1:
-                repetir = false;
-                jugar();
-                break;
-            case 2:
-                repetir = false;
-                instrucciones();
-                break;
-            case 3:
-                repetir = false;
-                creditos();
-                break;
-            case 4:
-                system("cls");
-                gotoxy(48, 7);
-                cout<<"Gracias por jugar"<<endl<<endl<<endl<<endl<<endl<<endl;
-                repetir = false;
-                break;
-        }
-    }while (repetir);
-}
-
 bool AjustarVentana(int Ancho, int Alto) {
     _COORD Coordenada;
     Coordenada.X = Ancho;
@@ -302,13 +361,10 @@ bool AjustarVentana(int Ancho, int Alto) {
     Rect.Right = Ancho - 1;
     Rect.Bottom = Alto - 1;
 
-    // Obtener el handle de la consola
     HANDLE hConsola = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    // Ajustar el buffer al nuevo tamaño
     SetConsoleScreenBufferSize(hConsola, Coordenada);
 
-    // Cambiar tamaño de consola a lo especificado en el buffer
     SetConsoleWindowInfo(hConsola, TRUE, &Rect);
     return TRUE;
 }
