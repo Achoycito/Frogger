@@ -36,6 +36,8 @@
 		</Compiler>
 		<Unit filename="Auto.cpp" />
 		<Unit filename="Auto.h" />
+		<Unit filename="Rana.cpp" />
+		<Unit filename="Rana.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

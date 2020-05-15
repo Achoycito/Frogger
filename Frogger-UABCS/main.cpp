@@ -8,6 +8,7 @@
 #include <sstream>
 
 #include "Auto.h"
+#include "Rana.h"
 
 #define tecla_Arriba 72
 #define tecla_Abajo 80
@@ -214,66 +215,29 @@ void imprimirMapa(){
 }
 
             void jugar(){
-    Auto auto1 = Auto(30, 10, 0);
+    Auto auto1 = Auto(6, 0, 2, 0);
+    Rana ranita = Rana(42, 26);
     int tecla;
-    int xRana=42, yRana=26;
     bool repeticion=true;
     system("cls");
     do{
         imprimirMapa();
-        if(auto1.getxAuto()>=10){
-            printAuto(auto1.getxAuto(), auto1.getyAuto());
-            auto1.mover();
+
+        auto1.borrarAuto();
+        auto1.mover();
+        if(auto1.getxAuto()>=10 && auto1.getxAuto()<=70){
+            SetConsoleTextAttribute(h, 4);
+            auto1.printAuto();
         }
 
         SetConsoleTextAttribute(h, 2);
-        gotoxy(xRana, yRana);printf("%c\n",219);
-        gotoxy(xRana+1, yRana);printf("%c\n",219);
-        gotoxy(xRana, yRana+1);printf("%c\n",93);
-        gotoxy(xRana+1, yRana+1);printf("%c\n",91);
+        ranita.printRana();
 
         if(kbhit()){
             tecla = getch();
-            switch(tecla){
-            case tecla_Arriba:
-                gotoxy(xRana, yRana);cout<<" ";
-                gotoxy(xRana+1, yRana);cout<<" ";
-                gotoxy(xRana, yRana+1);cout<<" ";
-                gotoxy(xRana+1, yRana+1);cout<<" ";
-                yRana-=2;
-                PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
-                break;
-            case tecla_Abajo:
-                gotoxy(xRana, yRana);cout<<" ";
-                gotoxy(xRana+1, yRana);cout<<" ";
-                gotoxy(xRana, yRana+1);cout<<" ";
-                gotoxy(xRana+1, yRana+1);cout<<" ";
-                yRana+=2;
-                PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
-                break;
-            case tecla_Der:
-                gotoxy(xRana, yRana);cout<<" ";
-                gotoxy(xRana+1, yRana);cout<<" ";
-                gotoxy(xRana, yRana+1);cout<<" ";
-                gotoxy(xRana+1, yRana+1);cout<<" ";
-                xRana+=6;
-                PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
-                break;
-            case tecla_Izq:
-                gotoxy(xRana, yRana);cout<<" ";
-                gotoxy(xRana+1, yRana);cout<<" ";
-                gotoxy(xRana, yRana+1);cout<<" ";
-                gotoxy(xRana+1, yRana+1);cout<<" ";
-                xRana-=6;
-                PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
-                break;
-            case tecla_Enter:
-                repeticion=false;
-                menu_principal();
-                break;
-            }
+            ranita.mover(tecla);
         }
-        Sleep(50);
+        Sleep(1);
 
     }while(repeticion);
 
@@ -426,7 +390,6 @@ void printAuto(int xT, int yT){
 	gotoxy(xT+1,yT+1);printf("%c\n",223);
 	gotoxy(xT+2, yT);printf("%c\n",220);
 	gotoxy(xT+2,yT+1);printf("%c\n",223);
-
     gotoxy(xT+3,yT);printf("%c\n",220);
     gotoxy(xT+3,yT+1);printf("%c\n",223);
     gotoxy(xT+4,yT);printf("%c\n",220);
