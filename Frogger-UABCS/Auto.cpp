@@ -1,16 +1,37 @@
 #include "Auto.h"
+#include <iostream>
+#include <windows.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <stdio.h>
+#include <cstdlib>
+#include <mmsystem.h>
+#include <sstream>
 
-Auto::Auto(){
+using namespace std;
 
+Auto::Auto(int x, int y, int direccion){
+    this->xAuto = x;
+    this->yAuto = y;
+    this->direccion = direccion;
 }
 
+Auto::Auto(){}
+
+
+
 void Auto::mover(){
-    for(int i=0; i<10; i++){
-        if(direccion==0){
-            this->xAuto-=2;
-        }
-        else{
-            this->yAuto+=2;
-        }
+    if(this->direccion==0){
+        this->xAuto--;
     }
+    else{
+        this->yAuto++;
+    }
+}
+
+int Auto::getxAuto(){
+    return this->xAuto;
+}
+int Auto::getyAuto(){
+    return this->yAuto;
 }

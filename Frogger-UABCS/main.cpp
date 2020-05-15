@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <mmsystem.h>
+#include <sstream>
+
+#include "Auto.h"
 
 #define tecla_Arriba 72
 #define tecla_Abajo 80
@@ -39,18 +42,19 @@ void imprimirMapa();
 void jugar();
 void instrucciones();
 void creditos();
+void salir();
 void menu_principal();
 bool AjustarVentana(int Ancho, int Alto);
+void printAuto(int xT, int yT);
 
 
 
             int main (){
+    AjustarVentana(120,30);
 	ocultarCursor();
     menu_principal();
-    AjustarVentana(120,31);
+    return 0;
 }
-
-
 
 void letras(){
 
@@ -97,21 +101,21 @@ int menu(const char *titulo, const char *opciones[], int n){
 
     switch (tecla){
         case tecla_Arriba:
-            PlaySound(TEXT("Change.wav"), NULL, SND_ASYNC);
+            PlaySound(TEXT("sfx/Change.wav"), NULL, SND_ASYNC);
             opcionSelect--;
             if (opcionSelect < 1){
                 opcionSelect = n;
             }
             break;
         case tecla_Abajo:
-            PlaySound(TEXT("Change.wav"), NULL, SND_ASYNC);
+            PlaySound(TEXT("sfx/Change.wav"), NULL, SND_ASYNC);
             opcionSelect++;
             if (opcionSelect > n){
                 opcionSelect = 1;
             }
             break;
         case tecla_Enter:
-            PlaySound(TEXT("Select.wav"), NULL, SND_ASYNC);
+            PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
             repeticion = false;
             break;
     }
@@ -147,9 +151,7 @@ void menu_principal(){
                 creditos();
                 break;
             case 4:
-                system("cls");
-                gotoxy(48, 7);
-                cout<<"Gracias por jugar"<<endl<<endl<<endl<<endl<<endl<<endl;
+                salir();
                 repetir = false;
                 break;
         }
@@ -211,44 +213,68 @@ void imprimirMapa(){
     SetConsoleTextAttribute(h, 15);
 }
 
-void jugar(){
+            void jugar(){
+    Auto auto1 = Auto(30, 10, 0);
     int tecla;
     int xRana=42, yRana=26;
     bool repeticion=true;
+    system("cls");
     do{
-        system("cls");
         imprimirMapa();
+        if(auto1.getxAuto()>=10){
+            printAuto(auto1.getxAuto(), auto1.getyAuto());
+            auto1.mover();
+        }
+
         SetConsoleTextAttribute(h, 2);
         gotoxy(xRana, yRana);printf("%c\n",219);
         gotoxy(xRana+1, yRana);printf("%c\n",219);
         gotoxy(xRana, yRana+1);printf("%c\n",93);
         gotoxy(xRana+1, yRana+1);printf("%c\n",91);
-        do{
-            tecla = getch();
-        }while(tecla != tecla_Arriba && tecla != tecla_Abajo && tecla != tecla_Izq && tecla != tecla_Der && tecla != tecla_Enter);
 
-        switch(tecla){
-        case tecla_Arriba:
-            yRana-=2;
-            PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
-            break;
-        case tecla_Abajo:
-            yRana+=2;
-            PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
-            break;
-        case tecla_Der:
-            xRana+=6;
-            PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
-            break;
-        case tecla_Izq:
-            xRana-=6;
-            PlaySound(TEXT("Salto.wav"), NULL, SND_ASYNC);
-            break;
-        case tecla_Enter:
-            repeticion=false;
-            menu_principal();
-            break;
+        if(kbhit()){
+            tecla = getch();
+            switch(tecla){
+            case tecla_Arriba:
+                gotoxy(xRana, yRana);cout<<" ";
+                gotoxy(xRana+1, yRana);cout<<" ";
+                gotoxy(xRana, yRana+1);cout<<" ";
+                gotoxy(xRana+1, yRana+1);cout<<" ";
+                yRana-=2;
+                PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+                break;
+            case tecla_Abajo:
+                gotoxy(xRana, yRana);cout<<" ";
+                gotoxy(xRana+1, yRana);cout<<" ";
+                gotoxy(xRana, yRana+1);cout<<" ";
+                gotoxy(xRana+1, yRana+1);cout<<" ";
+                yRana+=2;
+                PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+                break;
+            case tecla_Der:
+                gotoxy(xRana, yRana);cout<<" ";
+                gotoxy(xRana+1, yRana);cout<<" ";
+                gotoxy(xRana, yRana+1);cout<<" ";
+                gotoxy(xRana+1, yRana+1);cout<<" ";
+                xRana+=6;
+                PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+                break;
+            case tecla_Izq:
+                gotoxy(xRana, yRana);cout<<" ";
+                gotoxy(xRana+1, yRana);cout<<" ";
+                gotoxy(xRana, yRana+1);cout<<" ";
+                gotoxy(xRana+1, yRana+1);cout<<" ";
+                xRana-=6;
+                PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+                break;
+            case tecla_Enter:
+                repeticion=false;
+                menu_principal();
+                break;
+            }
         }
+        Sleep(50);
+
     }while(repeticion);
 
 }
@@ -298,7 +324,7 @@ void instrucciones(){
     }while(tecla != tecla_Enter);
 
     if(tecla == tecla_Enter){
-        PlaySound(TEXT("Select.wav"), NULL, SND_ASYNC);
+        PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
         menu_principal();
     }
 }
@@ -345,9 +371,33 @@ void creditos(){
     }while(tecla != tecla_Enter);
 
     if(tecla == tecla_Enter){
-        PlaySound(TEXT("Select.wav"), NULL, SND_ASYNC);
+        PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
         menu_principal();
     }
+}
+
+void salir(){
+    system("cls");
+    SetConsoleTextAttribute(h, 3);
+    int x=33, y=6;
+    gotoxy(x,y);  cout<<" #####  #####    ####    #####  ######   ####    #####";
+    gotoxy(x,y+1);cout<<"##      ##  ##  ##  ##  ##        ##    ##  ##  ##    ";
+    gotoxy(x,y+2);cout<<"## ###  #####   ######  ##        ##    ######   #### ";
+    gotoxy(x,y+3);cout<<"##  ##  ##  ##  ##  ##  ##        ##    ##  ##      ##";
+    gotoxy(x,y+4);cout<<" ####   ##  ##  ##  ##   #####  ######  ##  ##  ##### ";
+
+    gotoxy(x+16,y+6);   cout<<"#####   ####   ##### ";
+    gotoxy(x+16,y+7);   cout<<"##  ## ##  ##  ##  ##";
+    gotoxy(x+16,y+8);   cout<<"#####  ##  ##  ##### ";
+    gotoxy(x+16,y+9);   cout<<"##     ##  ##  ##  ##";
+    gotoxy(x+16,y+10);  cout<<"##      ####   ##  ##";
+
+    gotoxy(x+8,y+12);cout<<"  ####  ##  ##   #####   ####   ##### ";
+    gotoxy(x+8,y+13);cout<<"    ##  ##  ##  ##      ##  ##  ##  ##";
+    gotoxy(x+8,y+14);cout<<"    ##  ##  ##  ##  ##  ######  ##### ";
+    gotoxy(x+8,y+15);cout<<"##  ##  ##  ##  ##  ##  ##  ##  ##  ##";
+    gotoxy(x+8,y+16);cout<<" ####    ####    ####   ##  ##  ##  ##";
+    SetConsoleTextAttribute(h, 0);
 }
 
 bool AjustarVentana(int Ancho, int Alto) {
@@ -369,5 +419,19 @@ bool AjustarVentana(int Ancho, int Alto) {
     return TRUE;
 }
 
+void printAuto(int xT, int yT){
+    gotoxy(xT, yT+1);printf("%c\n",220);
+	gotoxy(xT,yT);printf("%c\n",223);
+	gotoxy(xT+1, yT);printf("%c\n",220);
+	gotoxy(xT+1,yT+1);printf("%c\n",223);
+	gotoxy(xT+2, yT);printf("%c\n",220);
+	gotoxy(xT+2,yT+1);printf("%c\n",223);
 
+    gotoxy(xT+3,yT);printf("%c\n",220);
+    gotoxy(xT+3,yT+1);printf("%c\n",223);
+    gotoxy(xT+4,yT);printf("%c\n",220);
+    gotoxy(xT+4,yT+1);printf("%c\n",223);
+    gotoxy(xT+5,yT+1);printf("%c\n",220);
+    gotoxy(xT+5,yT);printf("%c\n",223);
+}
 

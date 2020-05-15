@@ -5,14 +5,19 @@ class Auto
 {
     public:
         Auto();
+        Auto(int,int,int);
         void imprimirAuto();
         void mover();
+
+        int getxAuto();
+        int getyAuto();
 
     protected:
 
     private:
         int xAuto;
         int yAuto;
+
         int direccion;
 };
 
