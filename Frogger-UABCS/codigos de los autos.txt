@@ -1,0 +1,154 @@
+#include <iostream>
+#include <windows.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <stdio.h>
+#include <cstdlib>
+#include <mmsystem.h>
+
+#define tecla_Arriba 72
+#define tecla_Abajo 80
+#define tecla_Izq 75
+#define tecla_Der 77
+#define tecla_Enter 13
+
+using namespace std;
+
+HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+int opcionSelect = 1;
+void gotoxy(int x, int y){
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+void tortumovil (){
+	
+	int xTortumovil=60, yTortumovil=20;
+	SetConsoleTextAttribute(h, 7);
+	gotoxy(xTortumovil, yTortumovil+1);printf("%c\n",220);
+	gotoxy(xTortumovil,yTortumovil);printf("%c\n",223);
+	gotoxy(xTortumovil+1, yTortumovil);printf("%c\n",220);
+	gotoxy(xTortumovil+1,yTortumovil+1);printf("%c\n",223);
+	gotoxy(xTortumovil+2, yTortumovil);printf("%c\n",220);
+	gotoxy(xTortumovil+2,yTortumovil+1);printf("%c\n",223);
+	
+
+    gotoxy(xTortumovil+3,yTortumovil);printf("%c\n",220);
+    gotoxy(xTortumovil+3,yTortumovil+1);printf("%c\n",223);
+    gotoxy(xTortumovil+4,yTortumovil);printf("%c\n",220);
+    gotoxy(xTortumovil+4,yTortumovil+1);printf("%c\n",223);
+    gotoxy(xTortumovil+5,yTortumovil+1);printf("%c\n",220);
+    gotoxy(xTortumovil+5,yTortumovil);printf("%c\n",223);
+ 
+  		
+}
+
+
+void autobusDerecha(){
+    int xCar=10, yCar=5;
+        SetConsoleTextAttribute(h, 4);
+        gotoxy(xCar, yCar);printf("%c\n",219);
+        gotoxy(xCar, yCar+1);printf("%c\n",223);
+        gotoxy(xCar+1, yCar);printf("%c\n",219);
+        gotoxy(xCar+1, yCar+1);printf("%c\n",184);
+        gotoxy(xCar+2, yCar);printf("%c\n",219);
+        gotoxy(xCar+2, yCar+1);printf("%c\n",223);
+        gotoxy(xCar+3, yCar);printf("%c\n",219);
+        gotoxy(xCar+3, yCar+1);printf("%c\n",223);
+        gotoxy(xCar+4, yCar);printf("%c\n",219);
+        gotoxy(xCar+4, yCar+1);printf("%c\n",184);
+        gotoxy(xCar+5, yCar);printf("%c\n",220);
+        gotoxy(xCar+5, yCar+1);printf("%c\n",223);
+        SetConsoleTextAttribute(h, 15);
+}
+void autobusIzquierda(){
+    int xCar=20, yCar=10;
+        SetConsoleTextAttribute(h, 4);
+        gotoxy(xCar, yCar);printf("%c\n",220);
+        gotoxy(xCar, yCar+1);printf("%c\n",223);
+        gotoxy(xCar+1, yCar);printf("%c\n",219);
+        gotoxy(xCar+1, yCar+1);printf("%c\n",184);
+        gotoxy(xCar+2, yCar);printf("%c\n",219);
+        gotoxy(xCar+2, yCar+1);printf("%c\n",223);
+        gotoxy(xCar+3, yCar);printf("%c\n",219);
+        gotoxy(xCar+3, yCar+1);printf("%c\n",223);
+        gotoxy(xCar+4, yCar);printf("%c\n",219);
+        gotoxy(xCar+4, yCar+1);printf("%c\n",184);
+        gotoxy(xCar+5, yCar);printf("%c\n",219);
+        gotoxy(xCar+5, yCar+1);printf("%c\n",223);
+        SetConsoleTextAttribute(h, 15);
+}
+void lamboDerecha(){
+	
+	int xCar2=20, yCar2=20;
+	gotoxy(xCar2, yCar2);printf("%c\n",223);
+    gotoxy(xCar2+1, yCar2);printf("%c\n",220);
+    gotoxy(xCar2+2, yCar2);printf("%c\n",220);
+    gotoxy(xCar2+3, yCar2);printf("%c\n",219);
+    gotoxy(xCar2+4, yCar2);printf("%c\n",219);
+    gotoxy(xCar2+5, yCar2);printf("%c\n",220);
+    gotoxy(xCar2+5, yCar2+1);printf("%c\n",184);
+    gotoxy(xCar2+2, yCar2+1);printf("%c\n",184);
+	
+}
+void lamboIzquierda(){
+	
+	int xCar2=30, yCar2=10;
+	gotoxy(xCar2+5, yCar2);printf("%c\n",223);
+    gotoxy(xCar2+4, yCar2);printf("%c\n",220);
+    gotoxy(xCar2+3, yCar2);printf("%c\n",220);
+    gotoxy(xCar2+2, yCar2);printf("%c\n",219);
+    gotoxy(xCar2+1, yCar2);printf("%c\n",219);
+    gotoxy(xCar2, yCar2);printf("%c\n",220);
+    gotoxy(xCar2+4, yCar2+1);printf("%c\n",184);
+    gotoxy(xCar2+1, yCar2+1);printf("%c\n",184);
+	
+}
+
+
+
+void trocaDerecha(){
+	  int xCar=30, yCar=20;
+	  gotoxy(xCar, yCar);printf("%c\n",219);
+      gotoxy(xCar+1, yCar);printf("%c\n",219);
+      gotoxy(xCar+2, yCar);printf("%c\n",219);
+      gotoxy(xCar+3, yCar);printf("%c\n",219);
+      gotoxy(xCar+4, yCar);printf("%c\n",219);
+      gotoxy(xCar+5, yCar);printf("%c\n",219);
+
+      gotoxy(xCar+4, yCar-1);printf("%c\n",220);
+      gotoxy(xCar+3, yCar-1);printf("%c\n",220);
+
+      gotoxy(xCar+1, yCar+1);printf("%c\n",184);
+      gotoxy(xCar+4, yCar+1);printf("%c\n",184);
+}
+void trocaIzquierda(){
+	  int xCar=40, yCar=20;
+	  gotoxy(xCar+5, yCar);printf("%c\n",219);
+      gotoxy(xCar+4, yCar);printf("%c\n",219);
+      gotoxy(xCar+3, yCar);printf("%c\n",219);
+      gotoxy(xCar+2, yCar);printf("%c\n",219);
+      gotoxy(xCar+1, yCar);printf("%c\n",219);
+      gotoxy(xCar, yCar);printf("%c\n",219);
+
+      gotoxy(xCar+1, yCar-1);printf("%c\n",220);
+      gotoxy(xCar+2, yCar-1);printf("%c\n",220);
+
+      gotoxy(xCar+1, yCar+1);printf("%c\n",184);
+      gotoxy(xCar+4, yCar+1);printf("%c\n",184);
+}
+int main(){
+	
+	tortumovil();
+	autobusDerecha();
+	autobusIzquierda();
+	trocaDerecha();
+	trocaIzquierda();
+	lamboDerecha();
+	lamboIzquierda();
+	
+	
+	
+}
