@@ -245,7 +245,6 @@ void imprimirMapa4(){
     }
     SetConsoleTextAttribute(h, 15);
 }
-
             void jugar(){
     Auto auto1 = Auto(6, 0, 2, 0);
     Rana ranita = Rana(42, 26);
@@ -253,7 +252,7 @@ void imprimirMapa4(){
     bool repeticion=true;
     system("cls");
     do{
-        imprimirMapa4();
+        imprimirMapa();
 
         auto1.borrarAuto();
         auto1.mover();
