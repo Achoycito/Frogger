@@ -253,7 +253,7 @@ void imprimirMapa4(){
     bool repeticion=true;
     system("cls");
     do{
-        imprimirMapa();
+        imprimirMapa4();
 
         auto1.borrarAuto();
         auto1.mover();
