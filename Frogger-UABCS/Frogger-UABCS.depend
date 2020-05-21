@@ -45,3 +45,29 @@
 	<mmsystem.h>
 	<sstream>
 
+1589526251 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\auto.cpp
+	"Auto.h"
+	<iostream>
+	<windows.h>
+	<stdlib.h>
+	<conio.h>
+	<stdio.h>
+	<cstdlib>
+	<mmsystem.h>
+	<sstream>
+
+1589526251 c:\users\usuario\documents\github\frogger\frogger-uabcs\auto.h
+
+1589526251 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.cpp
+	"Rana.h"
+	<iostream>
+	<windows.h>
+	<stdlib.h>
+	<conio.h>
+	<stdio.h>
+	<cstdlib>
+	<mmsystem.h>
+	<sstream>
+
+1589526251 c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.h
+

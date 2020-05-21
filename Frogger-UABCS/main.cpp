@@ -212,6 +212,40 @@ void imprimirMapa(){
     SetConsoleTextAttribute(h, 15);
 }
 
+void imprimirMapa2(){
+    int xMap=10, yMap=2;
+    primeraLinea(xMap, yMap);
+    yMap+=6;
+    SetConsoleTextAttribute(h, 8);
+    for(int i=0; i<2; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            printf("%c", 219);
+        }
+        yMap++;
+    }
+    yMap+=4;
+    for(int i=0; i<2; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            printf("%c", 219);
+        }
+        yMap++;
+    }
+    yMap+=10;
+    for(int i=0; i<2; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            printf("%c", 219);
+        }
+        yMap++;
+    }
+
+
+
+    SetConsoleTextAttribute(h, 15);
+}
+
 void imprimirMapa4(){
     int xMap=10, yMap=2;
     primeraLinea(xMap, yMap);
@@ -250,7 +284,7 @@ void imprimirMapa4(){
     bool repeticion=true;
     system("cls");
     do{
-        imprimirMapa();
+        imprimirMapa2();
 
         auto1.borrarAuto();
         auto1.mover();
