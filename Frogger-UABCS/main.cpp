@@ -40,6 +40,7 @@ void letras();
 int menu (const char *titulo, const char *opciones[], int n);
 void primeraLinea(int x, int y);
 void imprimirMapa();
+void imprimirMapa4();
 void jugar();
 void instrucciones();
 void creditos();
@@ -47,8 +48,6 @@ void salir();
 void menu_principal();
 bool AjustarVentana(int Ancho, int Alto);
 void printAuto(int xT, int yT);
-
-
 
             int main (){
     AjustarVentana(120,30);
@@ -58,7 +57,6 @@ void printAuto(int xT, int yT);
 }
 
 void letras(){
-
     SetConsoleTextAttribute(h, 2);
     int xTitu=10;
     int yTitu=5;
@@ -96,9 +94,9 @@ int menu(const char *titulo, const char *opciones[], int n){
         for(int i = 0; i < 4; i++){
             gotoxy(48, 20 + i ); cout<<i + 1<< ") "<<opciones[i];
     	}
-    		do{
-        		tecla = getch();
-    		}while(tecla != tecla_Arriba && tecla != tecla_Abajo && tecla != tecla_Enter);
+        do{
+            tecla = getch();
+        }while(tecla != tecla_Arriba && tecla != tecla_Abajo && tecla != tecla_Enter);
 
     switch (tecla){
         case tecla_Arriba:
@@ -128,7 +126,6 @@ int menu(const char *titulo, const char *opciones[], int n){
 }
 
 void menu_principal(){
-
     bool repetir = true;
     int opcion;
     const char *titulo = "FROGGER";
@@ -157,6 +154,7 @@ void menu_principal(){
                 break;
         }
     }while (repetir);
+
 }
 
 void primeraLinea(int x, int y){
@@ -211,6 +209,37 @@ void imprimirMapa(){
 
 
 
+    SetConsoleTextAttribute(h, 15);
+}
+
+void imprimirMapa4(){
+    int xMap=10, yMap=2;
+    primeraLinea(xMap, yMap);
+    yMap+=2;
+    SetConsoleTextAttribute(h, 3);
+    for(int i=0; i<10; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            printf("%c", 219);
+        }
+        yMap++;
+    }
+    SetConsoleTextAttribute(h, 8);
+    for(int i=0; i<2; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            printf("%c", 219);
+        }
+        yMap++;
+    }
+    yMap+=10;
+    for(int i=0; i<2; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            printf("%c", 219);
+        }
+        yMap++;
+    }
     SetConsoleTextAttribute(h, 15);
 }
 
