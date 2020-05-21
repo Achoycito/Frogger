@@ -41,6 +41,7 @@ int menu (const char *titulo, const char *opciones[], int n);
 void primeraLinea(int x, int y);
 void imprimirMapa();
 void imprimirMapa4();
+void imprimirMapa3();
 void jugar();
 void instrucciones();
 void creditos();
@@ -100,21 +101,21 @@ int menu(const char *titulo, const char *opciones[], int n){
 
     switch (tecla){
         case tecla_Arriba:
-            PlaySound(TEXT("sfx/Change.wav"), NULL, SND_ASYNC);
+            //PlaySound(TEXT("sfx/Change.wav"), NULL, SND_ASYNC);
             opcionSelect--;
             if (opcionSelect < 1){
                 opcionSelect = n;
             }
             break;
         case tecla_Abajo:
-            PlaySound(TEXT("sfx/Change.wav"), NULL, SND_ASYNC);
+            //PlaySound(TEXT("sfx/Change.wav"), NULL, SND_ASYNC);
             opcionSelect++;
             if (opcionSelect > n){
                 opcionSelect = 1;
             }
             break;
         case tecla_Enter:
-            PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
+            //PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
             repeticion = false;
             break;
     }
@@ -246,6 +247,48 @@ void imprimirMapa2(){
     SetConsoleTextAttribute(h, 15);
 }
 
+void imprimirMapa3(){
+    int xMap=10, yMap=2;
+    primeraLinea(xMap, yMap);
+    yMap+=2;
+    SetConsoleTextAttribute(h, 3);
+    for(int i=0; i<10; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            SetConsoleTextAttribute(h, 2);
+           if(i <= 5 and i>=4  and j > 6 and j <60 ){
+            printf("%c", 219);
+           }
+           else{
+            SetConsoleTextAttribute(h, 3);
+            printf("%c", 219);
+           }
+
+
+        }
+        yMap++;
+    }
+
+    SetConsoleTextAttribute(h, 8);
+    for(int i=0; i<2; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            printf("%c", 219);
+        }
+        yMap++;
+    }
+    yMap+=10;
+    for(int i=0; i<2; i++){
+        gotoxy(xMap, yMap);
+        for(int j=0; j<66; j++){
+            printf("%c", 219);
+        }
+        yMap++;
+    }
+    SetConsoleTextAttribute(h, 15);
+}
+
+
 void imprimirMapa4(){
     int xMap=10, yMap=2;
     primeraLinea(xMap, yMap);
@@ -284,7 +327,7 @@ void imprimirMapa4(){
     bool repeticion=true;
     system("cls");
     do{
-        imprimirMapa2();
+        imprimirMapa3();
 
         auto1.borrarAuto();
         auto1.mover();
@@ -351,7 +394,7 @@ void instrucciones(){
     }while(tecla != tecla_Enter);
 
     if(tecla == tecla_Enter){
-        PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
+        //PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
         menu_principal();
     }
 }
@@ -398,7 +441,7 @@ void creditos(){
     }while(tecla != tecla_Enter);
 
     if(tecla == tecla_Enter){
-        PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
+        //PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
         menu_principal();
     }
 }

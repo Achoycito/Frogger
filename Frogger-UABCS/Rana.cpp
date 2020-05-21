@@ -47,21 +47,21 @@ void Rana::mover(int tecla){
     if(tecla==tecla_Arriba){
         borrarRana();
         this->y-=2;
-        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+        //PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
     }
     else if(tecla==tecla_Abajo){
         borrarRana();
         this->y+=2;
-        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+        //PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
     }
     else if(tecla==tecla_Der){
         borrarRana();
         this->x+=6;
-        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+        //PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
     }
     else if(tecla==tecla_Izq){
         borrarRana();
         this->x-=6;
-        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+        //PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
     }
 }

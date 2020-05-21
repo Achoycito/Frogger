@@ -71,3 +71,41 @@
 
 1589526251 c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.h
 
+1589525690 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.cpp
+	"Auto.h"
+	<iostream>
+	<windows.h>
+	<stdlib.h>
+	<conio.h>
+	<stdio.h>
+	<cstdlib>
+	<mmsystem.h>
+	<sstream>
+
+1589525690 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.h
+
+1590096342 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\main.cpp
+	<iostream>
+	<windows.h>
+	<stdlib.h>
+	<conio.h>
+	<stdio.h>
+	<cstdlib>
+	<mmsystem.h>
+	<sstream>
+	"Auto.h"
+	"Rana.h"
+
+1589525690 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.h
+
+1590096338 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.cpp
+	"Rana.h"
+	<iostream>
+	<windows.h>
+	<stdlib.h>
+	<conio.h>
+	<stdio.h>
+	<cstdlib>
+	<mmsystem.h>
+	<sstream>
+
