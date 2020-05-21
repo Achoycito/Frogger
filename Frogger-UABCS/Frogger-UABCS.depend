@@ -45,3 +45,41 @@
 	<mmsystem.h>
 	<sstream>
 
+1589522090 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.cpp
+	"Auto.h"
+	<iostream>
+	<windows.h>
+	<stdlib.h>
+	<conio.h>
+	<stdio.h>
+	<cstdlib>
+	<mmsystem.h>
+	<sstream>
+
+1589522090 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.h
+
+1590028240 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\main.cpp
+	<iostream>
+	<windows.h>
+	<stdlib.h>
+	<conio.h>
+	<stdio.h>
+	<cstdlib>
+	<mmsystem.h>
+	<sstream>
+	"Auto.h"
+	"Rana.h"
+
+1589522090 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.h
+
+1589522090 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.cpp
+	"Rana.h"
+	<iostream>
+	<windows.h>
+	<stdlib.h>
+	<conio.h>
+	<stdio.h>
+	<cstdlib>
+	<mmsystem.h>
+	<sstream>
+
