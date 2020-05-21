@@ -40,7 +40,6 @@ void letras();
 int menu (const char *titulo, const char *opciones[], int n);
 void primeraLinea(int x, int y);
 void imprimirMapa();
-void imprimirMapa4();
 void jugar();
 void instrucciones();
 void creditos();
@@ -215,36 +214,6 @@ void imprimirMapa(){
     SetConsoleTextAttribute(h, 15);
 }
 
-void imprimirMapa4(){
-    int xMap=10, yMap=2;
-    primeraLinea(xMap, yMap);
-    yMap+=2;
-    SetConsoleTextAttribute(h, 3);
-    for(int i=0; i<10; i++){
-        gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
-            printf("%c", 219);
-        }
-        yMap++;
-    }
-    SetConsoleTextAttribute(h, 8);
-    for(int i=0; i<2; i++){
-        gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
-            printf("%c", 219);
-        }
-        yMap++;
-    }
-    yMap+=10;
-    for(int i=0; i<2; i++){
-        gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
-            printf("%c", 219);
-        }
-        yMap++;
-    }
-    SetConsoleTextAttribute(h, 15);
-}
             void jugar(){
     Auto auto1 = Auto(6, 0, 2, 0);
     Rana ranita = Rana(42, 26);
