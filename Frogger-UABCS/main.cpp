@@ -40,8 +40,9 @@ void letras();
 int menu (const char *titulo, const char *opciones[], int n);
 void primeraLinea(int x, int y);
 void imprimirMapa();
-void imprimirMapa4();
+void imprimirMapa2();
 void imprimirMapa3();
+void imprimirMapa4();
 void jugar();
 void instrucciones();
 void creditos();
@@ -101,21 +102,21 @@ int menu(const char *titulo, const char *opciones[], int n){
 
     switch (tecla){
         case tecla_Arriba:
-            //PlaySound(TEXT("sfx/Change.wav"), NULL, SND_ASYNC);
+            PlaySound(TEXT("sfx/Change.wav"), NULL, SND_ASYNC);
             opcionSelect--;
             if (opcionSelect < 1){
                 opcionSelect = n;
             }
             break;
         case tecla_Abajo:
-            //PlaySound(TEXT("sfx/Change.wav"), NULL, SND_ASYNC);
+            PlaySound(TEXT("sfx/Change.wav"), NULL, SND_ASYNC);
             opcionSelect++;
             if (opcionSelect > n){
                 opcionSelect = 1;
             }
             break;
         case tecla_Enter:
-            //PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
+            PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
             repeticion = false;
             break;
     }
@@ -288,7 +289,6 @@ void imprimirMapa3(){
     SetConsoleTextAttribute(h, 15);
 }
 
-
 void imprimirMapa4(){
     int xMap=10, yMap=2;
     primeraLinea(xMap, yMap);
@@ -324,12 +324,21 @@ void imprimirMapa4(){
     Auto auto1 = Auto(6, 0, 2, 0);
     Rana ranita = Rana(42, 26);
     int tecla;
+    int i=0;
     bool repeticion=true;
     system("cls");
     do{
-        imprimirMapa3();
+        gotoxy(100, 13);
+        cout<<i;
+        imprimirMapa();
 
         auto1.borrarAuto();
+        if(auto1.checkColision(ranita.getXRana(), ranita.getYRana())){
+            ranita.borrarRana();
+            PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
+            Sleep(1500);
+            ranita.respawnRana();
+        }
         auto1.mover();
         if(auto1.getxAuto()>=10 && auto1.getxAuto()<=70){
             SetConsoleTextAttribute(h, 4);
@@ -343,6 +352,8 @@ void imprimirMapa4(){
             tecla = getch();
             ranita.mover(tecla);
         }
+
+        i++;
         Sleep(1);
 
     }while(repeticion);
@@ -394,7 +405,7 @@ void instrucciones(){
     }while(tecla != tecla_Enter);
 
     if(tecla == tecla_Enter){
-        //PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
+        PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
         menu_principal();
     }
 }
@@ -441,7 +452,7 @@ void creditos(){
     }while(tecla != tecla_Enter);
 
     if(tecla == tecla_Enter){
-        //PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
+        PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
         menu_principal();
     }
 }
@@ -468,6 +479,7 @@ void salir(){
     gotoxy(x+8,y+15);cout<<"##  ##  ##  ##  ##  ##  ##  ##  ##  ##";
     gotoxy(x+8,y+16);cout<<" ####    ####    ####   ##  ##  ##  ##";
     SetConsoleTextAttribute(h, 0);
+    Sleep(1000);
 }
 
 bool AjustarVentana(int Ancho, int Alto) {
@@ -489,18 +501,4 @@ bool AjustarVentana(int Ancho, int Alto) {
     return TRUE;
 }
 
-void printAuto(int xT, int yT){
-    gotoxy(xT, yT+1);printf("%c\n",220);
-	gotoxy(xT,yT);printf("%c\n",223);
-	gotoxy(xT+1, yT);printf("%c\n",220);
-	gotoxy(xT+1,yT+1);printf("%c\n",223);
-	gotoxy(xT+2, yT);printf("%c\n",220);
-	gotoxy(xT+2,yT+1);printf("%c\n",223);
-    gotoxy(xT+3,yT);printf("%c\n",220);
-    gotoxy(xT+3,yT+1);printf("%c\n",223);
-    gotoxy(xT+4,yT);printf("%c\n",220);
-    gotoxy(xT+4,yT+1);printf("%c\n",223);
-    gotoxy(xT+5,yT+1);printf("%c\n",220);
-    gotoxy(xT+5,yT);printf("%c\n",223);
-}
 

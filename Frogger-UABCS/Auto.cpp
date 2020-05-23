@@ -119,6 +119,29 @@ void Auto::regresar(){
     }
 }
 
+bool Auto::checkColision(int xr, int yr){
+    int coinc=0;
+
+    for(int i=0; i<2; i++){
+        for(int j=0; j<6; j++){
+            if((xr+i) == (this->xAuto+j) && yr==this->yAuto){
+                coinc++;
+            }
+        }
+    }
+
+    if(coinc>0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+
+
+
+
 
 
 

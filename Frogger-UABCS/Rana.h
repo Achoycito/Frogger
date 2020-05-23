@@ -12,6 +12,10 @@ class Rana
         void printRana();
         void mover(int);
         void borrarRana();
+        void respawnRana();
+
+        int getXRana();
+        int getYRana();
 
     protected:
 

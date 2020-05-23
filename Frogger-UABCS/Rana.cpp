@@ -29,6 +29,13 @@ Rana::Rana(int x, int y){
     this->y = y;
 }
 
+int Rana::getXRana(){
+    return this->x;
+}
+int Rana::getYRana(){
+    return this->y;
+}
+
 void Rana::printRana(){
     gotoxy2(this->x, this->y);printf("%c\n",219);
     gotoxy2(this->x+1, this->y);printf("%c\n",219);
@@ -47,21 +54,26 @@ void Rana::mover(int tecla){
     if(tecla==tecla_Arriba){
         borrarRana();
         this->y-=2;
-        //PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
     }
     else if(tecla==tecla_Abajo){
         borrarRana();
         this->y+=2;
-        //PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
     }
     else if(tecla==tecla_Der){
         borrarRana();
         this->x+=6;
-        //PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
     }
     else if(tecla==tecla_Izq){
         borrarRana();
         this->x-=6;
-        //PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
     }
+}
+
+void Rana::respawnRana(){
+    this->x = 42;
+    this->y = 26;
 }

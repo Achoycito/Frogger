@@ -15,6 +15,8 @@ class Auto
         int getyAuto();
         void regresar();
 
+        bool checkColision(int, int);
+
     protected:
 
     private:
