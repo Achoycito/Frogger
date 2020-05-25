@@ -7,7 +7,7 @@
 	<stdio.h>
 	<cstdlib>
 
-1590201567 source:c:\users\alang\documents\github\frogger\frogger-uabcs\main.cpp
+1590451635 source:c:\users\alang\documents\github\frogger\frogger-uabcs\main.cpp
 	<iostream>
 	<windows.h>
 	<stdlib.h>
@@ -16,6 +16,7 @@
 	<cstdlib>
 	<mmsystem.h>
 	<sstream>
+	<ctime>
 	"Auto.h"
 	"Rana.h"
 

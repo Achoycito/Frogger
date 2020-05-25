@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <mmsystem.h>
 #include <sstream>
+#include <ctime>
 
 #include "Auto.h"
 #include "Rana.h"
@@ -324,12 +325,25 @@ void imprimirMapa4(){
     Auto auto1 = Auto(6, 0, 2, 0);
     Rana ranita = Rana(42, 26);
     int tecla;
-    int i=0;
+    int tiempoInic = time(NULL)+120;
+    int tiempoActual;
+
     bool repeticion=true;
     system("cls");
     do{
-        gotoxy(100, 13);
-        cout<<i;
+        SetConsoleTextAttribute(h, 15);
+        tiempoActual = time(NULL);
+        gotoxy(90, 13);
+        cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"  ";
+        if(tiempoActual==tiempoInic){
+            gotoxy(85, 13);
+            cout<<"              GAME OVER     ";
+            PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
+            Sleep(5000);
+            menu_principal();
+        }
+
+
         imprimirMapa();
 
         auto1.borrarAuto();
@@ -351,9 +365,11 @@ void imprimirMapa4(){
         if(kbhit()){
             tecla = getch();
             ranita.mover(tecla);
+            if(tecla==tecla_Enter){
+                tiempoInic = time(NULL)+120;
+            }
         }
 
-        i++;
         Sleep(1);
 
     }while(repeticion);
