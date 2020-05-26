@@ -10,19 +10,16 @@
 
 using namespace std;
 
-Auto::Auto(int y, int direccion, int modelo, int color){
+Auto::Auto(int y, int direccion, int modelo){
     if(direccion == 0){
-        this->xAuto = 70;
         this->xInic = 80;
     }
     else{
-        this->xAuto = 10;
         this->xInic = 1;
     }
     this->yAuto = y;
     this->direccion = direccion;
     this->modelo = modelo;
-    this->color = color;
 }
 
 Auto::Auto(){}
@@ -35,7 +32,37 @@ void Auto::gotoxy2(int x, int y){
 }
 
 void Auto::printAuto(){
-    if(this->modelo==1){
+
+    if(this->modelo==1 && this->direccion==0){
+        gotoxy2(this->xAuto, this->yAuto);printf("%c\n",220);
+        gotoxy2(this->xAuto, this->yAuto+1);printf("%c\n",223);
+        gotoxy2(this->xAuto+1, this->yAuto);printf("%c\n",219);
+        gotoxy2(this->xAuto+1, this->yAuto+1);printf("%c\n",184);
+        gotoxy2(this->xAuto+2, this->yAuto);printf("%c\n",219);
+        gotoxy2(this->xAuto+2, this->yAuto+1);printf("%c\n",223);
+        gotoxy2(this->xAuto+3, this->yAuto);printf("%c\n",219);
+        gotoxy2(this->xAuto+3, this->yAuto+1);printf("%c\n",223);
+        gotoxy2(this->xAuto+4, this->yAuto);printf("%c\n",219);
+        gotoxy2(this->xAuto+4, this->yAuto+1);printf("%c\n",184);
+        gotoxy2(this->xAuto+5, this->yAuto);printf("%c\n",219);
+        gotoxy2(this->xAuto+5, this->yAuto+1);printf("%c\n",223);
+    }
+    if(this->modelo==1 && this->direccion==1){
+        gotoxy2(this->xAuto, this->yAuto);printf("%c\n",219);
+        gotoxy2(this->xAuto, this->yAuto+1);printf("%c\n",223);
+        gotoxy2(this->xAuto+1, this->yAuto);printf("%c\n",219);
+        gotoxy2(this->xAuto+1, this->yAuto+1);printf("%c\n",184);
+        gotoxy2(this->xAuto+2, this->yAuto);printf("%c\n",219);
+        gotoxy2(this->xAuto+2, this->yAuto+1);printf("%c\n",223);
+        gotoxy2(this->xAuto+3, this->yAuto);printf("%c\n",219);
+        gotoxy2(this->xAuto+3, this->yAuto+1);printf("%c\n",223);
+        gotoxy2(this->xAuto+4, this->yAuto);printf("%c\n",219);
+        gotoxy2(this->xAuto+4, this->yAuto+1);printf("%c\n",184);
+        gotoxy2(this->xAuto+5, this->yAuto);printf("%c\n",220);
+        gotoxy2(this->xAuto+5, this->yAuto+1);printf("%c\n",223);
+    }
+
+    if(this->modelo==2){
         gotoxy2(this->xAuto, this->yAuto+1);printf("%c\n",220);
         gotoxy2(this->xAuto,this->yAuto);printf("%c\n",223);
         gotoxy2(this->xAuto+1, this->yAuto);printf("%c\n",220);
@@ -49,7 +76,7 @@ void Auto::printAuto(){
         gotoxy2(this->xAuto+5,this->yAuto+1);printf("%c\n",220);
         gotoxy2(this->xAuto+5,this->yAuto);printf("%c\n",223);
     }
-    if(this->modelo==2 && direccion==0){
+    if(this->modelo==3 && direccion==0){
         gotoxy2(this->xAuto+5, yAuto);printf("%c\n",223);
         gotoxy2(this->xAuto+4, yAuto);printf("%c\n",220);
         gotoxy2(this->xAuto+3, yAuto);printf("%c\n",220);
@@ -59,7 +86,7 @@ void Auto::printAuto(){
         gotoxy2(this->xAuto+4, yAuto+1);printf("%c\n",184);
         gotoxy2(this->xAuto+1, yAuto+1);printf("%c\n",184);
     }
-    if(this->modelo==2 && direccion==1){
+    if(this->modelo==3 && direccion==1){
         gotoxy2(this->xAuto, yAuto);printf("%c\n",223);
         gotoxy2(this->xAuto+1, yAuto);printf("%c\n",220);
         gotoxy2(this->xAuto+2, yAuto);printf("%c\n",220);
@@ -89,10 +116,10 @@ void Auto::borrarAuto(){
 
 void Auto::mover(){
     if(this->direccion==0){
-        this->xAuto--;
+        this->xAuto-=this->modelo;
     }
     else{
-        this->xAuto++;
+        this->xAuto+=this->modelo;
     }
 
     if((this->direccion==1) && (this->xAuto>70)){
@@ -138,9 +165,14 @@ bool Auto::checkColision(int xr, int yr){
     }
 }
 int Auto::getcolor(){
-
     return this->color;
+}
+void Auto::setColor(int col){
+    this->color = col;
+}
 
+void Auto::setX(int x){
+    this->xAuto=x;
 }
 
 

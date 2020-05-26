@@ -59,26 +59,6 @@ void printAuto(int xT, int yT);
     return 0;
 }
 
-void letras(){
-    SetConsoleTextAttribute(h, 2);
-    int xTitu=10;
-    int yTitu=5;
-    gotoxy(xTitu, yTitu);   cout<<"##########    ###########     ########      ########      ########      ########    ###########   "<<endl;
-    gotoxy(xTitu, yTitu+1); cout<<"############  ############  ############  ############  ############  ############  ############  "<<endl;
-    gotoxy(xTitu, yTitu+2); cout<<"####          ####     ###  ####    ####  ####          ####          ####          ####     ###  "<<endl;
-    gotoxy(xTitu, yTitu+3); cout<<"####          ####     ###  ####    ####  ####          ####          ####          ####     ###  "<<endl;
-    gotoxy(xTitu, yTitu+4); cout<<"####          ####    ####  ####    ####  ####          ####          ####          ####    ####  "<<endl;
-    gotoxy(xTitu, yTitu+5); cout<<"##########    ###########   ####    ####  ####          ####          ############  ###########   "<<endl;
-    gotoxy(xTitu, yTitu+6); cout<<"########      ######        ####    ####  ####  #####   ####  #####   ############  ######        "<<endl;
-    gotoxy(xTitu, yTitu+7); cout<<"####          ########      ####    ####  ####  ######  ####  ######  ####          ########      "<<endl;
-    gotoxy(xTitu, yTitu+8); cout<<"####          #### ####     ####    ####  ####    ####  ####    ####  ####          #### ####     "<<endl;
-    gotoxy(xTitu, yTitu+9); cout<<"####          ####  ####    ####    ####  ####    ####  ####    ####  ####          ####  ####    "<<endl;
-    gotoxy(xTitu, yTitu+10);cout<<"####          ####    ###   ############  ############  ############  ############  ####    ###   "<<endl;
-    gotoxy(xTitu, yTitu+11);cout<<"##            ####     ####   ########      ########      ########      ########    ####     ####  "<<endl;
-    cout<<endl;
-    SetConsoleTextAttribute(h, 15);
-}
-
 int menu(const char *titulo, const char *opciones[], int n){
 
     int tecla;
@@ -323,12 +303,15 @@ void imprimirMapa4(){
 
             void jugar(){
     Auto autos[4];
-    autos[0]= Auto(6, 0, 2, 9);
-    autos[1]= Auto(12, 0, 2, 6);
-    autos[2]= Auto(18, 0, 2, 12);
-    autos[3]= Auto(22, 0, 2, 3);
-
-
+    autos[0]= Auto(6, 0, 3);
+    autos[1]= Auto(12, 1, 1);
+    autos[2]= Auto(18, 1, 2);
+    autos[3]= Auto(22, 0, 1);
+    srand(time(NULL));
+    for(int i=0; i<4; i++){
+        autos[i].setColor(rand() % 7+2);
+        autos[i].setX(rand() % 60+11);
+    }
 
     Rana ranita = Rana(42, 26);
     int tecla;
@@ -350,24 +333,21 @@ void imprimirMapa4(){
             menu_principal();
         }
 
-
         imprimirMapa();
 
         for(int x=0; x<4; x++){
             autos[x].borrarAuto();
-        if(autos[x].checkColision(ranita.getXRana(), ranita.getYRana())){
-            ranita.borrarRana();
-            PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
-            Sleep(1500);
-            ranita.respawnRana();
-
-        }
-
-        autos[x].mover();
-        if(autos[x].getxAuto()>=10 && autos[x].getxAuto()<=70){
-            SetConsoleTextAttribute(h, autos[x].getcolor());
-            autos[x].printAuto();
-        }
+            if(autos[x].checkColision(ranita.getXRana(), ranita.getYRana())){
+                ranita.borrarRana();
+                PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
+                Sleep(1500);
+                ranita.respawnRana();
+            }
+            autos[x].mover();
+            if(autos[x].getxAuto()>=10 && autos[x].getxAuto()<=70){
+                SetConsoleTextAttribute(h, autos[x].getcolor());
+                autos[x].printAuto();
+            }
 
         }
 
@@ -529,4 +509,22 @@ bool AjustarVentana(int Ancho, int Alto) {
     return TRUE;
 }
 
-
+void letras(){
+    SetConsoleTextAttribute(h, 2);
+    int xTitu=10;
+    int yTitu=5;
+    gotoxy(xTitu, yTitu);   cout<<"##########    ###########     ########      ########      ########      ########    ###########   "<<endl;
+    gotoxy(xTitu, yTitu+1); cout<<"############  ############  ############  ############  ############  ############  ############  "<<endl;
+    gotoxy(xTitu, yTitu+2); cout<<"####          ####     ###  ####    ####  ####          ####          ####          ####     ###  "<<endl;
+    gotoxy(xTitu, yTitu+3); cout<<"####          ####     ###  ####    ####  ####          ####          ####          ####     ###  "<<endl;
+    gotoxy(xTitu, yTitu+4); cout<<"####          ####    ####  ####    ####  ####          ####          ####          ####    ####  "<<endl;
+    gotoxy(xTitu, yTitu+5); cout<<"##########    ###########   ####    ####  ####          ####          ############  ###########   "<<endl;
+    gotoxy(xTitu, yTitu+6); cout<<"########      ######        ####    ####  ####  #####   ####  #####   ############  ######        "<<endl;
+    gotoxy(xTitu, yTitu+7); cout<<"####          ########      ####    ####  ####  ######  ####  ######  ####          ########      "<<endl;
+    gotoxy(xTitu, yTitu+8); cout<<"####          #### ####     ####    ####  ####    ####  ####    ####  ####          #### ####     "<<endl;
+    gotoxy(xTitu, yTitu+9); cout<<"####          ####  ####    ####    ####  ####    ####  ####    ####  ####          ####  ####    "<<endl;
+    gotoxy(xTitu, yTitu+10);cout<<"####          ####    ###   ############  ############  ############  ############  ####    ###   "<<endl;
+    gotoxy(xTitu, yTitu+11);cout<<"##            ####     ####   ########      ########      ########      ########    ####     ####  "<<endl;
+    cout<<endl;
+    SetConsoleTextAttribute(h, 15);
+}

@@ -5,10 +5,12 @@ class Auto
 {
     public:
         Auto();
-        Auto(int,int,int,int);
+        Auto(int,int,int);
         void printAuto();
         void borrarAuto();
         int getcolor();
+        void setColor(int);
+        void setX(int);
         void mover();
         void gotoxy2(int,int);
 
