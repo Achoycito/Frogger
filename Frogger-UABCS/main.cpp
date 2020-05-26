@@ -303,10 +303,10 @@ void imprimirMapa4(){
 
             void jugar(){
     Auto autos[4];
-    autos[0]= Auto(6, 0, 3);
-    autos[1]= Auto(12, 1, 1);
-    autos[2]= Auto(18, 1, 2);
-    autos[3]= Auto(22, 0, 1);
+    autos[0]= Auto(0, 6, 0, 3);
+    autos[1]= Auto(0, 12, 1, 1);
+    autos[2]= Auto(0, 18, 1, 2);
+    autos[3]= Auto(0, 22, 0, 1);
     srand(time(NULL));
     for(int i=0; i<4; i++){
         autos[i].setColor(rand() % 7+2);

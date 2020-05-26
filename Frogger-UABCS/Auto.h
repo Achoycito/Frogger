@@ -5,7 +5,7 @@ class Auto
 {
     public:
         Auto();
-        Auto(int,int,int);
+        Auto(int,int,int,int);
         void printAuto();
         void borrarAuto();
         int getcolor();

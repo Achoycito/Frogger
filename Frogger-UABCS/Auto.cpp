@@ -10,7 +10,8 @@
 
 using namespace std;
 
-Auto::Auto(int y, int direccion, int modelo){
+Auto::Auto(int x, int y, int direccion, int modelo){
+    this->xAuto = x;
     if(direccion == 0){
         this->xInic = 80;
     }
