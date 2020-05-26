@@ -46,7 +46,7 @@
 	<mmsystem.h>
 	<sstream>
 
-1589526251 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\auto.cpp
+1590462834 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\auto.cpp
 	"Auto.h"
 	<iostream>
 	<windows.h>
@@ -57,9 +57,9 @@
 	<mmsystem.h>
 	<sstream>
 
-1589526251 c:\users\usuario\documents\github\frogger\frogger-uabcs\auto.h
+1590462834 c:\users\usuario\documents\github\frogger\frogger-uabcs\auto.h
 
-1589526251 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.cpp
+1590203174 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.cpp
 	"Rana.h"
 	<iostream>
 	<windows.h>
@@ -70,7 +70,7 @@
 	<mmsystem.h>
 	<sstream>
 
-1589526251 c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.h
+1590203174 c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.h
 
 1589525690 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.cpp
 	"Auto.h"
@@ -109,4 +109,17 @@
 	<cstdlib>
 	<mmsystem.h>
 	<sstream>
+
+1590464851 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\main.cpp
+	<iostream>
+	<windows.h>
+	<stdlib.h>
+	<conio.h>
+	<stdio.h>
+	<cstdlib>
+	<mmsystem.h>
+	<sstream>
+	<ctime>
+	"Auto.h"
+	"Rana.h"
 

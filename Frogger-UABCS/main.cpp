@@ -302,67 +302,152 @@ void imprimirMapa4(){
 }
 
             void jugar(){
-    Auto autos[4];
-    autos[0]= Auto(0, 6, 0, 3);
-    autos[1]= Auto(0, 12, 1, 1);
-    autos[2]= Auto(0, 18, 1, 2);
-    autos[3]= Auto(0, 22, 0, 1);
-    srand(time(NULL));
-    for(int i=0; i<4; i++){
-        autos[i].setColor(rand() % 7+2);
-        autos[i].setX(rand() % 60+11);
-    }
 
     Rana ranita = Rana(42, 26);
     int tecla;
     int tiempoInic = time(NULL)+120;
     int tiempoActual;
+    int nivel = 2;
 
     bool repeticion=true;
+    bool juego = true;
     system("cls");
     do{
-        SetConsoleTextAttribute(h, 15);
-        tiempoActual = time(NULL);
-        gotoxy(90, 13);
-        cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"  ";
-        if(tiempoActual==tiempoInic){
-            gotoxy(85, 13);
-            cout<<"              GAME OVER     ";
-            PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
-            Sleep(5000);
-            menu_principal();
-        }
+        if (nivel == 1){
+                while(juego){
+                    Auto autos[4];
+                    autos[0]= Auto(0, 6, 0, 3);
+                    autos[1]= Auto(0, 12, 1, 1);
+                    autos[2]= Auto(0, 18, 1, 2);
+                    autos[3]= Auto(0, 22, 0, 1);
+                    srand(time(NULL));
+                    for(int i=0; i<4; i++){
+                        autos[i].setColor(rand() % 7+2);
+                        autos[i].setX(rand() % 60+11);
+                    }
+                    SetConsoleTextAttribute(h, 15);
+                    tiempoActual = time(NULL);
+                    gotoxy(90, 13);
+                    cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"  ";
+                    if(tiempoActual==tiempoInic){
+                        gotoxy(85, 13);
+                        cout<<"              GAME OVER     ";
+                        PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
+                        Sleep(5000);
+                        menu_principal();
+                    }
 
-        imprimirMapa();
+                    imprimirMapa();
 
-        for(int x=0; x<4; x++){
-            autos[x].borrarAuto();
-            if(autos[x].checkColision(ranita.getXRana(), ranita.getYRana())){
-                ranita.borrarRana();
-                PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
-                Sleep(1500);
-                ranita.respawnRana();
+                    for(int x=0; x<4; x++){
+                        autos[x].borrarAuto();
+                        if(autos[x].checkColision(ranita.getXRana(), ranita.getYRana())){
+                            ranita.borrarRana();
+                            PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
+                            Sleep(1500);
+                            ranita.respawnRana();
+                        }
+                        autos[x].mover();
+                        if(autos[x].getxAuto()>=10 && autos[x].getxAuto()<=70){
+                            SetConsoleTextAttribute(h, autos[x].getcolor());
+                            autos[x].printAuto();
+                        }
+
+                    }
+
+                    SetConsoleTextAttribute(h, 2);
+                    ranita.printRana();
+
+                    if(kbhit()){
+                        tecla = getch();
+                        ranita.mover(tecla);
+                        if(tecla==tecla_Enter){
+                            tiempoInic = time(NULL)+120;
+                        }
+                        if(tecla==32){
+                            nivel+=1;
+                            juego=false;
+                        }
+                    }
+                    Sleep(1);
+                }
             }
-            autos[x].mover();
-            if(autos[x].getxAuto()>=10 && autos[x].getxAuto()<=70){
-                SetConsoleTextAttribute(h, autos[x].getcolor());
-                autos[x].printAuto();
+        juego=true;
+        if (nivel == 2){
+                Auto autos[16];
+                autos[0]= Auto(10, 4, 0, 2);
+                autos[1]= Auto(39, 4, 0, 2);
+                autos[2]= Auto(40, 6, 1, 3);
+                autos[3]= Auto(50, 10, 1, 1);
+                autos[4]= Auto(10, 12, 0, 3);
+                autos[5]= Auto(30, 12, 0, 3);
+                autos[6]= Auto(50, 12, 0, 3);
+                autos[7]= Auto(10, 16, 1, 1);
+                autos[8]= Auto(39, 16, 1, 1);
+                autos[9]= Auto(10, 18, 0, 2);
+                autos[10]= Auto(39, 18, 0, 2);
+                autos[11]= Auto(10, 20, 1, 1);
+                autos[12]= Auto(39, 20, 1, 1);
+                autos[13]= Auto(10, 22, 0, 2);
+                autos[14]= Auto(39, 22, 0, 2);
+                autos[15]= Auto(10, 24, 1, 1);
+                autos[16]= Auto(39, 24, 1, 1);
+                srand(time(NULL));
+                for(int i=0; i<17; i++){
+                    autos[i].setColor(rand() % 7+2);
+                   // autos[i].setX(rand() % 60+11);
+                }
+                while(juego){
+                    SetConsoleTextAttribute(h, 15);
+                    tiempoActual = time(NULL);
+                    gotoxy(90, 13);
+                    cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"  ";
+                    if(tiempoActual==tiempoInic){
+                        gotoxy(85, 13);
+                        cout<<"              GAME OVER     ";
+                        PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
+                        Sleep(5000);
+                        menu_principal();
+                    }
+                    imprimirMapa2();
+
+                    for(int x=0; x<17; x++){
+                        autos[x].borrarAuto();
+                        if(autos[x].checkColision(ranita.getXRana(), ranita.getYRana())){
+                            ranita.borrarRana();
+                            PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
+                            Sleep(1500);
+                            ranita.respawnRana();
+                        }
+                        autos[x].mover();
+                        if(autos[x].getxAuto()>=10 && autos[x].getxAuto()<=70){
+                            SetConsoleTextAttribute(h, autos[x].getcolor());
+                            autos[x].printAuto();
+                        }
+
+                    }
+
+                    SetConsoleTextAttribute(h, 2);
+                    ranita.printRana();
+
+                    if(kbhit()){
+                        tecla = getch();
+                        ranita.mover(tecla);
+                        if(tecla==tecla_Enter){
+                            tiempoInic = time(NULL)+120;
+                        }
+                        if(tecla==32){
+                            nivel+=1;
+                            juego=false;
+                        }
+                    }
+
+                    Sleep(1);
+                }
+                juego=true;
             }
 
-        }
 
-        SetConsoleTextAttribute(h, 2);
-        ranita.printRana();
-
-        if(kbhit()){
-            tecla = getch();
-            ranita.mover(tecla);
-            if(tecla==tecla_Enter){
-                tiempoInic = time(NULL)+120;
-            }
-        }
-
-        Sleep(1);
 
     }while(repeticion);
 
