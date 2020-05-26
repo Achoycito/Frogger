@@ -322,7 +322,14 @@ void imprimirMapa4(){
 }
 
             void jugar(){
-    Auto auto1 = Auto(6, 0, 2, 0);
+    Auto autos[4];
+    autos[0]= Auto(6, 0, 2, 9);
+    autos[1]= Auto(12, 0, 2, 6);
+    autos[2]= Auto(18, 0, 2, 12);
+    autos[3]= Auto(22, 0, 2, 3);
+
+
+
     Rana ranita = Rana(42, 26);
     int tecla;
     int tiempoInic = time(NULL)+120;
@@ -346,17 +353,22 @@ void imprimirMapa4(){
 
         imprimirMapa();
 
-        auto1.borrarAuto();
-        if(auto1.checkColision(ranita.getXRana(), ranita.getYRana())){
+        for(int x=0; x<4; x++){
+            autos[x].borrarAuto();
+        if(autos[x].checkColision(ranita.getXRana(), ranita.getYRana())){
             ranita.borrarRana();
             PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
             Sleep(1500);
             ranita.respawnRana();
+
         }
-        auto1.mover();
-        if(auto1.getxAuto()>=10 && auto1.getxAuto()<=70){
-            SetConsoleTextAttribute(h, 4);
-            auto1.printAuto();
+
+        autos[x].mover();
+        if(autos[x].getxAuto()>=10 && autos[x].getxAuto()<=70){
+            SetConsoleTextAttribute(h, autos[x].getcolor());
+            autos[x].printAuto();
+        }
+
         }
 
         SetConsoleTextAttribute(h, 2);

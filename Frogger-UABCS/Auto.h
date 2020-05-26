@@ -8,6 +8,7 @@ class Auto
         Auto(int,int,int,int);
         void printAuto();
         void borrarAuto();
+        int getcolor();
         void mover();
         void gotoxy2(int,int);
 

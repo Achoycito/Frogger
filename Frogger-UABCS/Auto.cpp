@@ -137,6 +137,11 @@ bool Auto::checkColision(int xr, int yr){
         return false;
     }
 }
+int Auto::getcolor(){
+
+    return this->color;
+
+}
 
 
 
