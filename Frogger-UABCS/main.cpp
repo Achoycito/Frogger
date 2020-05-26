@@ -318,6 +318,7 @@ void imprimirMapa4(){
             autosN1[i].setColor(rand() % 7+2);
             autosN1[i].setX(rand() % 60+11);
         }
+
     Auto autosN2[17];
         autosN2[0]= Auto(10, 4, 0, 2);
         autosN2[1]= Auto(39, 4, 0, 2);
@@ -336,10 +337,64 @@ void imprimirMapa4(){
         autosN2[14]= Auto(39, 22, 0, 2);
         autosN2[15]= Auto(10, 24, 1, 1);
         autosN2[16]= Auto(39, 24, 1, 1);
+
+
+
     srand(time(NULL));
     for(int i=0; i<17; i++){
         autosN2[i].setColor(rand() % 7+2);
     }
+
+    Auto autosN3[12];
+        autosN3[0]= Auto(10, 16, 0, 2);
+        autosN3[1]= Auto(39, 16, 0, 2);
+
+        autosN3[2]= Auto(40, 18, 1, 1);
+        autosN3[3]= Auto(50, 18, 1, 1);
+        autosN3[4]= Auto(10, 18, 1, 1);
+
+        autosN3[5]= Auto(30, 20, 0, 3);
+        autosN3[6]= Auto(50, 20, 0, 3);
+
+        autosN3[7]= Auto(10, 22, 1, 1);
+        autosN3[8]= Auto(39, 22, 1, 1);
+        autosN3[9]= Auto(20, 22, 1, 1);
+
+        autosN3[10]= Auto(39, 24, 1, 2);
+        autosN3[11]= Auto(10, 24, 1, 2);
+
+
+
+    srand(time(NULL));
+    for(int i=0; i<12; i++){
+        autosN3[i].setColor(rand() % 7+2);
+    }
+
+     Auto autosN4[13];
+        autosN4[0]= Auto(10, 16, 0, 2);
+        autosN4[1]= Auto(39, 16, 0, 2);
+        autosN4[2]= Auto(20, 16, 0, 2);
+
+        autosN4[3]= Auto(50, 18, 1, 1);
+        autosN4[4]= Auto(10, 18, 1, 1);
+
+        autosN4[5]= Auto(30, 20, 0, 3);
+        autosN4[6]= Auto(50, 20, 0, 3);
+        autosN4[7]= Auto(10, 20, 0, 3);
+
+        autosN4[8]= Auto(39, 22, 1, 1);
+        autosN4[9]= Auto(10, 22, 1, 1);
+
+        autosN4[10]= Auto(39, 24, 1, 2);
+        autosN4[11]= Auto(10, 24, 1, 2);
+        autosN4[12]= Auto(20, 24, 1, 2);
+
+
+    srand(time(NULL));
+    for(int i=0; i<13; i++){
+        autosN4[i].setColor(rand() % 7+2);
+    }
+
 
     bool repeticion=true;
     system("cls");
@@ -376,6 +431,41 @@ void imprimirMapa4(){
                 if(autosN2[x].getxAuto()>=10 && autosN2[x].getxAuto()<=70){
                     SetConsoleTextAttribute(h, autosN2[x].getcolor());
                     autosN2[x].printAuto();
+                }
+            }
+        }
+                if (nivel == 3){
+            imprimirMapa3();
+                for(int x=0; x<12; x++){
+                autosN3[x].borrarAuto();
+                if(autosN3[x].checkColision(ranita.getXRana(), ranita.getYRana())){
+                    ranita.borrarRana();
+                    PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
+                    Sleep(1500);
+                    ranita.respawnRana();
+                }
+                autosN3[x].mover();
+                if(autosN3[x].getxAuto()>=10 && autosN3[x].getxAuto()<=70){
+                    SetConsoleTextAttribute(h, autosN3[x].getcolor());
+                    autosN3[x].printAuto();
+                }
+            }
+        }
+        if (nivel == 4){
+            imprimirMapa4();
+
+            for(int x=0; x<12; x++){
+                autosN4[x].borrarAuto();
+                if(autosN4[x].checkColision(ranita.getXRana(), ranita.getYRana())){
+                    ranita.borrarRana();
+                    PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
+                    Sleep(1500);
+                    ranita.respawnRana();
+                }
+                autosN4[x].mover();
+                if(autosN4[x].getxAuto()>=10 && autosN4[x].getxAuto()<=70){
+                    SetConsoleTextAttribute(h, autosN4[x].getcolor());
+                    autosN4[x].printAuto();
                 }
             }
         }
