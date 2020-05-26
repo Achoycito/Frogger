@@ -44,16 +44,18 @@ void imprimirMapa();
 void imprimirMapa2();
 void imprimirMapa3();
 void imprimirMapa4();
+void contornoMapa();
 void jugar();
 void instrucciones();
 void creditos();
+void gameOver();
 void salir();
 void menu_principal();
 bool AjustarVentana(int Ancho, int Alto);
 void printAuto(int xT, int yT);
 
             int main (){
-    AjustarVentana(120,30);
+    AjustarVentana(120,29);
 	ocultarCursor();
     menu_principal();
     return 0;
@@ -250,7 +252,7 @@ void imprimirMapa3(){
         }
         yMap++;
     }
-
+
     SetConsoleTextAttribute(h, 8);
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
@@ -268,6 +270,8 @@ void imprimirMapa3(){
         yMap++;
     }
     SetConsoleTextAttribute(h, 15);
+
+
 }
 
 void imprimirMapa4(){
@@ -307,6 +311,8 @@ void imprimirMapa4(){
     int tecla;
     int tiempoInic = time(NULL)+120;
     int tiempoActual;
+    int vidas=5;
+    int xRanita=91;
     int nivel = 1;
     Auto autosN1[4];
         autosN1[0]= Auto(0, 6, 0, 3);
@@ -337,63 +343,57 @@ void imprimirMapa4(){
         autosN2[14]= Auto(39, 22, 0, 2);
         autosN2[15]= Auto(10, 24, 1, 1);
         autosN2[16]= Auto(39, 24, 1, 1);
-
-
-
-    srand(time(NULL));
-    for(int i=0; i<17; i++){
-        autosN2[i].setColor(rand() % 7+2);
-    }
+        srand(time(NULL));
+        for(int i=0; i<17; i++){
+            autosN2[i].setColor(rand() % 7+2);
+        }
 
     Auto autosN3[12];
-        autosN3[0]= Auto(10, 16, 0, 2);
-        autosN3[1]= Auto(39, 16, 0, 2);
+        autosN3[0]= Auto(20, 16, 1, 2);
+        autosN3[1]= Auto(50, 16, 1, 2);
 
-        autosN3[2]= Auto(40, 18, 1, 1);
-        autosN3[3]= Auto(50, 18, 1, 1);
-        autosN3[4]= Auto(10, 18, 1, 1);
+        autosN3[2]= Auto(40, 18, 0, 1);
+        autosN3[3]= Auto(64, 18, 0, 1);
+        autosN3[4]= Auto(17, 18, 0, 1);
 
-        autosN3[5]= Auto(30, 20, 0, 3);
-        autosN3[6]= Auto(50, 20, 0, 3);
+        autosN3[5]= Auto(18, 20, 1, 3);
+        autosN3[6]= Auto(50, 20, 1, 3);
 
-        autosN3[7]= Auto(10, 22, 1, 1);
-        autosN3[8]= Auto(39, 22, 1, 1);
-        autosN3[9]= Auto(20, 22, 1, 1);
+        autosN3[7]= Auto(12, 22, 0, 1);
+        autosN3[8]= Auto(54, 22, 0, 1);
+        autosN3[9]= Auto(30, 22, 0, 1);
 
-        autosN3[10]= Auto(39, 24, 1, 2);
-        autosN3[11]= Auto(10, 24, 1, 2);
+        autosN3[10]= Auto(58, 24, 1, 2);
+        autosN3[11]= Auto(27, 24, 1, 2);
 
-
-
-    srand(time(NULL));
-    for(int i=0; i<12; i++){
-        autosN3[i].setColor(rand() % 7+2);
-    }
+        srand(time(NULL));
+        for(int i=0; i<12; i++){
+            autosN3[i].setColor(rand() % 7+2);
+        }
 
      Auto autosN4[13];
-        autosN4[0]= Auto(10, 16, 0, 2);
-        autosN4[1]= Auto(39, 16, 0, 2);
-        autosN4[2]= Auto(20, 16, 0, 2);
+        autosN4[0]= Auto(17, 16, 0, 2);
+        autosN4[1]= Auto(60, 16, 0, 2);
+        autosN4[2]= Auto(38, 16, 0, 2);
 
-        autosN4[3]= Auto(50, 18, 1, 1);
-        autosN4[4]= Auto(10, 18, 1, 1);
+        autosN4[3]= Auto(65, 18, 1, 1);
+        autosN4[4]= Auto(35, 18, 1, 1);
 
-        autosN4[5]= Auto(30, 20, 0, 3);
-        autosN4[6]= Auto(50, 20, 0, 3);
-        autosN4[7]= Auto(10, 20, 0, 3);
+        autosN4[5]= Auto(38, 20, 0, 3);
+        autosN4[6]= Auto(63, 20, 0, 3);
+        autosN4[7]= Auto(13, 20, 0, 3);
 
-        autosN4[8]= Auto(39, 22, 1, 1);
-        autosN4[9]= Auto(10, 22, 1, 1);
+        autosN4[8]= Auto(46, 22, 1, 1);
+        autosN4[9]= Auto(17, 22, 1, 1);
 
-        autosN4[10]= Auto(39, 24, 1, 2);
-        autosN4[11]= Auto(10, 24, 1, 2);
-        autosN4[12]= Auto(20, 24, 1, 2);
+        autosN4[10]= Auto(59, 24, 0, 2);
+        autosN4[11]= Auto(14, 24, 0, 2);
+        autosN4[12]= Auto(35, 24, 0, 2);
 
-
-    srand(time(NULL));
-    for(int i=0; i<13; i++){
-        autosN4[i].setColor(rand() % 7+2);
-    }
+        srand(time(NULL));
+        for(int i=0; i<13; i++){
+            autosN4[i].setColor(rand() % 7+2);
+        }
 
 
     bool repeticion=true;
@@ -401,14 +401,25 @@ void imprimirMapa4(){
     do{
         if (nivel == 1){
             imprimirMapa();
-
             for(int x=0; x<4; x++){
                 autosN1[x].borrarAuto();
                 if(autosN1[x].checkColision(ranita.getXRana(), ranita.getYRana())){
                     ranita.borrarRana();
+                    SetConsoleTextAttribute(h, 2);
+                    for(int i=0; i<vidas; i++){
+                        if(i==vidas-1){
+                            SetConsoleTextAttribute(h, 4);
+                        }
+                        ranita.printRanaJR(xRanita,20);
+                        xRanita+=3;
+                    }
+                    xRanita=91;
+                    vidas--;
                     PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
                     Sleep(1500);
-                    ranita.respawnRana();
+                    if(vidas>=0){
+                        ranita.respawnRana();
+                    }
                 }
                 autosN1[x].mover();
                 if(autosN1[x].getxAuto()>=10 && autosN1[x].getxAuto()<=70){
@@ -423,9 +434,21 @@ void imprimirMapa4(){
                 autosN2[x].borrarAuto();
                 if(autosN2[x].checkColision(ranita.getXRana(), ranita.getYRana())){
                     ranita.borrarRana();
+                    SetConsoleTextAttribute(h, 2);
+                    for(int i=0; i<vidas; i++){
+                        if(i==vidas-1){
+                            SetConsoleTextAttribute(h, 4);
+                        }
+                        ranita.printRanaJR(xRanita,20);
+                        xRanita+=3;
+                    }
+                    xRanita=91;
+                    vidas--;
                     PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
                     Sleep(1500);
-                    ranita.respawnRana();
+                    if(vidas>=0){
+                        ranita.respawnRana();
+                    }
                 }
                 autosN2[x].mover();
                 if(autosN2[x].getxAuto()>=10 && autosN2[x].getxAuto()<=70){
@@ -434,15 +457,27 @@ void imprimirMapa4(){
                 }
             }
         }
-                if (nivel == 3){
+        if (nivel == 3){
             imprimirMapa3();
                 for(int x=0; x<12; x++){
                 autosN3[x].borrarAuto();
                 if(autosN3[x].checkColision(ranita.getXRana(), ranita.getYRana())){
                     ranita.borrarRana();
+                    SetConsoleTextAttribute(h, 2);
+                    for(int i=0; i<vidas; i++){
+                        if(i==vidas-1){
+                            SetConsoleTextAttribute(h, 4);
+                        }
+                        ranita.printRanaJR(xRanita,20);
+                        xRanita+=3;
+                    }
+                    xRanita=91;
+                    vidas--;
                     PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
                     Sleep(1500);
-                    ranita.respawnRana();
+                    if(vidas>=0){
+                        ranita.respawnRana();
+                    }
                 }
                 autosN3[x].mover();
                 if(autosN3[x].getxAuto()>=10 && autosN3[x].getxAuto()<=70){
@@ -454,13 +489,25 @@ void imprimirMapa4(){
         if (nivel == 4){
             imprimirMapa4();
 
-            for(int x=0; x<12; x++){
+            for(int x=0; x<13; x++){
                 autosN4[x].borrarAuto();
                 if(autosN4[x].checkColision(ranita.getXRana(), ranita.getYRana())){
                     ranita.borrarRana();
+                    SetConsoleTextAttribute(h, 2);
+                    for(int i=0; i<vidas; i++){
+                        if(i==vidas-1){
+                            SetConsoleTextAttribute(h, 4);
+                        }
+                        ranita.printRanaJR(xRanita,20);
+                        xRanita+=3;
+                    }
+                    xRanita=91;
+                    vidas--;
                     PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
                     Sleep(1500);
-                    ranita.respawnRana();
+                    if(vidas>=0){
+                        ranita.respawnRana();
+                    }
                 }
                 autosN4[x].mover();
                 if(autosN4[x].getxAuto()>=10 && autosN4[x].getxAuto()<=70){
@@ -469,10 +516,14 @@ void imprimirMapa4(){
                 }
             }
         }
+        if(tiempoActual==tiempoInic || vidas<0){
+            PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
+            Sleep(2000);
+            gameOver();
+        }
 
         SetConsoleTextAttribute(h, 2);
         ranita.printRana();
-
         if(kbhit()){
             tecla = getch();
             ranita.mover(tecla);
@@ -493,13 +544,19 @@ void imprimirMapa4(){
         tiempoActual = time(NULL);
         gotoxy(90, 13);
         cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"  ";
-        if(tiempoActual==tiempoInic){
-            gotoxy(85, 13);
-            cout<<"              GAME OVER     ";
-            PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
-            Sleep(5000);
-            menu_principal();
+
+        SetConsoleTextAttribute(h, 2);
+        for(int i=0; i<vidas; i++){
+            ranita.printRanaJR(xRanita,20);
+            xRanita+=3;
         }
+        gotoxy(xRanita,20);
+        cout<<"  ";
+        gotoxy(xRanita,21);
+        cout<<"  ";
+        xRanita=91;
+
+
         Sleep(1);
 
     }while(repeticion);
@@ -513,11 +570,11 @@ void instrucciones(){
     int ygoto = 4;
 
     SetConsoleTextAttribute(h, 3);
-    gotoxy(xgoto, ygoto);  cout<<"######  ######  ######  ######  ######  ##  ##  ######  ######  ######  ######  ######  ######  ######"<<endl;
+    gotoxy(xgoto, ygoto);  cout<<"######  #####    #####  ######  #####   ##  ##   #####   #####  ######   ####   #####    #####   #####"<<endl;
     gotoxy(xgoto, ygoto+1);cout<<"  ##    ##  ##  ##        ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ##  ##  ##      ##    "<<endl;
-    gotoxy(xgoto, ygoto+2);cout<<"  ##    ##  ##  ######    ##    #####   ##  ##  ##      ##        ##    ##  ##  ##  ##  ####    ######"<<endl;
+    gotoxy(xgoto, ygoto+2);cout<<"  ##    ##  ##   ####     ##    #####   ##  ##  ##      ##        ##    ##  ##  ##  ##  ####     #### "<<endl;
     gotoxy(xgoto, ygoto+3);cout<<"  ##    ##  ##      ##    ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ##  ##  ##          ##"<<endl;
-    gotoxy(xgoto, ygoto+4);cout<<"######  ##  ##  ######    ##    ##  ##  ######  ######  ######  ######  ######  ##  ##  ######  ######"<<endl;
+    gotoxy(xgoto, ygoto+4);cout<<"######  ##  ##  #####     ##    ##  ##   ####    #####   #####  ######   ####   ##  ##   #####  ##### "<<endl;
     SetConsoleTextAttribute(h, 15);
     gotoxy(xgoto+28, ygoto+8);
     cout<<"Controles:";
@@ -563,11 +620,11 @@ void creditos(){
     system("cls");
   //  setlocale(LC_ALL, "spanish");
     SetConsoleTextAttribute(h, 3);
-    gotoxy(xGoto-10, yGoto);  cout<<"######  ######  ######  #####   ######  ######  ######  ######"<<endl;
+    gotoxy(xGoto-10, yGoto);  cout<<" #####  #####    #####  #####   ######  ######   ####    #####"<<endl;
     gotoxy(xGoto-10, yGoto+1);cout<<"##      ##  ##  ##      ##  ##    ##      ##    ##  ##  ##    "<<endl;
-    gotoxy(xGoto-10, yGoto+2);cout<<"##      #####   ####    ##  ##    ##      ##    ##  ##  ######"<<endl;
+    gotoxy(xGoto-10, yGoto+2);cout<<"##      #####   ####    ##  ##    ##      ##    ##  ##   #### "<<endl;
     gotoxy(xGoto-10, yGoto+3);cout<<"##      ##  ##  ##      ##  ##    ##      ##    ##  ##      ##"<<endl;
-    gotoxy(xGoto-10, yGoto+4);cout<<"######  ##  ##  ######  #####   ######    ##    ######  ######"<<endl;
+    gotoxy(xGoto-10, yGoto+4);cout<<" #####  ##  ##   #####  #####   ######    ##     ####   ##### "<<endl;
     SetConsoleTextAttribute(h, 15);
     gotoxy(xGoto+2, yGoto+8);
     cout<<"Desarrollado por:"<<endl;
@@ -602,7 +659,45 @@ void creditos(){
         menu_principal();
     }
 }
+void gameOver(){
+    int tecla;
+    system("cls");
+    int x=41, y=3;
+    SetConsoleTextAttribute(h, 4);
+    gotoxy(x+8,y);  cout<<"######  ######  ##  ##";Sleep(150);
+    gotoxy(x+8,y+1);cout<<"##        ##    ### ##";Sleep(150);
+    gotoxy(x+8,y+2);cout<<"#####     ##    ######";Sleep(150);
+    gotoxy(x+8,y+3);cout<<"##        ##    ## ###";Sleep(150);
+    gotoxy(x+8,y+4);cout<<"##      ######  ##  ##";Sleep(150);
 
+    gotoxy(x+8,y+6);   cout<<"#####    #####  ##";Sleep(150);
+    gotoxy(x+8,y+7);   cout<<"##  ##  ##      ##";Sleep(150);
+    gotoxy(x+8,y+8);   cout<<"##  ##  ######  ##";Sleep(150);
+    gotoxy(x+8,y+9);   cout<<"##  ##  ##      ##";Sleep(150);
+    gotoxy(x+8,y+10);  cout<<"#####    #####  ######";Sleep(150);
+
+    gotoxy(x,y+12);cout<<"  ####  ##  ##   #####   #####   ####";Sleep(150);
+    gotoxy(x,y+13);cout<<"    ##  ##  ##  ##      ##      ##  ##";Sleep(150);
+    gotoxy(x,y+14);cout<<"    ##  ##  ##  ######  ##  ##  ##  ##";Sleep(150);
+    gotoxy(x,y+15);cout<<"##  ##  ##  ##  ##      ##  ##  ##  ##";Sleep(150);
+    gotoxy(x,y+16);cout<<" ####    ####    #####   ####    ####";Sleep(400);
+
+    gotoxy(32,24);
+    SetConsoleTextAttribute(h, 3);
+    cout<<"-->";
+    SetConsoleTextAttribute(h, 15);
+    gotoxy(36, 24);
+    printf("Presione Enter para volver al men%c principal", 163);
+
+    do{
+        tecla = getch();
+    }while(tecla != tecla_Enter);
+
+    if(tecla == tecla_Enter){
+        PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
+        menu_principal();
+    }
+}
 void salir(){
     system("cls");
     SetConsoleTextAttribute(h, 3);
@@ -665,4 +760,26 @@ void letras(){
     gotoxy(xTitu, yTitu+11);cout<<"##            ####     ####   ########      ########      ########      ########    ####     ####  "<<endl;
     cout<<endl;
     SetConsoleTextAttribute(h, 15);
+}
+
+void contornoMapa(){
+    for(int i=9; i<77;i++){
+        gotoxy(i,0);
+        printf("%c\n",205);//205 para normal, 203 para cuadro
+    }
+    for(int i=1; i<28;i++){
+        gotoxy(8,i);
+        printf("%c\n",186); //186 para normal, 204 para cuadro
+        gotoxy(77,i);
+        printf("%c\n",186); //186 para normal, 185 para cuadro
+    }
+    for(int i=9; i<77;i++){
+        gotoxy(i,28);
+        printf("%c\n",205);//205 para normal, 202 para cuadro
+    }
+
+    gotoxy(8,28); printf("%c\n",200); //Esquina inf. izq.
+    gotoxy(77,28); printf("%c\n",188); //Esquina inf. izq.
+    gotoxy(8,0); printf("%c\n",201); //Esquina sup. izq.
+    gotoxy(77,0); printf("%c\n",187); //Esquina sup. der.
 }

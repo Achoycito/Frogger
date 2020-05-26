@@ -42,6 +42,12 @@ void Rana::printRana(){
     gotoxy2(this->x, this->y+1);printf("%c\n",93);
     gotoxy2(this->x+1, this->y+1);printf("%c\n",91);
 }
+void Rana::printRanaJR(int x, int y){
+    gotoxy2(x, y);printf("%c\n",220);
+    gotoxy2(x+1, y);printf("%c\n",220);
+    gotoxy2(x, y+1);printf("%c\n",217);
+    gotoxy2(x+1, y+1);printf("%c\n",192);
+}
 
 void Rana::borrarRana(){
     gotoxy2(this->x, this->y);cout<<" ";
@@ -51,25 +57,44 @@ void Rana::borrarRana(){
 }
 
 void Rana::mover(int tecla){
-    if(tecla==tecla_Arriba){
-        borrarRana();
-        this->y-=2;
-        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+    if(this->y >= 4){
+        if(this->y>4){
+            if(tecla==tecla_Arriba){
+                PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+                borrarRana();
+                this->y-=2;
+            }
+        }
+        else if(y==4){
+            if(this->x==18 || this->x ==30 || this->x == 42 || this->x == 54 || this->x==66){
+                if(tecla==tecla_Arriba){
+                    PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+                    borrarRana();
+                    this->y-=2;
+                }
+            }
+        }
     }
-    else if(tecla==tecla_Abajo){
-        borrarRana();
-        this->y+=2;
-        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+    if(this->y <26){
+        if(tecla==tecla_Abajo){
+            PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+            borrarRana();
+            this->y+=2;
+        }
     }
-    else if(tecla==tecla_Der){
-        borrarRana();
-        this->x+=6;
-        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+    if(this->x <72){
+        if(tecla==tecla_Der){
+            PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+            borrarRana();
+            this->x+=6;
+        }
     }
-    else if(tecla==tecla_Izq){
-        borrarRana();
-        this->x-=6;
-        PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+    if(this->x > 12){
+        if(tecla==tecla_Izq){
+            PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+            borrarRana();
+            this->x-=6;
+        }
     }
 }
 
