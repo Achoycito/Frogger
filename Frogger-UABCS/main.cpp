@@ -579,6 +579,21 @@ void imprimirMapa4(){
             SetConsoleTextAttribute(h, 2);
             ranita.printRanaJR(66,2);
         }
+
+        if (contador == 5){
+            ranita.respawnRana();
+            PlaySound(TEXT("sfx/Nivel completo.wav"), NULL, SND_ASYNC);
+            tiempoInic = time(NULL)+120;
+            nivel+=1;
+            Sleep(3000);
+            system("cls");
+            estanque1 = true;
+            estanque2 = true;
+            estanque3 = true;
+            estanque4 = true;
+            estanque5 = true;
+            contador = 0;
+        }
         if(tiempoActual==tiempoInic || vidas<0){
             PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
             Sleep(2000);
@@ -605,6 +620,7 @@ void imprimirMapa4(){
                 estanque3 = true;
                 estanque4 = true;
                 estanque5 = true;
+                contador = 0;
             }
         }
 
