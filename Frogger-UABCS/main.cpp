@@ -49,6 +49,7 @@ void jugar();
 void instrucciones();
 void creditos();
 void gameOver();
+void ganar();
 void salir();
 void menu_principal();
 bool AjustarVentana(int Ancho, int Alto);
@@ -306,7 +307,9 @@ void imprimirMapa4(){
 
     Rana ranita = Rana(42, 26);
     int tecla;
-    int tiempoInic = time(NULL)+120;
+    int tiempoNivel=150;
+    int extensionTiempo=30;
+    int tiempoInic = time(NULL)+tiempoNivel;
     int tiempoActual;
     int vidas=5;
     int xRanita=91;
@@ -520,9 +523,17 @@ void imprimirMapa4(){
                 }
             }
         }
-
+        if (nivel == 5){
+            ganar();
+        }
         if(ranita.getXRana() == 18 && ranita.getYRana() == 2){
             if(estanque1 == true){
+                PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
+                gotoxy(109, 13);
+                SetConsoleTextAttribute(h, 2);
+                cout<<"+"<<extensionTiempo;
+                Sleep(2000);
+                tiempoInic+=extensionTiempo;
                 estanque1 = false;
                 contador += 1;
                 ranita.respawnRana();
@@ -535,6 +546,12 @@ void imprimirMapa4(){
 
         if(ranita.getXRana() == 30 && ranita.getYRana() == 2){
             if(estanque2 == true){
+                PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
+                gotoxy(109, 13);
+                SetConsoleTextAttribute(h, 2);
+                cout<<"+"<<extensionTiempo;
+                Sleep(2000);
+                tiempoInic+=extensionTiempo;
                 estanque2 = false;
                 contador += 1;
                 ranita.respawnRana();
@@ -547,6 +564,12 @@ void imprimirMapa4(){
 
         if(ranita.getXRana() == 42 && ranita.getYRana() == 2){
             if(estanque3 == true){
+                PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
+                gotoxy(109, 13);
+                SetConsoleTextAttribute(h, 2);
+                cout<<"+"<<extensionTiempo;
+                Sleep(2000);
+                tiempoInic+=extensionTiempo;
                 estanque3 = false;
                 contador += 1;
                 ranita.respawnRana();
@@ -559,6 +582,12 @@ void imprimirMapa4(){
 
         if(ranita.getXRana() == 54 && ranita.getYRana() == 2){
             if(estanque4 == true){
+                PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
+                gotoxy(109, 13);
+                SetConsoleTextAttribute(h, 2);
+                cout<<"+"<<extensionTiempo;
+                Sleep(2000);
+                tiempoInic+=extensionTiempo;
                 estanque4 = false;
                 contador += 1;
                 ranita.respawnRana();
@@ -570,6 +599,12 @@ void imprimirMapa4(){
         }
         if(ranita.getXRana() == 66 && ranita.getYRana() == 2){
             if(estanque5 == true){
+                PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
+                gotoxy(109, 13);
+                SetConsoleTextAttribute(h, 2);
+                cout<<"+"<<extensionTiempo;
+                Sleep(2000);
+                tiempoInic+=extensionTiempo;
                 estanque5 = false;
                 contador += 1;
                 ranita.respawnRana();
@@ -581,11 +616,11 @@ void imprimirMapa4(){
         }
 
         if (contador == 5){
-            ranita.respawnRana();
             PlaySound(TEXT("sfx/Nivel completo.wav"), NULL, SND_ASYNC);
-            tiempoInic = time(NULL)+120;
-            nivel+=1;
             Sleep(3000);
+            tiempoInic = time(NULL)+tiempoNivel;
+            ranita.respawnRana();
+            nivel+=1;
             system("cls");
             estanque1 = true;
             estanque2 = true;
@@ -605,29 +640,30 @@ void imprimirMapa4(){
         if(kbhit()){
             tecla = getch();
             ranita.mover(tecla);
-            if(tecla==tecla_Enter){
-                tiempoInic = time(NULL)+120;
-            }
             if(tecla==32){
-                ranita.respawnRana();
-                PlaySound(TEXT("sfx/Nivel completo.wav"), NULL, SND_ASYNC);
-                tiempoInic = time(NULL)+120;
-                nivel+=1;
-                Sleep(3000);
-                system("cls");
-                estanque1 = true;
-                estanque2 = true;
-                estanque3 = true;
-                estanque4 = true;
-                estanque5 = true;
-                contador = 0;
+            PlaySound(TEXT("sfx/Nivel completo.wav"), NULL, SND_ASYNC);
+            Sleep(3000);
+            tiempoInic = time(NULL)+tiempoNivel;
+            ranita.respawnRana();
+            nivel+=1;
+            system("cls");
+            estanque1 = true;
+            estanque2 = true;
+            estanque3 = true;
+            estanque4 = true;
+            estanque5 = true;
+            contador = 0;
+            }
+            if(tecla==105){
+                repeticion=false;
+                ganar();
             }
         }
 
         SetConsoleTextAttribute(h, 15);
         tiempoActual = time(NULL);
-        gotoxy(90, 13);
-        cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"  ";
+        gotoxy(88, 13);
+        cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"     ";
 
         SetConsoleTextAttribute(h, 2);
         for(int i=0; i<vidas; i++){
@@ -743,6 +779,7 @@ void creditos(){
         menu_principal();
     }
 }
+
 void gameOver(){
     int tecla;
     system("cls");
@@ -782,6 +819,48 @@ void gameOver(){
         menu_principal();
     }
 }
+
+void ganar(){
+    int tecla;
+    system("cls");
+    SetConsoleTextAttribute(h, 1);
+    int x=10, y=2;
+    //PlaySound(TEXT("sfx/Ganar.wav"), NULL, SND_ASYNC);
+    gotoxy(x+5, y);  cout<<"######   #####  ##      ######   #####  ######  #####    ####   #####    #####   #####  ##"<<endl;Sleep(250);
+    gotoxy(x+5, y+1);cout<<"##      ##      ##        ##    ##        ##    ##  ##  ##  ##  ##  ##  ##      ##      ##"<<endl;Sleep(250);
+    gotoxy(x+5, y+2);cout<<"######  ######  ##        ##    ##        ##    ##  ##  ######  ##  ##  ######   ####   ##"<<endl;Sleep(250);
+    gotoxy(x+5, y+3);cout<<"##      ##      ##        ##    ##        ##    ##  ##  ##  ##  ##  ##  ##          ##    "<<endl;Sleep(250);
+    gotoxy(x+5, y+4);cout<<"##       #####  ######  ######   #####  ######  #####   ##  ##  #####    #####  #####   ##"<<endl;Sleep(250);
+
+    gotoxy(x, y+7);     cout<<" ##########    ##########   ####    ####   ##########    ##########   ############   ##########   ####"<<endl;Sleep(250);
+    gotoxy(x, y+8);     cout<<"############  ############  #####   ####  ############  ############  ############  ############  ####"<<endl;Sleep(250);
+    gotoxy(x, y+9);     cout<<"####          ####    ####  ######  ####  ####    ####  ####              ####      ####          ####"<<endl;Sleep(250);
+    gotoxy(x, y+10);    cout<<"####          ####    ####  ####### ####  ####    ####  ####              ####      ####          ####"<<endl;Sleep(250);
+    gotoxy(x, y+11);    cout<<"####  ####    ############  ############  ############  ###########       ####      ###########   ####"<<endl;Sleep(250);
+    gotoxy(x, y+12);    cout<<"####  ######  ############  ############  ############   ###########      ####      ###########   ####"<<endl;Sleep(250);
+    gotoxy(x, y+13);    cout<<"####    ####  ####    ####  #### #######  ####    ####          ####      ####      ####        "<<endl;Sleep(250);
+    gotoxy(x, y+14);    cout<<"####    ####  ####    ####  ####  ######  ####    ####          ####      ####      ####        "<<endl;Sleep(250);
+    gotoxy(x, y+15);    cout<<"############  ####    ####  ####   #####  ####    ####  ############      ####      ############  ####"<<endl;Sleep(250);
+    gotoxy(x, y+16);    cout<<" ##########   ####    ####  ####    ####  ####    ####   ##########       ####       ##########   ####"<<endl;Sleep(250);
+
+    gotoxy(32,24);
+    SetConsoleTextAttribute(h, 3);
+    cout<<"-->";
+    SetConsoleTextAttribute(h, 15);
+    gotoxy(36, 24);
+    printf("Presione Enter para volver al men%c principal", 163);
+
+    do{
+        tecla = getch();
+    }while(tecla != tecla_Enter);
+
+    if(tecla == tecla_Enter){
+        PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
+        menu_principal();
+    }
+}
+
+
 void salir(){
     system("cls");
     SetConsoleTextAttribute(h, 3);
