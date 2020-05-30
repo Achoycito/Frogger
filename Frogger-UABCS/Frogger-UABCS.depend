@@ -59,7 +59,7 @@
 
 1590462834 c:\users\usuario\documents\github\frogger\frogger-uabcs\auto.h
 
-1590203174 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.cpp
+1590529058 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.cpp
 	"Rana.h"
 	<iostream>
 	<windows.h>
@@ -70,7 +70,7 @@
 	<mmsystem.h>
 	<sstream>
 
-1590203174 c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.h
+1590815413 c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.h
 
 1590467969 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.cpp
 	"Auto.h"
@@ -111,7 +111,7 @@
 	<mmsystem.h>
 	<sstream>
 
-1590464851 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\main.cpp
+1590815904 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\main.cpp
 	<iostream>
 	<windows.h>
 	<stdlib.h>

@@ -247,12 +247,9 @@ void imprimirMapa3(){
             SetConsoleTextAttribute(h, 3);
             printf("%c", 219);
            }
-
-
         }
         yMap++;
-    }
-
+    }
     SetConsoleTextAttribute(h, 8);
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
@@ -314,6 +311,12 @@ void imprimirMapa4(){
     int vidas=5;
     int xRanita=91;
     int nivel = 1;
+    int contador = 0;
+    bool estnaque1 = true;
+    bool estnaque2 = true;
+    bool estnaque3 = true;
+    bool estnaque4 = true;
+    bool estnaque5 = true;
     Auto autosN1[4];
         autosN1[0]= Auto(0, 6, 0, 3);
         autosN1[1]= Auto(0, 12, 1, 1);
@@ -516,6 +519,18 @@ void imprimirMapa4(){
                 }
             }
         }
+
+        if(ranita.getXRana() >= 7 && ranita.getXRana()<12 && ranita.getYRana() == 2){
+            if(estnaque1 == true){
+                estnaque1 = false;
+                ranita.respawnRana();
+            }
+        }
+        if(estnaque1 == false){
+            ranita.printRanaJR(7,2);
+
+        }
+
         if(tiempoActual==tiempoInic || vidas<0){
             PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
             Sleep(2000);
