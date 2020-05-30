@@ -312,11 +312,11 @@ void imprimirMapa4(){
     int xRanita=91;
     int nivel = 1;
     int contador = 0;
-    bool estnaque1 = true;
-    bool estnaque2 = true;
-    bool estnaque3 = true;
-    bool estnaque4 = true;
-    bool estnaque5 = true;
+    bool estanque1 = true;
+    bool estanque2 = true;
+    bool estanque3 = true;
+    bool estanque4 = true;
+    bool estanque5 = true;
     Auto autosN1[4];
         autosN1[0]= Auto(0, 6, 0, 3);
         autosN1[1]= Auto(0, 12, 1, 1);
@@ -432,6 +432,7 @@ void imprimirMapa4(){
             }
         }
         if (nivel == 2){
+
             imprimirMapa2();
             for(int x=0; x<17; x++){
                 autosN2[x].borrarAuto();
@@ -520,17 +521,64 @@ void imprimirMapa4(){
             }
         }
 
-        if(ranita.getXRana() >= 7 && ranita.getXRana()<12 && ranita.getYRana() == 2){
-            if(estnaque1 == true){
-                estnaque1 = false;
+        if(ranita.getXRana() == 18 && ranita.getYRana() == 2){
+            if(estanque1 == true){
+                estanque1 = false;
+                contador += 1;
                 ranita.respawnRana();
             }
         }
-        if(estnaque1 == false){
-            ranita.printRanaJR(7,2);
-
+        if(estanque1 == false){
+            SetConsoleTextAttribute(h, 2);
+            ranita.printRanaJR(18,2);
         }
 
+        if(ranita.getXRana() == 30 && ranita.getYRana() == 2){
+            if(estanque2 == true){
+                estanque2 = false;
+                contador += 1;
+                ranita.respawnRana();
+            }
+        }
+        if(estanque2 == false){
+            SetConsoleTextAttribute(h, 2);
+            ranita.printRanaJR(30,2);
+        }
+
+        if(ranita.getXRana() == 42 && ranita.getYRana() == 2){
+            if(estanque3 == true){
+                estanque3 = false;
+                contador += 1;
+                ranita.respawnRana();
+            }
+        }
+        if(estanque3 == false){
+            SetConsoleTextAttribute(h, 2);
+            ranita.printRanaJR(42,2);
+        }
+
+        if(ranita.getXRana() == 54 && ranita.getYRana() == 2){
+            if(estanque4 == true){
+                estanque4 = false;
+                contador += 1;
+                ranita.respawnRana();
+            }
+        }
+        if(estanque4 == false){
+            SetConsoleTextAttribute(h, 2);
+            ranita.printRanaJR(54,2);
+        }
+        if(ranita.getXRana() == 66 && ranita.getYRana() == 2){
+            if(estanque5 == true){
+                estanque5 = false;
+                contador += 1;
+                ranita.respawnRana();
+            }
+        }
+        if(estanque5 == false){
+            SetConsoleTextAttribute(h, 2);
+            ranita.printRanaJR(66,2);
+        }
         if(tiempoActual==tiempoInic || vidas<0){
             PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
             Sleep(2000);
@@ -552,6 +600,11 @@ void imprimirMapa4(){
                 nivel+=1;
                 Sleep(3000);
                 system("cls");
+                estanque1 = true;
+                estanque2 = true;
+                estanque3 = true;
+                estanque4 = true;
+                estanque5 = true;
             }
         }
 
