@@ -305,29 +305,8 @@ void imprimirMapa4(){
 }
 
             void jugar(){
-
             //42, 26
-    Rana ranita = Rana(42, 26);
-    int tecla;
-    int tiempoNivel=150;
-    int extensionTiempo=30;
-    int tiempoInic = time(NULL)+tiempoNivel;
-    int tiempoActual;
-    int tiempoRest;
-    int vidas=5;
-    bool tocandoTronco=false;
-    int velTronco, direcTronco;
-    int puntuacion=0;
-    int xRanita=91;
-    int nivel = 3;
-    int contador = 0;
-    bool estanque1 = true;
-    bool estanque2 = true;
-    bool estanque3 = true;
-    bool estanque4 = true;
-    bool estanque5 = true;
-
-        Auto autosN1[4];
+    Auto autosN1[4];
         autosN1[0]= Auto(0, 6, 0, 3);
         autosN1[1]= Auto(0, 12, 1, 1);
         autosN1[2]= Auto(0, 18, 1, 2);
@@ -410,20 +389,41 @@ void imprimirMapa4(){
             autosN4[i].setColor(rand() % 7+2);
         }
 
-        Tronco tronquito = Tronco(58, 4, 0, 3);
+    Tronco tronquito = Tronco(58, 4, 0, 3);
 
-        Tronco troncosN3[8];
-            troncosN3[0] = Tronco(56,4,1,3);
-            troncosN3[1] = Tronco(20,4,1,3);
+    Tronco troncosN3[8];
+        troncosN3[0] = Tronco(56,4,1,3);
+        troncosN3[1] = Tronco(20,4,1,3);
 
-            troncosN3[2] = Tronco(56,6,0,3);
-            troncosN3[3] = Tronco(20,6,0,3);
+        troncosN3[2] = Tronco(56,6,0,3);
+        troncosN3[3] = Tronco(20,6,0,3);
 
-            troncosN3[4] = Tronco(56,10,1,3);
-            troncosN3[5] = Tronco(20,10,1,3);
+        troncosN3[4] = Tronco(56,10,1,3);
+        troncosN3[5] = Tronco(20,10,1,3);
 
-            troncosN3[6] = Tronco(56,12,0,3);
-            troncosN3[7] = Tronco(20,12,0,3);
+        troncosN3[6] = Tronco(56,12,0,3);
+        troncosN3[7] = Tronco(20,12,0,3);
+
+    Rana ranita = Rana(42, 26);
+    int tecla;
+    int tiempoNivel=150;
+    int extensionTiempo=30;
+    int tiempoInic = time(NULL)+tiempoNivel;
+    int tiempoActual;
+    int tiempoRest;
+    int vidas=5;
+    bool tocandoTronco=false;
+    int velTronco, direcTronco;
+    int puntuacion=0;
+    int xRanita=91;
+    int nivel = 3;
+    int contador = 0;
+    bool estanque1 = true;
+    bool estanque2 = true;
+    bool estanque3 = true;
+    bool estanque4 = true;
+    bool estanque5 = true;
+
 
 
     bool repeticion=true;
@@ -789,29 +789,28 @@ void imprimirMapa4(){
                 contador = 0;
             }
             if(tecla== 105){
+                if(vidas != 0 ){
+                 puntuacion= puntuacion+(vidas*200) ;
+                 vidas = 0;
+                }
+                system("cls");
+                gotoxy(50,10);cout<<"SCORE: "<<puntuacion<<endl;
 
-            if(vidas != 0 ){
-             puntuacion= puntuacion+(vidas*200) ;
-             vidas = 0;
-            }
-            system("cls");
-            gotoxy(50,10);cout<<"SCORE: "<<puntuacion<<endl;
+                 gotoxy(46,24);
+                SetConsoleTextAttribute(h, 3);
+                cout<<"-->";
+                SetConsoleTextAttribute(h, 15);
+                gotoxy(50, 24);
+                printf("Presione Enter para continuar ", 163);
 
-             gotoxy(46,24);
-            SetConsoleTextAttribute(h, 3);
-            cout<<"-->";
-            SetConsoleTextAttribute(h, 15);
-            gotoxy(50, 24);
-            printf("Presione Enter para continuar ", 163);
+                do{
+                    tecla = getch();
+                }while(tecla != tecla_Enter);
 
-            do{
-                tecla = getch();
-            }while(tecla != tecla_Enter);
-
-            if(tecla == tecla_Enter){
-                PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
-                ganar();
-            }
+                if(tecla == tecla_Enter){
+                    PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
+                    ganar();
+                }
             }
         }
 
@@ -847,37 +846,41 @@ void instrucciones(){
     int ygoto = 4;
 
     SetConsoleTextAttribute(h, 3);
-    gotoxy(xgoto, ygoto);  cout<<"######  #####    #####  ######  #####   ##  ##   #####   #####  ######   ####   #####    #####   #####"<<endl;
-    gotoxy(xgoto, ygoto+1);cout<<"  ##    ##  ##  ##        ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ##  ##  ##      ##    "<<endl;
-    gotoxy(xgoto, ygoto+2);cout<<"  ##    ##  ##   ####     ##    #####   ##  ##  ##      ##        ##    ##  ##  ##  ##  ####     #### "<<endl;
-    gotoxy(xgoto, ygoto+3);cout<<"  ##    ##  ##      ##    ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ##  ##  ##          ##"<<endl;
+    gotoxy(xgoto, ygoto);  cout<<"######  ##  ##   #####  ######  #####   ##  ##   #####   #####  ######   ####   ##  ##    #####   #####"<<endl;
+    gotoxy(xgoto, ygoto+1);cout<<"  ##    ### ##  ##        ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ### ##  ##      ##    "<<endl;
+    gotoxy(xgoto, ygoto+2);cout<<"  ##    ######   ####     ##    #####   ##  ##  ##      ##        ##    ##  ##  ######  ####     #### "<<endl;
+    gotoxy(xgoto, ygoto+3);cout<<"  ##    ## ###      ##    ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ## ###  ##          ##"<<endl;
     gotoxy(xgoto, ygoto+4);cout<<"######  ##  ##  #####     ##    ##  ##   ####    #####   #####  ######   ####   ##  ##   #####  ##### "<<endl;
     SetConsoleTextAttribute(h, 15);
-    gotoxy(xgoto+28, ygoto+8);
+    gotoxy(xgoto+28, ygoto+7);
     cout<<"Controles:";
-    gotoxy(xgoto+30, ygoto+9);
+    gotoxy(xgoto+30, ygoto+8);
     cout<<"-Flecha arriba: moverse hacia adelante";
-    gotoxy(xgoto+30, ygoto+10);
+    gotoxy(xgoto+30, ygoto+9);
     printf("-Flecha abajo: moverse hacia atr%cs", 160);
+    gotoxy(xgoto+30, ygoto+10);
+    cout<<"-Flecha izquierda: salto a la izquierda (6 espacios)";
     gotoxy(xgoto+30, ygoto+11);
-    cout<<"-Flecha izquierda: moverse a la izquierda";
+    cout<<"-Flecha derecha: salto a la derecha (6 espacios)";
     gotoxy(xgoto+30, ygoto+12);
-    cout<<"-Flecha derecha: moverse a la derecha";
+    cout<<"-A: moverse a la izquierda (un espacio)";
+    gotoxy(xgoto+30, ygoto+13);
+    cout<<"-D: moverse a la derecha (un espacio)";
 
-    gotoxy(xgoto+28, ygoto+14);
+    gotoxy(xgoto+28, ygoto+15);
     cout<<"Consigue puntos:";
-    gotoxy(xgoto+30, ygoto+15);
-    cout<<"-Completando el nivel en poco tiempo";
     gotoxy(xgoto+30, ygoto+16);
-    cout<<"-Recogiendo objetos especiales";
+    cout<<"-Completando el nivel en poco tiempo";
     gotoxy(xgoto+30, ygoto+17);
+    cout<<"-Recogiendo objetos especiales";
+    gotoxy(xgoto+30, ygoto+18);
     cout<<"-Ganando con varias vidas restantes";
 
-    gotoxy(25,24);
+    gotoxy(25,25);
     SetConsoleTextAttribute(h, 3);
     cout<<"-->";
     SetConsoleTextAttribute(h, 15);
-    gotoxy(29, 24);
+    gotoxy(29, 25);
     printf("Presione Enter para volver al men%c principal", 163);
 
     do{

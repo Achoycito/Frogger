@@ -12,6 +12,8 @@
 #define tecla_Abajo 80
 #define tecla_Izq 75
 #define tecla_Der 77
+#define tecla_A 97
+#define tecla_D 100
 
 using namespace std;
 
@@ -82,18 +84,28 @@ void Rana::mover(int tecla){
             this->y+=2;
         }
     }
-    if(this->x <72){
+    if(this->x <74){
         if(tecla==tecla_Der){
             PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
             borrarRana();
             this->x+=6;
         }
+        if(tecla==tecla_D){
+            PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+            borrarRana();
+            this->x++;
+        }
     }
-    if(this->x > 12){
+    if(this->x > 10){
         if(tecla==tecla_Izq){
             PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
             borrarRana();
             this->x-=6;
+        }
+        if(tecla==tecla_A){
+            PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
+            borrarRana();
+            this->x--;
         }
     }
 }
