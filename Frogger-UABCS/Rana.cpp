@@ -66,7 +66,7 @@ void Rana::mover(int tecla){
             }
         }
         else if(y==4){
-            if(this->x==18 || this->x ==30 || this->x == 42 || this->x == 54 || this->x==66){
+            if((this->x>=16&&this->x<22) || (this->x>=28&&this->x<34) || (this->x>=40&&this->x<46) || (this->x>=52&&this->x<58) || (this->x>=64&&this->x<70)){
                 if(tecla==tecla_Arriba){
                     PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
                     borrarRana();
@@ -101,4 +101,13 @@ void Rana::mover(int tecla){
 void Rana::respawnRana(){
     this->x = 42;
     this->y = 26;
+}
+
+void Rana::recorrer(int vel, int dir){
+    if(dir==0){
+        this->x -= vel;
+    }
+    else{
+        this->x += vel;
+    }
 }

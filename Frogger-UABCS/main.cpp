@@ -10,6 +10,7 @@
 
 #include "Auto.h"
 #include "Rana.h"
+#include "Tronco.h"
 
 #define tecla_Arriba 72
 #define tecla_Abajo 80
@@ -240,14 +241,14 @@ void imprimirMapa3(){
     for(int i=0; i<10; i++){
         gotoxy(xMap, yMap);
         for(int j=0; j<66; j++){
-            SetConsoleTextAttribute(h, 2);
-           if(i <= 5 and i>=4  and j > 6 and j <60 ){
-            printf("%c", 219);
-           }
-           else{
-            SetConsoleTextAttribute(h, 3);
-            printf("%c", 219);
-           }
+            SetConsoleTextAttribute(h, 'J');
+            if(i <= 5 and i>=4  and j >= 6 and j <60 ){
+                printf("%c", 219);
+            }
+            else{
+                SetConsoleTextAttribute(h, 3);
+                printf("%c", 219);
+            }
         }
         yMap++;
     }
@@ -305,6 +306,7 @@ void imprimirMapa4(){
 
             void jugar(){
 
+            //42, 26
     Rana ranita = Rana(42, 26);
     int tecla;
     int tiempoNivel=150;
@@ -315,7 +317,7 @@ void imprimirMapa4(){
     int vidas=5;
     int puntuacion=0;
     int xRanita=91;
-    int nivel = 1;
+    int nivel = 3;
     int contador = 0;
     bool estanque1 = true;
     bool estanque2 = true;
@@ -401,6 +403,8 @@ void imprimirMapa4(){
         autosN4[11]= Auto(14, 24, 0, 2);
         autosN4[12]= Auto(35, 24, 0, 2);
 
+        Tronco tronquito = Tronco(58, 4, 0, 3);
+
         srand(time(NULL));
         for(int i=0; i<13; i++){
             autosN4[i].setColor(rand() % 7+2);
@@ -411,7 +415,6 @@ void imprimirMapa4(){
     system("cls");
     do{
         if (nivel == 1){
-
             imprimirMapa();
             for(int x=0; x<4; x++){
                 autosN1[x].borrarAuto();
@@ -439,11 +442,8 @@ void imprimirMapa4(){
                     autosN1[x].printAuto();
                 }
             }
-
-            gotoxy(109,10);cout<<"SCORE: "<<puntuacion<<endl;
         }
         if (nivel == 2){
-
             imprimirMapa2();
             for(int x=0; x<17; x++){
                 autosN2[x].borrarAuto();
@@ -471,10 +471,63 @@ void imprimirMapa4(){
                     autosN2[x].printAuto();
                 }
             }
-             gotoxy(109,10);cout<<"SCORE: "<<puntuacion<<endl;
+
         }
         if (nivel == 3){
             imprimirMapa3();
+            tronquito.mover();
+            if(tronquito.getxTronco()>=10 && tronquito.getxTronco()<=58){
+            SetConsoleTextAttribute(h, 3);
+            tronquito.borrarTronco();
+                SetConsoleTextAttribute(h, 6);
+                tronquito.printTronco();
+            }
+            if(!tronquito.checkColision(ranita.getXRana(), ranita.getYRana())){
+                if(ranita.getYRana()<=12 && ranita.getYRana()>=4){
+                    if(ranita.getYRana()!=8){
+                        ranita.borrarRana();
+                        SetConsoleTextAttribute(h, 2);
+                        for(int i=0; i<vidas; i++){
+                            if(i==vidas-1){
+                                SetConsoleTextAttribute(h, 4);
+                            }
+                            ranita.printRanaJR(xRanita,20);
+                            xRanita+=3;
+                        }
+                        xRanita=91;
+                        vidas--;
+                        PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
+                        Sleep(1500);
+                        if(vidas>=0){
+                            ranita.respawnRana();
+                        }
+                    }
+                    else{
+                        if(ranita.getXRana()==12 || ranita.getXRana()==72){
+                            ranita.borrarRana();
+                            SetConsoleTextAttribute(h, 2);
+                            for(int i=0; i<vidas; i++){
+                                if(i==vidas-1){
+                                    SetConsoleTextAttribute(h, 4);
+                                }
+                                ranita.printRanaJR(xRanita,20);
+                                xRanita+=3;
+                            }
+                            xRanita=91;
+                            vidas--;
+                            PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
+                            Sleep(1500);
+                            if(vidas>=0){
+                                ranita.respawnRana();
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                ranita.recorrer(tronquito.getVelocidad(), tronquito.getDireccion());
+            }
+/*
                 for(int x=0; x<12; x++){
                 autosN3[x].borrarAuto();
                 if(autosN3[x].checkColision(ranita.getXRana(), ranita.getYRana())){
@@ -500,12 +553,10 @@ void imprimirMapa4(){
                     SetConsoleTextAttribute(h, autosN3[x].getcolor());
                     autosN3[x].printAuto();
                 }
-            }
-            gotoxy(109,10);cout<<"SCORE: "<<puntuacion<<endl;
+            }*/
         }
         if (nivel == 4){
             imprimirMapa4();
-
             for(int x=0; x<13; x++){
                 autosN4[x].borrarAuto();
                 if(autosN4[x].checkColision(ranita.getXRana(), ranita.getYRana())){
@@ -532,7 +583,6 @@ void imprimirMapa4(){
                     autosN4[x].printAuto();
                 }
             }
-             gotoxy(109,10);cout<<"SCORE: "<<puntuacion<<endl;
         }
 
         if (nivel == 5){
@@ -558,10 +608,8 @@ void imprimirMapa4(){
                 PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
                 ganar();
             }
-
-
         }
-        if(ranita.getXRana() == 18 && ranita.getYRana() == 2){
+        if(ranita.getXRana() >= 16 && ranita.getXRana() <22 && ranita.getYRana() == 2){
             if(estanque1 == true){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
@@ -584,7 +632,7 @@ void imprimirMapa4(){
             ranita.printRanaJR(18,2);
         }
 
-        if(ranita.getXRana() == 30 && ranita.getYRana() == 2){
+        if(ranita.getXRana() >= 28 && ranita.getXRana() <34 && ranita.getYRana() == 2){
             if(estanque2 == true){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
@@ -607,7 +655,7 @@ void imprimirMapa4(){
             ranita.printRanaJR(30,2);
         }
 
-        if(ranita.getXRana() == 42 && ranita.getYRana() == 2){
+        if(ranita.getXRana() == 40 && ranita.getXRana() <46 && ranita.getYRana() == 2){
             if(estanque3 == true){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
@@ -630,7 +678,7 @@ void imprimirMapa4(){
             ranita.printRanaJR(42,2);
         }
 
-        if(ranita.getXRana() == 54 && ranita.getYRana() == 2){
+        if(ranita.getXRana() == 52 && ranita.getXRana() <58 && ranita.getYRana() == 2){
             if(estanque4 == true){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
@@ -652,7 +700,7 @@ void imprimirMapa4(){
             SetConsoleTextAttribute(h, 2);
             ranita.printRanaJR(54,2);
         }
-        if(ranita.getXRana() == 66 && ranita.getYRana() == 2){
+        if(ranita.getXRana() == 64 && ranita.getXRana() <70 && ranita.getYRana() == 2){
             if(estanque5 == true){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
@@ -702,22 +750,43 @@ void imprimirMapa4(){
             tecla = getch();
             ranita.mover(tecla);
             if(tecla==32){
-            PlaySound(TEXT("sfx/Nivel completo.wav"), NULL, SND_ASYNC);
-            Sleep(3000);
-            tiempoInic = time(NULL)+tiempoNivel;
-            ranita.respawnRana();
-            nivel+=1;
-            system("cls");
-            estanque1 = true;
-            estanque2 = true;
-            estanque3 = true;
-            estanque4 = true;
-            estanque5 = true;
-            contador = 0;
+                PlaySound(TEXT("sfx/Nivel completo.wav"), NULL, SND_ASYNC);
+                Sleep(3000);
+                tiempoInic = time(NULL)+tiempoNivel;
+                ranita.respawnRana();
+                nivel+=1;
+                system("cls");
+                estanque1 = true;
+                estanque2 = true;
+                estanque3 = true;
+                estanque4 = true;
+                estanque5 = true;
+                contador = 0;
             }
             if(tecla== 105){
-                repeticion=false;
+
+            if(vidas != 0 ){
+             puntuacion= puntuacion+(vidas*200) ;
+             vidas = 0;
+            }
+            system("cls");
+            gotoxy(50,10);cout<<"SCORE: "<<puntuacion<<endl;
+
+             gotoxy(46,24);
+            SetConsoleTextAttribute(h, 3);
+            cout<<"-->";
+            SetConsoleTextAttribute(h, 15);
+            gotoxy(50, 24);
+            printf("Presione Enter para continuar ", 163);
+
+            do{
+                tecla = getch();
+            }while(tecla != tecla_Enter);
+
+            if(tecla == tecla_Enter){
+                PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
                 ganar();
+            }
             }
         }
 
@@ -726,7 +795,7 @@ void imprimirMapa4(){
         gotoxy(88, 13);
         tiempoRest = tiempoInic-tiempoActual;
         cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"     ";
-
+        gotoxy(88,10);cout<<"Puntuacion: "<<puntuacion<<endl;
 
         SetConsoleTextAttribute(h, 2);
         for(int i=0; i<vidas; i++){
@@ -886,25 +955,25 @@ void gameOver(){
 void ganar(){
     int tecla;
     system("cls");
-    SetConsoleTextAttribute(h, 1);
-    int x=10, y=2;
+    SetConsoleTextAttribute(h, 9);
+    int x=12, y=2;
     //PlaySound(TEXT("sfx/Ganar.wav"), NULL, SND_ASYNC);
-    gotoxy(x+5, y);  cout<<"######   #####  ##      ######   #####  ######  #####    ####   #####    #####   #####  ##"<<endl;Sleep(250);
-    gotoxy(x+5, y+1);cout<<"##      ##      ##        ##    ##        ##    ##  ##  ##  ##  ##  ##  ##      ##      ##"<<endl;Sleep(250);
-    gotoxy(x+5, y+2);cout<<"######  ######  ##        ##    ##        ##    ##  ##  ######  ##  ##  ######   ####   ##"<<endl;Sleep(250);
-    gotoxy(x+5, y+3);cout<<"##      ##      ##        ##    ##        ##    ##  ##  ##  ##  ##  ##  ##          ##    "<<endl;Sleep(250);
-    gotoxy(x+5, y+4);cout<<"##       #####  ######  ######   #####  ######  #####   ##  ##  #####    #####  #####   ##"<<endl;Sleep(250);
+    gotoxy(x+5, y);  cout<<"######   #####  ##      ######   #####  ######  #####    ####   #####    #####   #####"<<endl;Sleep(150);
+    gotoxy(x+5, y+1);cout<<"##      ##      ##        ##    ##        ##    ##  ##  ##  ##  ##  ##  ##      ##    "<<endl;Sleep(150);
+    gotoxy(x+5, y+2);cout<<"######  ######  ##        ##    ##        ##    ##  ##  ######  ##  ##  ######   #### "<<endl;Sleep(150);
+    gotoxy(x+5, y+3);cout<<"##      ##      ##        ##    ##        ##    ##  ##  ##  ##  ##  ##  ##          ##"<<endl;Sleep(150);
+    gotoxy(x+5, y+4);cout<<"##       #####  ######  ######   #####  ######  #####   ##  ##  #####    #####  ##### "<<endl;Sleep(150);
 
-    gotoxy(x, y+7);     cout<<" ##########    ##########   ####    ####   ##########    ##########   ############   ##########   ####"<<endl;Sleep(250);
-    gotoxy(x, y+8);     cout<<"############  ############  #####   ####  ############  ############  ############  ############  ####"<<endl;Sleep(250);
-    gotoxy(x, y+9);     cout<<"####          ####    ####  ######  ####  ####    ####  ####              ####      ####          ####"<<endl;Sleep(250);
-    gotoxy(x, y+10);    cout<<"####          ####    ####  ####### ####  ####    ####  ####              ####      ####          ####"<<endl;Sleep(250);
-    gotoxy(x, y+11);    cout<<"####  ####    ############  ############  ############  ###########       ####      ###########   ####"<<endl;Sleep(250);
-    gotoxy(x, y+12);    cout<<"####  ######  ############  ############  ############   ###########      ####      ###########   ####"<<endl;Sleep(250);
-    gotoxy(x, y+13);    cout<<"####    ####  ####    ####  #### #######  ####    ####          ####      ####      ####        "<<endl;Sleep(250);
-    gotoxy(x, y+14);    cout<<"####    ####  ####    ####  ####  ######  ####    ####          ####      ####      ####        "<<endl;Sleep(250);
-    gotoxy(x, y+15);    cout<<"############  ####    ####  ####   #####  ####    ####  ############      ####      ############  ####"<<endl;Sleep(250);
-    gotoxy(x, y+16);    cout<<" ##########   ####    ####  ####    ####  ####    ####   ##########       ####       ##########   ####"<<endl;Sleep(250);
+    gotoxy(x, y+7);     cout<<" ##########    ##########   ####    ####   ##########    ##########   ############   ########## "<<endl;Sleep(150);
+    gotoxy(x, y+8);     cout<<"############  ############  #####   ####  ############  ############  ############  ############"<<endl;Sleep(150);
+    gotoxy(x, y+9);     cout<<"####          ####    ####  ######  ####  ####    ####  ####              ####      ####        "<<endl;Sleep(150);
+    gotoxy(x, y+10);    cout<<"####          ####    ####  ####### ####  ####    ####  ####              ####      ####        "<<endl;Sleep(150);
+    gotoxy(x, y+11);    cout<<"####  ####    ############  ############  ############  ###########       ####      ########### "<<endl;Sleep(150);
+    gotoxy(x, y+12);    cout<<"####  ######  ############  ############  ############   ###########      ####      ########### "<<endl;Sleep(150);
+    gotoxy(x, y+13);    cout<<"####    ####  ####    ####  #### #######  ####    ####          ####      ####      ####        "<<endl;Sleep(150);
+    gotoxy(x, y+14);    cout<<"####    ####  ####    ####  ####  ######  ####    ####          ####      ####      ####        "<<endl;Sleep(150);
+    gotoxy(x, y+15);    cout<<"############  ####    ####  ####   #####  ####    ####  ############      ####      ############"<<endl;Sleep(150);
+    gotoxy(x, y+16);    cout<<" ##########   ####    ####  ####    ####  ####    ####   ##########       ####       ########## "<<endl;Sleep(150);
 
     gotoxy(32,24);
     SetConsoleTextAttribute(h, 3);

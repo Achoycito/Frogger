@@ -8,9 +8,9 @@
 #include <mmsystem.h>
 #include <sstream>
 
-Tronco::Tronco(int x,int y, int direccion, int _velocidad)
-{
+using namespace std;
 
+Tronco::Tronco(int x,int y, int direccion, int _velocidad){
     this->xTronco = x;
     if(direccion == 0){
         this->xInic = 80;
@@ -32,51 +32,103 @@ void Tronco::gotoxy2(int x, int y){
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void Tronco::printTonco(){
+void Tronco::printTronco(){
 
+    /*
     gotoxy2(this->xTronco, this->yTronco);printf("%c\n",219);
-    gotoxy2(this->xTronco, this->yTronco+1);printf("%c\n",219);
     gotoxy2(this->xTronco+1, this->yTronco);printf("%c\n",219);
-    gotoxy2(this->xTronco+1, this->yTronco+1);printf("%c\n",219);
     gotoxy2(this->xTronco+2, this->yTronco);printf("%c\n",219);
-    gotoxy2(this->xTronco+2, this->yTronco+1);printf("%c\n",219);
     gotoxy2(this->xTronco+3, this->yTronco);printf("%c\n",219);
-    gotoxy2(this->xTronco+3, this->yTronco+1);printf("%c\n",219);
     gotoxy2(this->xTronco+4, this->yTronco);printf("%c\n",219);
-    gotoxy2(this->xTronco+4, this->yTronco+1);printf("%c\n",219);
     gotoxy2(this->xTronco+5, this->yTronco);printf("%c\n",219);
+    gotoxy2(this->xTronco, this->yTronco+1);printf("%c\n",219);
+    gotoxy2(this->xTronco+1, this->yTronco+1);printf("%c\n",219);
+    gotoxy2(this->xTronco+2, this->yTronco+1);printf("%c\n",219);
+    gotoxy2(this->xTronco+3, this->yTronco+1);printf("%c\n",219);
+    gotoxy2(this->xTronco+4, this->yTronco+1);printf("%c\n",219);
     gotoxy2(this->xTronco+5, this->yTronco+1);printf("%c\n",219);
+    */
+    for(int i=0; i<18; i++){
+        gotoxy2(this->xTronco+i, this->yTronco+1);printf("%c\n",219);
+    }
 
 }
 void Tronco::borrarTronco(){
-    gotoxy2(this->xTronco, this->yTronco+1);printf(" ");
+    /*
 	gotoxy2(this->xTronco,this->yTronco);printf(" ");
 	gotoxy2(this->xTronco+1, this->yTronco);printf(" ");
-	gotoxy2(this->xTronco+1,this->yTronco+1);printf(" ");
 	gotoxy2(this->xTronco+2, this->yTronco);printf(" ");
-	gotoxy2(this->xTronco+2,this->yTronco+1);printf(" ");
     gotoxy2(this->xTronco+3,this->yTronco);printf(" ");
-    gotoxy2(this->xTronco+3,this->yTronco+1);printf(" ");
     gotoxy2(this->xTronco+4,this->yTronco);printf(" ");
-    gotoxy2(this->xTronco+4,this->yTronco+1);printf(" ");
-    gotoxy2(this->xTronco+5,this->yTronco+1);printf(" ");
     gotoxy2(this->xTronco+5,this->yTronco);printf(" ");
+    */
+    for(int i=0; i<18; i++){
+        gotoxy2(this->xTronco+i, this->yTronco+1);printf("%c\n",219);
+    }/*
+    gotoxy2(this->xTronco, this->yTronco+1);printf("%c\n",219);
+	gotoxy2(this->xTronco+1,this->yTronco+1);printf("%c\n",219);
+	gotoxy2(this->xTronco+2,this->yTronco+1);printf("%c\n",219);
+    gotoxy2(this->xTronco+3,this->yTronco+1);printf("%c\n",219);
+    gotoxy2(this->xTronco+4,this->yTronco+1);printf("%c\n",219);
+    gotoxy2(this->xTronco+5,this->yTronco+1);printf("%c\n",219);*/
 }
 
-int Auto::getxTronco(){
+void Tronco::mover(){
+    if(this->direccion==0){
+        this->xTronco-=this->velocidad;
+    }
+    else{
+        this->xTronco+=this->velocidad;
+    }
+
+    if((this->direccion==1) && (this->xTronco>70)){
+        this->xTronco = this->xInic;
+    }
+    if((this->direccion==0) && (this->xTronco<10)){
+        this->xTronco = this->xInic;
+    }
+}
+
+bool Tronco::checkColision(int xr, int yr){
+    int coinc=0;
+
+    for(int i=0; i<2; i++){
+        for(int j=0; j<18; j++){
+            if((xr+i) == (this->xTronco+j) && yr==this->yTronco){
+                coinc++;
+            }
+        }
+    }
+
+    if(coinc>0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+
+int Tronco::getxTronco(){
     return this->xTronco;
 }
-int Auto::getyTronco(){
+int Tronco::getyTronco(){
     return this->yTronco;
+}
+int Tronco::getVelocidad(){
+    return this->velocidad;
+}
+int Tronco::getDireccion(){
+    return this->direccion;
 }
 
 
 void Tronco::regresar(){
     if(this->direccion==0){
-        this->xAuto=70;
+        this->xTronco=70;
     }
     else{
-        this->yAuto=10;
+        this->yTronco=10;
     }
 }
 

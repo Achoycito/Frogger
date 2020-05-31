@@ -13,6 +13,7 @@ class Rana
         void mover(int);
         void borrarRana();
         void respawnRana();
+        void recorrer(int,int);
 
         int getXRana();
         int getYRana();

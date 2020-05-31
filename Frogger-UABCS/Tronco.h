@@ -7,12 +7,21 @@ class Tronco
     public:
         Tronco();
         Tronco(int, int, int, int);
-        void printTonco();
+        void printTronco();
         void borrarTronco();
+        void mover();
+        bool checkColision(int,int);
+
         int getxTronco();
-        int setxTronco();
         int getyTronco();
+        int getVelocidad();
+        int getDireccion();
+
         int setxTronco();
+        int setyTronco();
+
+
+
         void regresar();
         void gotoxy2(int,int);
 
