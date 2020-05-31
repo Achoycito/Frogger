@@ -128,7 +128,7 @@ void Tronco::regresar(){
         this->xTronco=70;
     }
     else{
-        this->yTronco=10;
+        this->xTronco=10;
     }
 }
 

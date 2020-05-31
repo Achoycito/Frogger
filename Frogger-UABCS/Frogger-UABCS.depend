@@ -60,7 +60,7 @@
 
 1590462834 c:\users\usuario\documents\github\frogger\frogger-uabcs\auto.h
 
-1590529058 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.cpp
+1590906165 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.cpp
 	"Rana.h"
 	<iostream>
 	<windows.h>
@@ -71,7 +71,7 @@
 	<mmsystem.h>
 	<sstream>
 
-1590815413 c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.h
+1590906165 c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.h
 
 1590467969 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.cpp
 	"Auto.h"
@@ -112,7 +112,7 @@
 	<mmsystem.h>
 	<sstream>
 
-1590815904 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\main.cpp
+1590908542 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\main.cpp
 	<iostream>
 	<windows.h>
 	<stdlib.h>
@@ -124,10 +124,24 @@
 	<ctime>
 	"Auto.h"
 	"Rana.h"
+	"Tronco.h"
 
 1590903353 c:\users\alang\documents\github\frogger\frogger-uabcs\tronco.h
 
 1590903447 source:c:\users\alang\documents\github\frogger\frogger-uabcs\tronco.cpp
+	"Tronco.h"
+	<iostream>
+	<windows.h>
+	<stdlib.h>
+	<conio.h>
+	<stdio.h>
+	<cstdlib>
+	<mmsystem.h>
+	<sstream>
+
+1590906166 c:\users\usuario\documents\github\frogger\frogger-uabcs\tronco.h
+
+1590908784 source:c:\users\usuario\documents\github\frogger\frogger-uabcs\tronco.cpp
 	"Tronco.h"
 	<iostream>
 	<windows.h>
