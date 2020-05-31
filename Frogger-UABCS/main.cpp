@@ -404,6 +404,22 @@ void imprimirMapa4(){
         troncosN3[6] = Tronco(56,12,0,3);
         troncosN3[7] = Tronco(20,12,0,3);
 
+    Tronco troncosN4[10];
+        troncosN4[0] = Tronco(56,4,1,3);
+        troncosN4[1] = Tronco(20,4,1,3);
+
+        troncosN4[2] = Tronco(56,6,0,3);
+        troncosN4[3] = Tronco(20,6,0,3);
+
+        troncosN4[4] = Tronco(56,8,1,3);
+        troncosN4[5] = Tronco(20,8,1,3);
+
+        troncosN4[6] = Tronco(56,10,0,3);
+        troncosN4[7] = Tronco(20,10,0,3);
+
+        troncosN4[8] = Tronco(56,12,1,3);
+        troncosN4[9] = Tronco(20,12,1,3);
+
     Rana ranita = Rana(42, 26);
     int tecla;
     int tiempoNivel=150;
@@ -582,7 +598,68 @@ void imprimirMapa4(){
         }
         if (nivel == 4){
             imprimirMapa4();
-            for(int x=0; x<13; x++){
+            for (int i = 0; i < 10; i++){
+                troncosN4[i].mover();
+                if(troncosN4[i].getxTronco()>=10 && troncosN4[i].getxTronco()<=58){
+                    SetConsoleTextAttribute(h, 3);
+                    troncosN4[i].borrarTronco();
+                    SetConsoleTextAttribute(h, 6);
+                    troncosN4[i].printTronco();
+                }
+                if(troncosN4[i].checkColision(ranita.getXRana(), ranita.getYRana())){
+                    tocandoTronco=true;
+                    velTronco=troncosN4[i].getVelocidad();
+                    direcTronco=troncosN4[i].getDireccion();
+                }
+            }
+
+            if(tocandoTronco==true){
+                ranita.recorrer(velTronco, direcTronco);
+            }
+            else{
+                if(ranita.getYRana()<=12 && ranita.getYRana()>=4){
+                    if(ranita.getYRana()!=8){
+                        ranita.borrarRana();
+                        SetConsoleTextAttribute(h, 2);
+                        for(int i=0; i<vidas; i++){
+                            if(i==vidas-1){
+                                SetConsoleTextAttribute(h, 4);
+                            }
+                            ranita.printRanaJR(xRanita,20);
+                            xRanita+=3;
+                        }
+                        xRanita=91;
+                        vidas--;
+                        PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
+                        Sleep(1500);
+                        if(vidas>=0){
+                            ranita.respawnRana();
+                        }
+                    }
+                    else{
+                        if(ranita.getXRana()==12 || ranita.getXRana()==72){
+                            ranita.borrarRana();
+                            SetConsoleTextAttribute(h, 2);
+                            for(int i=0; i<vidas; i++){
+                                if(i==vidas-1){
+                                    SetConsoleTextAttribute(h, 4);
+                                }
+                                ranita.printRanaJR(xRanita,20);
+                                xRanita+=3;
+                            }
+                            xRanita=91;
+                            vidas--;
+                            PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
+                            Sleep(1500);
+                            if(vidas>=0){
+                                ranita.respawnRana();
+                            }
+                        }
+                    }
+                }
+            }
+            tocandoTronco=false;
+            /*for(int x=0; x<13; x++){
                 autosN4[x].borrarAuto();
                 if(autosN4[x].checkColision(ranita.getXRana(), ranita.getYRana())){
                     ranita.borrarRana();
@@ -607,7 +684,7 @@ void imprimirMapa4(){
                     SetConsoleTextAttribute(h, autosN4[x].getcolor());
                     autosN4[x].printAuto();
                 }
-            }
+            }*/
         }
 
         if (nivel == 5){
