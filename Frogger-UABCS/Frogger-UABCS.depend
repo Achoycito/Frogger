@@ -85,7 +85,7 @@
 
 1590467969 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.h
 
-1590471614 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\main.cpp
+1590885627 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\main.cpp
 	<iostream>
 	<windows.h>
 	<stdlib.h>
@@ -98,9 +98,9 @@
 	"Auto.h"
 	"Rana.h"
 
-1590203524 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.h
+1590817853 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.h
 
-1590203524 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.cpp
+1590515773 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.cpp
 	"Rana.h"
 	<iostream>
 	<windows.h>

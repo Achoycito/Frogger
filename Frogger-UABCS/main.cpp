@@ -311,7 +311,9 @@ void imprimirMapa4(){
     int extensionTiempo=30;
     int tiempoInic = time(NULL)+tiempoNivel;
     int tiempoActual;
+    int tiempoRest;
     int vidas=5;
+    int puntuacion=0;
     int xRanita=91;
     int nivel = 1;
     int contador = 0;
@@ -320,11 +322,13 @@ void imprimirMapa4(){
     bool estanque3 = true;
     bool estanque4 = true;
     bool estanque5 = true;
-    Auto autosN1[4];
+
+        Auto autosN1[4];
         autosN1[0]= Auto(0, 6, 0, 3);
         autosN1[1]= Auto(0, 12, 1, 1);
         autosN1[2]= Auto(0, 18, 1, 2);
         autosN1[3]= Auto(0, 22, 0, 1);
+
         srand(time(NULL));
         for(int i=0; i<4; i++){
             autosN1[i].setColor(rand() % 7+2);
@@ -349,6 +353,7 @@ void imprimirMapa4(){
         autosN2[14]= Auto(39, 22, 0, 2);
         autosN2[15]= Auto(10, 24, 1, 1);
         autosN2[16]= Auto(39, 24, 1, 1);
+
         srand(time(NULL));
         for(int i=0; i<17; i++){
             autosN2[i].setColor(rand() % 7+2);
@@ -406,6 +411,7 @@ void imprimirMapa4(){
     system("cls");
     do{
         if (nivel == 1){
+
             imprimirMapa();
             for(int x=0; x<4; x++){
                 autosN1[x].borrarAuto();
@@ -433,6 +439,8 @@ void imprimirMapa4(){
                     autosN1[x].printAuto();
                 }
             }
+
+            gotoxy(109,10);cout<<"SCORE: "<<puntuacion<<endl;
         }
         if (nivel == 2){
 
@@ -463,6 +471,7 @@ void imprimirMapa4(){
                     autosN2[x].printAuto();
                 }
             }
+             gotoxy(109,10);cout<<"SCORE: "<<puntuacion<<endl;
         }
         if (nivel == 3){
             imprimirMapa3();
@@ -492,6 +501,7 @@ void imprimirMapa4(){
                     autosN3[x].printAuto();
                 }
             }
+            gotoxy(109,10);cout<<"SCORE: "<<puntuacion<<endl;
         }
         if (nivel == 4){
             imprimirMapa4();
@@ -522,21 +532,51 @@ void imprimirMapa4(){
                     autosN4[x].printAuto();
                 }
             }
+             gotoxy(109,10);cout<<"SCORE: "<<puntuacion<<endl;
         }
+
         if (nivel == 5){
-            ganar();
+            if(vidas != 0 ){
+             puntuacion= puntuacion+(vidas*200) ;
+             vidas = 0;
+            }
+            system("cls");
+            gotoxy(50,10);cout<<"SCORE: "<<puntuacion<<endl;
+
+             gotoxy(46,24);
+            SetConsoleTextAttribute(h, 3);
+            cout<<"-->";
+            SetConsoleTextAttribute(h, 15);
+            gotoxy(50, 24);
+            printf("Presione Enter para continuar ", 163);
+
+            do{
+                tecla = getch();
+            }while(tecla != tecla_Enter);
+
+            if(tecla == tecla_Enter){
+                PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
+                ganar();
+            }
+
+
         }
         if(ranita.getXRana() == 18 && ranita.getYRana() == 2){
             if(estanque1 == true){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
-                gotoxy(109, 13);
-                SetConsoleTextAttribute(h, 2);
-                cout<<"+"<<extensionTiempo;
+                if(contador < 4){
+
+                    tiempoInic+=extensionTiempo;
+                    gotoxy(109, 13);
+                    SetConsoleTextAttribute(h, 2);
+                    cout<<"+"<<extensionTiempo;
+                }
+
                 Sleep(2000);
-                tiempoInic+=extensionTiempo;
                 estanque1 = false;
                 contador += 1;
                 ranita.respawnRana();
+                puntuacion = puntuacion + 50;
             }
         }
         if(estanque1 == false){
@@ -547,14 +587,19 @@ void imprimirMapa4(){
         if(ranita.getXRana() == 30 && ranita.getYRana() == 2){
             if(estanque2 == true){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
-                gotoxy(109, 13);
-                SetConsoleTextAttribute(h, 2);
-                cout<<"+"<<extensionTiempo;
+                if(contador < 4){
+
+                    tiempoInic+=extensionTiempo;
+                    gotoxy(109, 13);
+                    SetConsoleTextAttribute(h, 2);
+                    cout<<"+"<<extensionTiempo;
+
+                }
                 Sleep(2000);
-                tiempoInic+=extensionTiempo;
                 estanque2 = false;
                 contador += 1;
                 ranita.respawnRana();
+                puntuacion = puntuacion + 50;
             }
         }
         if(estanque2 == false){
@@ -565,14 +610,19 @@ void imprimirMapa4(){
         if(ranita.getXRana() == 42 && ranita.getYRana() == 2){
             if(estanque3 == true){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
-                gotoxy(109, 13);
-                SetConsoleTextAttribute(h, 2);
-                cout<<"+"<<extensionTiempo;
+                if(contador < 4){
+
+                    tiempoInic+=extensionTiempo;
+                    gotoxy(109, 13);
+                    SetConsoleTextAttribute(h, 2);
+                    cout<<"+"<<extensionTiempo;
+
+                }
                 Sleep(2000);
-                tiempoInic+=extensionTiempo;
                 estanque3 = false;
                 contador += 1;
                 ranita.respawnRana();
+                puntuacion = puntuacion + 50;
             }
         }
         if(estanque3 == false){
@@ -583,14 +633,19 @@ void imprimirMapa4(){
         if(ranita.getXRana() == 54 && ranita.getYRana() == 2){
             if(estanque4 == true){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
-                gotoxy(109, 13);
-                SetConsoleTextAttribute(h, 2);
-                cout<<"+"<<extensionTiempo;
+                if(contador < 4){
+
+                    tiempoInic+=extensionTiempo;
+                    gotoxy(109, 13);
+                    SetConsoleTextAttribute(h, 2);
+                    cout<<"+"<<extensionTiempo;
+
+                }
                 Sleep(2000);
-                tiempoInic+=extensionTiempo;
                 estanque4 = false;
                 contador += 1;
                 ranita.respawnRana();
+                puntuacion = puntuacion + 50;
             }
         }
         if(estanque4 == false){
@@ -600,14 +655,19 @@ void imprimirMapa4(){
         if(ranita.getXRana() == 66 && ranita.getYRana() == 2){
             if(estanque5 == true){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
-                gotoxy(109, 13);
-                SetConsoleTextAttribute(h, 2);
-                cout<<"+"<<extensionTiempo;
+                if(contador < 4){
+
+                    tiempoInic+=extensionTiempo;
+                    gotoxy(109, 13);
+                    SetConsoleTextAttribute(h, 2);
+                    cout<<"+"<<extensionTiempo;
+
+                }
                 Sleep(2000);
-                tiempoInic+=extensionTiempo;
                 estanque5 = false;
                 contador += 1;
                 ranita.respawnRana();
+                puntuacion = puntuacion + 50;
             }
         }
         if(estanque5 == false){
@@ -628,6 +688,7 @@ void imprimirMapa4(){
             estanque4 = true;
             estanque5 = true;
             contador = 0;
+            puntuacion += (tiempoRest*3);
         }
         if(tiempoActual==tiempoInic || vidas<0){
             PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
@@ -654,7 +715,7 @@ void imprimirMapa4(){
             estanque5 = true;
             contador = 0;
             }
-            if(tecla==105){
+            if(tecla== 105){
                 repeticion=false;
                 ganar();
             }
@@ -663,7 +724,9 @@ void imprimirMapa4(){
         SetConsoleTextAttribute(h, 15);
         tiempoActual = time(NULL);
         gotoxy(88, 13);
+        tiempoRest = tiempoInic-tiempoActual;
         cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"     ";
+
 
         SetConsoleTextAttribute(h, 2);
         for(int i=0; i<vidas; i++){
