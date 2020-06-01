@@ -7,9 +7,14 @@
 			<Cursor1 position="5101" topLine="117" />
 		</Cursor>
 	</File>
-	<File name="Tronco.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Auto.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1183" topLine="33" />
+			<Cursor1 position="103" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Tronco.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="7" />
 		</Cursor>
 	</File>
 	<File name="Rana.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="6" zoom_2="0">
@@ -19,7 +24,7 @@
 	</File>
 	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="28400" topLine="272" />
+			<Cursor1 position="13105" topLine="732" />
 		</Cursor>
 		<Folding>
 			<Collapse line="58" />
@@ -29,42 +34,19 @@
 			<Collapse line="167" />
 			<Collapse line="201" />
 			<Collapse line="235" />
-			<Collapse line="278" />
-			<Collapse line="461" />
-			<Collapse line="490" />
-			<Collapse line="520" />
-			<Collapse line="612" />
-			<Collapse line="765" />
-			<Collapse line="769" />
-			<Collapse line="793" />
-			<Collapse line="797" />
-			<Collapse line="819" />
-			<Collapse line="823" />
-			<Collapse line="848" />
-			<Collapse line="853" />
-			<Collapse line="968" />
-			<Collapse line="1022" />
-			<Collapse line="1069" />
-			<Collapse line="1109" />
-			<Collapse line="1150" />
-			<Collapse line="1175" />
-			<Collapse line="1194" />
-			<Collapse line="1214" />
+			<Collapse line="967" />
+			<Collapse line="1021" />
+			<Collapse line="1068" />
 		</Folding>
-	</File>
-	<File name="Tronco.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="7" />
-		</Cursor>
-	</File>
-	<File name="Auto.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="103" topLine="0" />
-		</Cursor>
 	</File>
 	<File name="Rana.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="165" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Tronco.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1183" topLine="33" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

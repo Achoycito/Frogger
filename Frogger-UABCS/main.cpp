@@ -392,34 +392,36 @@ void imprimirMapa4(){
 
     Tronco tronquito = Tronco(58, 4, 0, 3);
 
-    Tronco troncosN3[8];
-        troncosN3[0] = Tronco(56,4,1,3);
-        troncosN3[1] = Tronco(20,4,1,3);
+    Tronco troncosN3[9];
+        troncosN3[0] = Tronco(65,4,1,1);
+        troncosN3[1] = Tronco(45,4,1,1);
+        troncosN3[8] = Tronco(20,4,1,1);
 
-        troncosN3[2] = Tronco(56,6,0,3);
-        troncosN3[3] = Tronco(20,6,0,3);
+        troncosN3[2] = Tronco(56,6,0,2);
+        troncosN3[3] = Tronco(20,6,0,2);
 
-        troncosN3[4] = Tronco(56,10,1,3);
-        troncosN3[5] = Tronco(20,10,1,3);
+        troncosN3[4] = Tronco(56,10,1,2);
+        troncosN3[5] = Tronco(20,10,1,2);
 
-        troncosN3[6] = Tronco(56,12,0,3);
-        troncosN3[7] = Tronco(20,12,0,3);
+        troncosN3[6] = Tronco(56,12,0,2);
+        troncosN3[7] = Tronco(20,12,0,2);
 
-    Tronco troncosN4[10];
-        troncosN4[0] = Tronco(56,4,1,3);
-        troncosN4[1] = Tronco(20,4,1,3);
+    Tronco troncosN4[11];
+        troncosN4[0] = Tronco(65,4,1,1);
+        troncosN4[1] = Tronco(45,4,1,1);
+        troncosN4[10] = Tronco(20,4,1,1);
 
-        troncosN4[2] = Tronco(56,6,0,3);
-        troncosN4[3] = Tronco(20,6,0,3);
+        troncosN4[2] = Tronco(56,6,0,2);
+        troncosN4[3] = Tronco(20,6,0,2);
 
-        troncosN4[4] = Tronco(56,8,1,3);
-        troncosN4[5] = Tronco(20,8,1,3);
+        troncosN4[4] = Tronco(56,8,1,2);
+        troncosN4[5] = Tronco(20,8,1,2);
 
-        troncosN4[6] = Tronco(56,10,0,3);
-        troncosN4[7] = Tronco(20,10,0,3);
+        troncosN4[6] = Tronco(56,10,0,2);
+        troncosN4[7] = Tronco(20,10,0,2);
 
-        troncosN4[8] = Tronco(56,12,1,3);
-        troncosN4[9] = Tronco(20,12,1,3);
+        troncosN4[8] = Tronco(56,12,1,2);
+        troncosN4[9] = Tronco(20,12,1,2);
                     //42, 26
     Rana ranita = Rana(42, 26);
     int tecla;
@@ -432,7 +434,7 @@ void imprimirMapa4(){
     bool tocandoTronco=false;
     int velTronco, direcTronco;
     int puntuacion=0;
-    int xRanita=91;
+    int xRanita=88;
     int nivel = 3;
     int contador = 0;
     bool estanque1 = true;
@@ -469,10 +471,10 @@ void imprimirMapa4(){
                         if(i==vidas-1){
                             SetConsoleTextAttribute(h, 4);
                         }
-                        ranita.printRanaJR(xRanita,20);
+                        ranita.printRanaJR(xRanita,18);
                         xRanita+=3;
                     }
-                    xRanita=91;
+                    xRanita=88;
                     vidas--;
                     PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
                     Sleep(1500);
@@ -498,7 +500,7 @@ void imprimirMapa4(){
                         if(i==vidas-1){
                             SetConsoleTextAttribute(h, 4);
                         }
-                        ranita.printRanaJR(xRanita,20);
+                        ranita.printRanaJR(xRanita,18);
                         xRanita+=3;
                     }
                     xRanita=91;
@@ -519,7 +521,7 @@ void imprimirMapa4(){
         }
         if (nivel == 3){
             imprimirMapa3();
-            for (int i = 0; i < 8; i++){
+            for (int i = 0; i < 9; i++){
                 troncosN3[i].mover();
                 if(troncosN3[i].getxTronco()>=4 && troncosN3[i].getxTronco()<70){
                     SetConsoleTextAttribute(h, 3);
@@ -546,7 +548,7 @@ void imprimirMapa4(){
                             if(i==vidas-1){
                                 SetConsoleTextAttribute(h, 4);
                             }
-                            ranita.printRanaJR(xRanita,20);
+                            ranita.printRanaJR(xRanita,18);
                             xRanita+=3;
                         }
                         xRanita=91;
@@ -565,7 +567,7 @@ void imprimirMapa4(){
                                 if(i==vidas-1){
                                     SetConsoleTextAttribute(h, 4);
                                 }
-                                ranita.printRanaJR(xRanita,20);
+                                ranita.printRanaJR(xRanita,18);
                                 xRanita+=3;
                             }
                             xRanita=91;
@@ -591,7 +593,7 @@ void imprimirMapa4(){
                         if(i==vidas-1){
                             SetConsoleTextAttribute(h, 4);
                         }
-                        ranita.printRanaJR(xRanita,20);
+                        ranita.printRanaJR(xRanita,18);
                         xRanita+=3;
                     }
                     xRanita=91;
@@ -611,7 +613,7 @@ void imprimirMapa4(){
         }
         if (nivel == 4){
             imprimirMapa4();
-            for (int i = 0; i < 10; i++){
+            for (int i = 0; i < 11; i++){
                 troncosN4[i].mover();
                 if(troncosN4[i].getxTronco()>=4 && troncosN4[i].getxTronco()<70){
                     SetConsoleTextAttribute(h, 3);
@@ -637,7 +639,7 @@ void imprimirMapa4(){
                         if(i==vidas-1){
                             SetConsoleTextAttribute(h, 4);
                         }
-                        ranita.printRanaJR(xRanita,20);
+                        ranita.printRanaJR(xRanita,18);
                         xRanita+=3;
                     }
                     xRanita=91;
@@ -660,7 +662,7 @@ void imprimirMapa4(){
                         if(i==vidas-1){
                             SetConsoleTextAttribute(h, 4);
                         }
-                        ranita.printRanaJR(xRanita,20);
+                        ranita.printRanaJR(xRanita,18);
                         xRanita+=3;
                     }
                     xRanita=91;
@@ -722,11 +724,11 @@ void imprimirMapa4(){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
                     tiempoInic+=extensionTiempo;
-                    gotoxy(109, 13);
+                    gotoxy(109, 12);
                     SetConsoleTextAttribute(h, 2);
                     cout<<"+"<<extensionTiempo;
                 }
-                gotoxy(106, 10);
+                gotoxy(109, 10);
                 SetConsoleTextAttribute(h, 2);
                 cout<<"+"<<50;
                 Sleep(2000);
@@ -747,12 +749,12 @@ void imprimirMapa4(){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
                     tiempoInic+=extensionTiempo;
-                    gotoxy(109, 13);
+                    gotoxy(109, 12);
                     SetConsoleTextAttribute(h, 2);
                     cout<<"+"<<extensionTiempo;
 
                 }
-                gotoxy(106, 10);
+                gotoxy(109, 10);
                 SetConsoleTextAttribute(h, 2);
                 cout<<"+"<<50;
                 Sleep(2000);
@@ -774,12 +776,12 @@ void imprimirMapa4(){
                 if(contador < 4){
 
                     tiempoInic+=extensionTiempo;
-                    gotoxy(109, 13);
+                    gotoxy(109, 12);
                     SetConsoleTextAttribute(h, 2);
                     cout<<"+"<<extensionTiempo;
 
                 }
-                gotoxy(106, 10);
+                gotoxy(109, 10);
                 SetConsoleTextAttribute(h, 2);
                 cout<<"+"<<50;
                 Sleep(2000);
@@ -801,12 +803,12 @@ void imprimirMapa4(){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
                     tiempoInic+=extensionTiempo;
-                    gotoxy(109, 13);
+                    gotoxy(109, 12);
                     SetConsoleTextAttribute(h, 2);
                     cout<<"+"<<extensionTiempo;
 
                 }
-                gotoxy(106, 10);
+                gotoxy(109, 10);
                 SetConsoleTextAttribute(h, 2);
                 cout<<"+"<<50;
                 Sleep(2000);
@@ -827,12 +829,12 @@ void imprimirMapa4(){
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
                     tiempoInic+=extensionTiempo;
-                    gotoxy(109, 13);
+                    gotoxy(109, 12);
                     SetConsoleTextAttribute(h, 2);
                     cout<<"+"<<extensionTiempo;
 
                 }
-                gotoxy(106, 10);
+                gotoxy(109, 10);
                 SetConsoleTextAttribute(h, 2);
                 cout<<"+"<<50;
                 Sleep(2000);
@@ -840,9 +842,6 @@ void imprimirMapa4(){
                 contador += 1;
                 ranita.respawnRana();
                 puntuacion = puntuacion + 50;
-                gotoxy(109, 12);
-                SetConsoleTextAttribute(h, 2);
-                cout<<"+"<<50;
             }
         }
         if(estanque5 == false){
@@ -880,7 +879,7 @@ void imprimirMapa4(){
         cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"     ";
 
         gotoxy(88,14);cout<<"Frutas recogidas";
-        gotoxy(88,19);cout<<"Vidas restantes";
+        gotoxy(88,17);cout<<"Vidas restantes";
         SetConsoleTextAttribute(h, 4);
         for(int i=0; i<contadorFrutas; i++){
             gotoxy(f,15);printf("%c\n",254);
@@ -890,14 +889,14 @@ void imprimirMapa4(){
 
         SetConsoleTextAttribute(h, 2);
         for(int i=0; i<vidas; i++){
-            ranita.printRanaJR(xRanita,20);
+            ranita.printRanaJR(xRanita,18);
             xRanita+=3;
         }
-        gotoxy(xRanita,20);
+        gotoxy(xRanita,18);
         cout<<"  ";
-        gotoxy(xRanita,21);
+        gotoxy(xRanita,19);
         cout<<"  ";
-        xRanita=91;
+        xRanita=88;
 
         /*
         gotoxy(xRanita,22);
