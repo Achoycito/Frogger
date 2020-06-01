@@ -48,7 +48,7 @@ void Tronco::printTronco(){
     gotoxy2(this->xTronco+4, this->yTronco+1);printf("%c\n",219);
     gotoxy2(this->xTronco+5, this->yTronco+1);printf("%c\n",219);
     */
-    for(int i=0; i<18; i++){
+    for(int i=0; i<12; i++){
         gotoxy2(this->xTronco+i, this->yTronco+1);printf("%c\n",219);
     }
 
@@ -62,7 +62,7 @@ void Tronco::borrarTronco(){
     gotoxy2(this->xTronco+4,this->yTronco);printf(" ");
     gotoxy2(this->xTronco+5,this->yTronco);printf(" ");
     */
-    for(int i=0; i<18; i++){
+    for(int i=0; i<12; i++){
         gotoxy2(this->xTronco+i, this->yTronco+1);printf("%c\n",219);
     }/*
     gotoxy2(this->xTronco, this->yTronco+1);printf("%c\n",219);
@@ -93,7 +93,7 @@ bool Tronco::checkColision(int xr, int yr){
     int coinc=0;
 
     for(int i=0; i<2; i++){
-        for(int j=0; j<18; j++){
+        for(int j=0; j<12; j++){
             if((xr+i) == (this->xTronco+j) && yr==this->yTronco){
                 coinc++;
             }

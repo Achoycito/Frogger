@@ -268,6 +268,8 @@ void imprimirMapa3(){
         }
         yMap++;
     }
+
+
     SetConsoleTextAttribute(h, 15);
 
 
@@ -422,7 +424,7 @@ void imprimirMapa4(){
 
     Rana ranita = Rana(42, 26);
     int tecla;
-    int tiempoNivel=150;
+    int tiempoNivel=10;
     int extensionTiempo=30;
     int tiempoInic = time(NULL)+tiempoNivel;
     int tiempoActual;
@@ -713,6 +715,8 @@ void imprimirMapa4(){
         }
         if(ranita.getXRana() >= 16 && ranita.getXRana() <22 && ranita.getYRana() == 2){
             if(estanque1 == true){
+                SetConsoleTextAttribute(h, 2);
+                ranita.printRanaJR(18,2);
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
 
@@ -736,9 +740,10 @@ void imprimirMapa4(){
 
         if(ranita.getXRana() >= 28 && ranita.getXRana() <34 && ranita.getYRana() == 2){
             if(estanque2 == true){
+                SetConsoleTextAttribute(h, 2);
+                ranita.printRanaJR(30,2);
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
-
                     tiempoInic+=extensionTiempo;
                     gotoxy(109, 13);
                     SetConsoleTextAttribute(h, 2);
@@ -759,6 +764,8 @@ void imprimirMapa4(){
 
         if(ranita.getXRana() >= 40 && ranita.getXRana() <46 && ranita.getYRana() == 2){
             if(estanque3 == true){
+                SetConsoleTextAttribute(h, 2);
+                ranita.printRanaJR(42,2);
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
 
@@ -773,6 +780,7 @@ void imprimirMapa4(){
                 contador += 1;
                 ranita.respawnRana();
                 puntuacion = puntuacion + 50;
+
             }
         }
         if(estanque3 == false){
@@ -782,15 +790,19 @@ void imprimirMapa4(){
 
         if(ranita.getXRana() >= 52 && ranita.getXRana() <58 && ranita.getYRana() == 2){
             if(estanque4 == true){
+                SetConsoleTextAttribute(h, 2);
+                ranita.printRanaJR(54,2);
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
-
                     tiempoInic+=extensionTiempo;
                     gotoxy(109, 13);
                     SetConsoleTextAttribute(h, 2);
                     cout<<"+"<<extensionTiempo;
 
                 }
+                gotoxy(106, 10);
+                SetConsoleTextAttribute(h, 2);
+                cout<<"+"<<50;
                 Sleep(2000);
                 estanque4 = false;
                 contador += 1;
@@ -804,9 +816,10 @@ void imprimirMapa4(){
         }
         if(ranita.getXRana() >= 64 && ranita.getXRana() <70 && ranita.getYRana() == 2){
             if(estanque5 == true){
+                SetConsoleTextAttribute(h, 2);
+                ranita.printRanaJR(66,2);
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
-
                     tiempoInic+=extensionTiempo;
                     gotoxy(109, 13);
                     SetConsoleTextAttribute(h, 2);
@@ -818,6 +831,9 @@ void imprimirMapa4(){
                 contador += 1;
                 ranita.respawnRana();
                 puntuacion = puntuacion + 50;
+                gotoxy(109, 12);
+                SetConsoleTextAttribute(h, 2);
+                cout<<"+"<<50;
             }
         }
         if(estanque5 == false){
@@ -840,14 +856,34 @@ void imprimirMapa4(){
             contador = 0;
             puntuacion += (tiempoRest*3);
         }
-        if(tiempoActual==tiempoInic || vidas<0){
-            PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
-            Sleep(2000);
-            gameOver();
-        }
 
         SetConsoleTextAttribute(h, 2);
         ranita.printRana();
+    //HUD
+        SetConsoleTextAttribute(h, 15);
+        tiempoActual = time(NULL);
+        gotoxy(88, 13);
+        tiempoRest = tiempoInic-tiempoActual;
+        cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"     ";
+        gotoxy(88,10);cout<<"Puntuacion: "<<puntuacion<<"         ";
+        SetConsoleTextAttribute(h, 2);
+        for(int i=0; i<vidas; i++){
+            ranita.printRanaJR(xRanita,20);
+            xRanita+=3;
+        }
+        gotoxy(xRanita,20);
+        cout<<"  ";
+        gotoxy(xRanita,21);
+        cout<<"  ";
+        xRanita=91;
+    //Game Over
+        if(tiempoActual==tiempoInic || vidas<0){
+            PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
+            repeticion=false;
+            Sleep(2000);
+            gameOver();
+        }
+    //KBHIT
         if(kbhit()){
             tecla = getch();
             ranita.mover(tecla);
@@ -886,28 +922,12 @@ void imprimirMapa4(){
 
                 if(tecla == tecla_Enter){
                     PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
+                    repeticion=false;
                     ganar();
                 }
             }
         }
 
-        SetConsoleTextAttribute(h, 15);
-        tiempoActual = time(NULL);
-        gotoxy(88, 13);
-        tiempoRest = tiempoInic-tiempoActual;
-        cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"     ";
-        gotoxy(88,10);cout<<"Puntuacion: "<<puntuacion<<endl;
-
-        SetConsoleTextAttribute(h, 2);
-        for(int i=0; i<vidas; i++){
-            ranita.printRanaJR(xRanita,20);
-            xRanita+=3;
-        }
-        gotoxy(xRanita,20);
-        cout<<"  ";
-        gotoxy(xRanita,21);
-        cout<<"  ";
-        xRanita=91;
 
 
         Sleep(1);
