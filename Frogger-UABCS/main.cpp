@@ -424,7 +424,7 @@ void imprimirMapa4(){
 
     Rana ranita = Rana(42, 26);
     int tecla;
-    int tiempoNivel=10;
+    int tiempoNivel=120;
     int extensionTiempo=30;
     int tiempoInic = time(NULL)+tiempoNivel;
     int tiempoActual;
@@ -434,7 +434,7 @@ void imprimirMapa4(){
     int velTronco, direcTronco;
     int puntuacion=0;
     int xRanita=91;
-    int nivel = 3;
+    int nivel = 1;
     int contador = 0;
     bool estanque1 = true;
     bool estanque2 = true;
@@ -442,7 +442,19 @@ void imprimirMapa4(){
     bool estanque4 = true;
     bool estanque5 = true;
 
+    bool fruta1 = true;
+    bool fruta2 = false;
+    bool fruta3 = false;
+    bool fruta4 = false;
+    int f = 88;
+    int contadorFrutas =0;
 
+    int posxFruta= 0;
+    int posyFruta =0;
+
+
+    posxFruta = (rand()% 48 + 18);
+    posyFruta = (rand()% 11 + 2)*2;
 
     bool repeticion=true;
     system("cls");
@@ -570,7 +582,7 @@ void imprimirMapa4(){
             }
             tocandoTronco=false;
 
-/*
+
                 for(int x=0; x<12; x++){
                 autosN3[x].borrarAuto();
                 if(autosN3[x].checkColision(ranita.getXRana(), ranita.getYRana())){
@@ -596,7 +608,7 @@ void imprimirMapa4(){
                     SetConsoleTextAttribute(h, autosN3[x].getcolor());
                     autosN3[x].printAuto();
                 }
-            }*/
+            }
         }
         if (nivel == 4){
             imprimirMapa4();
@@ -661,7 +673,7 @@ void imprimirMapa4(){
                 }
             }
             tocandoTronco=false;
-            /*for(int x=0; x<13; x++){
+            for(int x=0; x<13; x++){
                 autosN4[x].borrarAuto();
                 if(autosN4[x].checkColision(ranita.getXRana(), ranita.getYRana())){
                     ranita.borrarRana();
@@ -686,9 +698,8 @@ void imprimirMapa4(){
                     SetConsoleTextAttribute(h, autosN4[x].getcolor());
                     autosN4[x].printAuto();
                 }
-            }*/
+            }
         }
-
         if (nivel == 5){
             if(vidas != 0 ){
              puntuacion= puntuacion+(vidas*200) ;
@@ -713,6 +724,24 @@ void imprimirMapa4(){
                 ganar();
             }
         }
+
+        if(fruta1 ==true){
+            SetConsoleTextAttribute(h, 4);
+            gotoxy(posxFruta, posyFruta);printf("%c\n",254);
+        }
+
+
+        if(fruta1 == true){
+            if( (ranita.getXRana() == posxFruta && ranita.getYRana() == posyFruta) || ((ranita.getXRana())+1 == posxFruta && ranita.getYRana() == posyFruta) ){
+                fruta1 = false;
+                puntuacion += 200;
+                contadorFrutas ++;
+
+            }
+        }
+
+
+
         if(ranita.getXRana() >= 16 && ranita.getXRana() <22 && ranita.getYRana() == 2){
             if(estanque1 == true){
                 SetConsoleTextAttribute(h, 2);
@@ -855,11 +884,14 @@ void imprimirMapa4(){
             estanque5 = true;
             contador = 0;
             puntuacion += (tiempoRest*3);
+            posxFruta = (rand()% 48 + 18);
+            posyFruta = (rand()% 11 + 2)*2;
+            fruta1 = true;
         }
 
         SetConsoleTextAttribute(h, 2);
         ranita.printRana();
-    //HUD
+                                                                                //HUD
         SetConsoleTextAttribute(h, 15);
         tiempoActual = time(NULL);
         gotoxy(88, 13);
@@ -867,7 +899,15 @@ void imprimirMapa4(){
         cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"     ";
         gotoxy(88,10);cout<<"Puntuacion: "<<puntuacion<<"         ";
         SetConsoleTextAttribute(h, 2);
+        for(int i=0; i<contadorFrutas; i++){
+            SetConsoleTextAttribute(h, 4);
+            gotoxy(f,15);printf("%c\n",254);
+            f +=2;
+
+        }
+
         for(int i=0; i<vidas; i++){
+            SetConsoleTextAttribute(h, 2);
             ranita.printRanaJR(xRanita,20);
             xRanita+=3;
         }
