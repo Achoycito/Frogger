@@ -147,13 +147,13 @@ void menu_principal(){
 void primeraLinea(int x, int y){
     SetConsoleTextAttribute(h, 2);
     gotoxy(x,y-1);
-    for(int i=0; i<66; i++){
+    for(int i=0; i<78; i++){
         printf("%c", 219);
     }
     for(int i=0; i<2; i++){
         gotoxy(x,y);
-        for(int j=0; j<66; j++){
-            if((j>=6 && j<12) || (j>=18 && j<24) || (j>=30 && j<36) || (j>=42 && j<48) || (j>=54 && j<60)){
+        for(int j=0; j<78; j++){
+            if((j>=12 && j<18) || (j>=24 && j<30) || (j>=36 && j<42) || (j>=48 && j<54) || (j>=60 && j<66)){
                 SetConsoleTextAttribute(h, 3);
             }
             else{
@@ -166,13 +166,13 @@ void primeraLinea(int x, int y){
 }
 
 void imprimirMapa(){
-    int xMap=10, yMap=2;
+    int xMap=4, yMap=2;
     primeraLinea(xMap, yMap);
     yMap+=2;
     SetConsoleTextAttribute(h, 8);
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             printf("%c", 219);
         }
         yMap++;
@@ -180,7 +180,7 @@ void imprimirMapa(){
     yMap+=8;
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             printf("%c", 219);
         }
         yMap++;
@@ -188,7 +188,7 @@ void imprimirMapa(){
     yMap+=10;
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             printf("%c", 219);
         }
         yMap++;
@@ -200,13 +200,13 @@ void imprimirMapa(){
 }
 
 void imprimirMapa2(){
-    int xMap=10, yMap=2;
+    int xMap=4, yMap=2;
     primeraLinea(xMap, yMap);
     yMap+=6;
     SetConsoleTextAttribute(h, 8);
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             printf("%c", 219);
         }
         yMap++;
@@ -214,7 +214,7 @@ void imprimirMapa2(){
     yMap+=4;
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             printf("%c", 219);
         }
         yMap++;
@@ -222,7 +222,7 @@ void imprimirMapa2(){
     yMap+=10;
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             printf("%c", 219);
         }
         yMap++;
@@ -234,15 +234,15 @@ void imprimirMapa2(){
 }
 
 void imprimirMapa3(){
-    int xMap=10, yMap=2;
+    int xMap=4, yMap=2;
     primeraLinea(xMap, yMap);
     yMap+=2;
     SetConsoleTextAttribute(h, 3);
     for(int i=0; i<10; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             SetConsoleTextAttribute(h, 'J');
-            if(i <= 5 and i>=4  and j >= 6 and j <60 ){
+            if(i <= 5 and i>=4  and j >= 12 and j <66 ){
                 printf("%c", 219);
             }
             else{
@@ -255,7 +255,7 @@ void imprimirMapa3(){
     SetConsoleTextAttribute(h, 8);
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             printf("%c", 219);
         }
         yMap++;
@@ -263,7 +263,7 @@ void imprimirMapa3(){
     yMap+=10;
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             printf("%c", 219);
         }
         yMap++;
@@ -276,13 +276,13 @@ void imprimirMapa3(){
 }
 
 void imprimirMapa4(){
-    int xMap=10, yMap=2;
+    int xMap=4, yMap=2;
     primeraLinea(xMap, yMap);
     yMap+=2;
     SetConsoleTextAttribute(h, 3);
     for(int i=0; i<10; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             printf("%c", 219);
         }
         yMap++;
@@ -290,7 +290,7 @@ void imprimirMapa4(){
     SetConsoleTextAttribute(h, 8);
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             printf("%c", 219);
         }
         yMap++;
@@ -298,7 +298,7 @@ void imprimirMapa4(){
     yMap+=10;
     for(int i=0; i<2; i++){
         gotoxy(xMap, yMap);
-        for(int j=0; j<66; j++){
+        for(int j=0; j<78; j++){
             printf("%c", 219);
         }
         yMap++;
@@ -307,7 +307,6 @@ void imprimirMapa4(){
 }
 
             void jugar(){
-            //42, 26
     Auto autosN1[4];
         autosN1[0]= Auto(0, 6, 0, 3);
         autosN1[1]= Auto(0, 12, 1, 1);
@@ -421,7 +420,7 @@ void imprimirMapa4(){
 
         troncosN4[8] = Tronco(56,12,1,3);
         troncosN4[9] = Tronco(20,12,1,3);
-
+                    //42, 26
     Rana ranita = Rana(42, 26);
     int tecla;
     int tiempoNivel=120;
@@ -434,7 +433,7 @@ void imprimirMapa4(){
     int velTronco, direcTronco;
     int puntuacion=0;
     int xRanita=91;
-    int nivel = 1;
+    int nivel = 3;
     int contador = 0;
     bool estanque1 = true;
     bool estanque2 = true;
@@ -482,7 +481,7 @@ void imprimirMapa4(){
                     }
                 }
                 autosN1[x].mover();
-                if(autosN1[x].getxAuto()>=10 && autosN1[x].getxAuto()<=70){
+                if(autosN1[x].getxAuto()>=4 && autosN1[x].getxAuto()<=78){
                     SetConsoleTextAttribute(h, autosN1[x].getcolor());
                     autosN1[x].printAuto();
                 }
@@ -511,7 +510,7 @@ void imprimirMapa4(){
                     }
                 }
                 autosN2[x].mover();
-                if(autosN2[x].getxAuto()>=10 && autosN2[x].getxAuto()<=70){
+                if(autosN2[x].getxAuto()>=4 && autosN2[x].getxAuto()<=78){
                     SetConsoleTextAttribute(h, autosN2[x].getcolor());
                     autosN2[x].printAuto();
                 }
@@ -522,7 +521,7 @@ void imprimirMapa4(){
             imprimirMapa3();
             for (int i = 0; i < 8; i++){
                 troncosN3[i].mover();
-                if(troncosN3[i].getxTronco()>=10 && troncosN3[i].getxTronco()<=58){
+                if(troncosN3[i].getxTronco()>=4 && troncosN3[i].getxTronco()<70){
                     SetConsoleTextAttribute(h, 3);
                     troncosN3[i].borrarTronco();
                     SetConsoleTextAttribute(h, 6);
@@ -559,7 +558,7 @@ void imprimirMapa4(){
                         }
                     }
                     else{
-                        if(ranita.getXRana()==12 || ranita.getXRana()==72){
+                        if(ranita.getXRana()<15 || ranita.getXRana()>69){
                             ranita.borrarRana();
                             SetConsoleTextAttribute(h, 2);
                             for(int i=0; i<vidas; i++){
@@ -582,7 +581,7 @@ void imprimirMapa4(){
             }
             tocandoTronco=false;
 
-
+/*
                 for(int x=0; x<12; x++){
                 autosN3[x].borrarAuto();
                 if(autosN3[x].checkColision(ranita.getXRana(), ranita.getYRana())){
@@ -604,17 +603,17 @@ void imprimirMapa4(){
                     }
                 }
                 autosN3[x].mover();
-                if(autosN3[x].getxAuto()>=10 && autosN3[x].getxAuto()<=70){
+                if(autosN3[x].getxAuto()>=4 && autosN3[x].getxAuto()<=78){
                     SetConsoleTextAttribute(h, autosN3[x].getcolor());
                     autosN3[x].printAuto();
                 }
-            }
+            }*/
         }
         if (nivel == 4){
             imprimirMapa4();
             for (int i = 0; i < 10; i++){
                 troncosN4[i].mover();
-                if(troncosN4[i].getxTronco()>=10 && troncosN4[i].getxTronco()<=58){
+                if(troncosN4[i].getxTronco()>=4 && troncosN4[i].getxTronco()<70){
                     SetConsoleTextAttribute(h, 3);
                     troncosN4[i].borrarTronco();
                     SetConsoleTextAttribute(h, 6);
@@ -632,47 +631,26 @@ void imprimirMapa4(){
             }
             else{
                 if(ranita.getYRana()<=12 && ranita.getYRana()>=4){
-                    if(ranita.getYRana()!=8){
-                        ranita.borrarRana();
-                        SetConsoleTextAttribute(h, 2);
-                        for(int i=0; i<vidas; i++){
-                            if(i==vidas-1){
-                                SetConsoleTextAttribute(h, 4);
-                            }
-                            ranita.printRanaJR(xRanita,20);
-                            xRanita+=3;
+                    ranita.borrarRana();
+                    SetConsoleTextAttribute(h, 2);
+                    for(int i=0; i<vidas; i++){
+                        if(i==vidas-1){
+                            SetConsoleTextAttribute(h, 4);
                         }
-                        xRanita=91;
-                        vidas--;
-                        PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
-                        Sleep(1500);
-                        if(vidas>=0){
-                            ranita.respawnRana();
-                        }
+                        ranita.printRanaJR(xRanita,20);
+                        xRanita+=3;
                     }
-                    else{
-                        if(ranita.getXRana()==12 || ranita.getXRana()==72){
-                            ranita.borrarRana();
-                            SetConsoleTextAttribute(h, 2);
-                            for(int i=0; i<vidas; i++){
-                                if(i==vidas-1){
-                                    SetConsoleTextAttribute(h, 4);
-                                }
-                                ranita.printRanaJR(xRanita,20);
-                                xRanita+=3;
-                            }
-                            xRanita=91;
-                            vidas--;
-                            PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
-                            Sleep(1500);
-                            if(vidas>=0){
-                                ranita.respawnRana();
-                            }
-                        }
+                    xRanita=91;
+                    vidas--;
+                    PlaySound(TEXT("sfx/Vida menos.wav"), NULL, SND_ASYNC);
+                    Sleep(1500);
+                    if(vidas>=0){
+                        ranita.respawnRana();
                     }
                 }
             }
             tocandoTronco=false;
+            /*
             for(int x=0; x<13; x++){
                 autosN4[x].borrarAuto();
                 if(autosN4[x].checkColision(ranita.getXRana(), ranita.getYRana())){
@@ -699,6 +677,7 @@ void imprimirMapa4(){
                     autosN4[x].printAuto();
                 }
             }
+            */
         }
         if (nivel == 5){
             if(vidas != 0 ){
@@ -725,22 +704,16 @@ void imprimirMapa4(){
             }
         }
 
-        if(fruta1 ==true){
+        if(fruta1 == true){
             SetConsoleTextAttribute(h, 4);
             gotoxy(posxFruta, posyFruta);printf("%c\n",254);
-        }
-
-
-        if(fruta1 == true){
-            if( (ranita.getXRana() == posxFruta && ranita.getYRana() == posyFruta) || ((ranita.getXRana())+1 == posxFruta && ranita.getYRana() == posyFruta) ){
+            if((ranita.getXRana() == posxFruta && ranita.getYRana() == posyFruta) || ((ranita.getXRana()+1) == posxFruta && ranita.getYRana() == posyFruta) ){
+                PlaySound(TEXT("sfx/Fruta.wav"), NULL, SND_ASYNC);
                 fruta1 = false;
                 puntuacion += 200;
-                contadorFrutas ++;
-
+                contadorFrutas++;
             }
         }
-
-
 
         if(ranita.getXRana() >= 16 && ranita.getXRana() <22 && ranita.getYRana() == 2){
             if(estanque1 == true){
@@ -748,13 +721,14 @@ void imprimirMapa4(){
                 ranita.printRanaJR(18,2);
                 PlaySound(TEXT("sfx/Meta.wav"), NULL, SND_ASYNC);
                 if(contador < 4){
-
                     tiempoInic+=extensionTiempo;
                     gotoxy(109, 13);
                     SetConsoleTextAttribute(h, 2);
                     cout<<"+"<<extensionTiempo;
                 }
-
+                gotoxy(106, 10);
+                SetConsoleTextAttribute(h, 2);
+                cout<<"+"<<50;
                 Sleep(2000);
                 estanque1 = false;
                 contador += 1;
@@ -766,7 +740,6 @@ void imprimirMapa4(){
             SetConsoleTextAttribute(h, 2);
             ranita.printRanaJR(18,2);
         }
-
         if(ranita.getXRana() >= 28 && ranita.getXRana() <34 && ranita.getYRana() == 2){
             if(estanque2 == true){
                 SetConsoleTextAttribute(h, 2);
@@ -779,6 +752,9 @@ void imprimirMapa4(){
                     cout<<"+"<<extensionTiempo;
 
                 }
+                gotoxy(106, 10);
+                SetConsoleTextAttribute(h, 2);
+                cout<<"+"<<50;
                 Sleep(2000);
                 estanque2 = false;
                 contador += 1;
@@ -790,7 +766,6 @@ void imprimirMapa4(){
             SetConsoleTextAttribute(h, 2);
             ranita.printRanaJR(30,2);
         }
-
         if(ranita.getXRana() >= 40 && ranita.getXRana() <46 && ranita.getYRana() == 2){
             if(estanque3 == true){
                 SetConsoleTextAttribute(h, 2);
@@ -804,6 +779,9 @@ void imprimirMapa4(){
                     cout<<"+"<<extensionTiempo;
 
                 }
+                gotoxy(106, 10);
+                SetConsoleTextAttribute(h, 2);
+                cout<<"+"<<50;
                 Sleep(2000);
                 estanque3 = false;
                 contador += 1;
@@ -816,7 +794,6 @@ void imprimirMapa4(){
             SetConsoleTextAttribute(h, 2);
             ranita.printRanaJR(42,2);
         }
-
         if(ranita.getXRana() >= 52 && ranita.getXRana() <58 && ranita.getYRana() == 2){
             if(estanque4 == true){
                 SetConsoleTextAttribute(h, 2);
@@ -855,6 +832,9 @@ void imprimirMapa4(){
                     cout<<"+"<<extensionTiempo;
 
                 }
+                gotoxy(106, 10);
+                SetConsoleTextAttribute(h, 2);
+                cout<<"+"<<50;
                 Sleep(2000);
                 estanque5 = false;
                 contador += 1;
@@ -891,23 +871,25 @@ void imprimirMapa4(){
 
         SetConsoleTextAttribute(h, 2);
         ranita.printRana();
-                                                                                //HUD
+                                                                                    //HUD
         SetConsoleTextAttribute(h, 15);
+        gotoxy(88,10);cout<<"Puntuacion: "<<puntuacion<<"         ";
         tiempoActual = time(NULL);
-        gotoxy(88, 13);
+        gotoxy(88, 12);
         tiempoRest = tiempoInic-tiempoActual;
         cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"     ";
-        gotoxy(88,10);cout<<"Puntuacion: "<<puntuacion<<"         ";
-        SetConsoleTextAttribute(h, 2);
+
+        gotoxy(88,14);cout<<"Frutas recogidas";
+        gotoxy(88,19);cout<<"Vidas restantes";
+        SetConsoleTextAttribute(h, 4);
         for(int i=0; i<contadorFrutas; i++){
-            SetConsoleTextAttribute(h, 4);
             gotoxy(f,15);printf("%c\n",254);
             f +=2;
-
         }
+        f=88;
 
+        SetConsoleTextAttribute(h, 2);
         for(int i=0; i<vidas; i++){
-            SetConsoleTextAttribute(h, 2);
             ranita.printRanaJR(xRanita,20);
             xRanita+=3;
         }
@@ -916,14 +898,21 @@ void imprimirMapa4(){
         gotoxy(xRanita,21);
         cout<<"  ";
         xRanita=91;
-    //Game Over
+
+        /*
+        gotoxy(xRanita,22);
+        cout<<ranita.getXRana()<<"  ";
+        gotoxy(xRanita,23);
+        cout<<ranita.getYRana()<<"   ";
+        */
+                                                                                    //Game Over
         if(tiempoActual==tiempoInic || vidas<0){
             PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
             repeticion=false;
             Sleep(2000);
             gameOver();
         }
-    //KBHIT
+                                                                                    //KBHIT
         if(kbhit()){
             tecla = getch();
             ranita.mover(tecla);

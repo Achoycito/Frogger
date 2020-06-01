@@ -123,10 +123,10 @@ void Auto::mover(){
         this->xAuto+=this->modelo;
     }
 
-    if((this->direccion==1) && (this->xAuto>70)){
+    if((this->direccion==1) && (this->xAuto>81)){
         this->xAuto = this->xInic;
     }
-    if((this->direccion==0) && (this->xAuto<10)){
+    if((this->direccion==0) && (this->xAuto<4)){
         this->xAuto = this->xInic;
     }
 }

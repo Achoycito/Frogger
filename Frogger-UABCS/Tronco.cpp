@@ -33,44 +33,15 @@ void Tronco::gotoxy2(int x, int y){
 }
 
 void Tronco::printTronco(){
-
-    /*
-    gotoxy2(this->xTronco, this->yTronco);printf("%c\n",219);
-    gotoxy2(this->xTronco+1, this->yTronco);printf("%c\n",219);
-    gotoxy2(this->xTronco+2, this->yTronco);printf("%c\n",219);
-    gotoxy2(this->xTronco+3, this->yTronco);printf("%c\n",219);
-    gotoxy2(this->xTronco+4, this->yTronco);printf("%c\n",219);
-    gotoxy2(this->xTronco+5, this->yTronco);printf("%c\n",219);
-    gotoxy2(this->xTronco, this->yTronco+1);printf("%c\n",219);
-    gotoxy2(this->xTronco+1, this->yTronco+1);printf("%c\n",219);
-    gotoxy2(this->xTronco+2, this->yTronco+1);printf("%c\n",219);
-    gotoxy2(this->xTronco+3, this->yTronco+1);printf("%c\n",219);
-    gotoxy2(this->xTronco+4, this->yTronco+1);printf("%c\n",219);
-    gotoxy2(this->xTronco+5, this->yTronco+1);printf("%c\n",219);
-    */
     for(int i=0; i<12; i++){
         gotoxy2(this->xTronco+i, this->yTronco+1);printf("%c\n",219);
     }
 
 }
 void Tronco::borrarTronco(){
-    /*
-	gotoxy2(this->xTronco,this->yTronco);printf(" ");
-	gotoxy2(this->xTronco+1, this->yTronco);printf(" ");
-	gotoxy2(this->xTronco+2, this->yTronco);printf(" ");
-    gotoxy2(this->xTronco+3,this->yTronco);printf(" ");
-    gotoxy2(this->xTronco+4,this->yTronco);printf(" ");
-    gotoxy2(this->xTronco+5,this->yTronco);printf(" ");
-    */
     for(int i=0; i<12; i++){
         gotoxy2(this->xTronco+i, this->yTronco+1);printf("%c\n",219);
-    }/*
-    gotoxy2(this->xTronco, this->yTronco+1);printf("%c\n",219);
-	gotoxy2(this->xTronco+1,this->yTronco+1);printf("%c\n",219);
-	gotoxy2(this->xTronco+2,this->yTronco+1);printf("%c\n",219);
-    gotoxy2(this->xTronco+3,this->yTronco+1);printf("%c\n",219);
-    gotoxy2(this->xTronco+4,this->yTronco+1);printf("%c\n",219);
-    gotoxy2(this->xTronco+5,this->yTronco+1);printf("%c\n",219);*/
+    }
 }
 
 void Tronco::mover(){
@@ -84,7 +55,7 @@ void Tronco::mover(){
     if((this->direccion==1) && (this->xTronco>70)){
         this->xTronco = this->xInic;
     }
-    if((this->direccion==0) && (this->xTronco<10)){
+    if((this->direccion==0) && (this->xTronco<4)){
         this->xTronco = this->xInic;
     }
 }
