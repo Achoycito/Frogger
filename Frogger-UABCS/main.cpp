@@ -435,7 +435,7 @@ void imprimirMapa4(){
     int velTronco, direcTronco;
     int puntuacion=0;
     int xRanita=88;
-    int nivel = 3;
+    int nivel = 1;
     int contador = 0;
     bool estanque1 = true;
     bool estanque2 = true;
@@ -583,7 +583,7 @@ void imprimirMapa4(){
             }
             tocandoTronco=false;
 
-/*
+
                 for(int x=0; x<12; x++){
                 autosN3[x].borrarAuto();
                 if(autosN3[x].checkColision(ranita.getXRana(), ranita.getYRana())){
@@ -609,7 +609,7 @@ void imprimirMapa4(){
                     SetConsoleTextAttribute(h, autosN3[x].getcolor());
                     autosN3[x].printAuto();
                 }
-            }*/
+            }
         }
         if (nivel == 4){
             imprimirMapa4();
@@ -652,7 +652,7 @@ void imprimirMapa4(){
                 }
             }
             tocandoTronco=false;
-            /*
+
             for(int x=0; x<13; x++){
                 autosN4[x].borrarAuto();
                 if(autosN4[x].checkColision(ranita.getXRana(), ranita.getYRana())){
@@ -679,7 +679,7 @@ void imprimirMapa4(){
                     autosN4[x].printAuto();
                 }
             }
-            */
+
         }
         if (nivel == 5){
             if(vidas != 0 ){
@@ -872,7 +872,8 @@ void imprimirMapa4(){
         ranita.printRana();
                                                                                     //HUD
         SetConsoleTextAttribute(h, 15);
-        gotoxy(88,10);cout<<"Puntuacion: "<<puntuacion<<"         ";
+
+        gotoxy(88,10);cout<<"Puntuacion: "<<puntuacion<<"          ";
         tiempoActual = time(NULL);
         gotoxy(88, 12);
         tiempoRest = tiempoInic-tiempoActual;
@@ -897,6 +898,35 @@ void imprimirMapa4(){
         gotoxy(xRanita,19);
         cout<<"  ";
         xRanita=88;
+
+
+
+        gotoxy(86,9);printf("%c\n",201);//esquina sup izq
+        gotoxy(112,9);printf("%c\n",187);//esquina sup der
+
+        gotoxy(86,20);printf("%c\n",200);//esquina inf izq
+        gotoxy(112,20);printf("%c\n",188);//esquina inf der
+
+        for(int i= 10; i<20; i++ ){
+
+           gotoxy(86,i);printf("%c\n",186);
+        }
+
+        for(int i= 10; i<20; i++ ){
+
+           gotoxy(112,i);printf("%c\n",186);
+        }
+
+        for(int i= 87; i<112; i++ ){
+
+           gotoxy(i,20);printf("%c\n",205);
+        }
+
+        for(int i= 87; i<112; i++ ){
+
+           gotoxy(i,9);printf("%c\n",205);
+        }
+
 
         /*
         gotoxy(xRanita,22);

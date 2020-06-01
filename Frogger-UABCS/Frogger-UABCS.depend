@@ -73,7 +73,7 @@
 
 1590906165 c:\users\usuario\documents\github\frogger\frogger-uabcs\rana.h
 
-1590467969 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.cpp
+1590985553 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.cpp
 	"Auto.h"
 	<iostream>
 	<windows.h>
@@ -86,7 +86,7 @@
 
 1590467969 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.h
 
-1590979109 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\main.cpp
+1590987891 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\main.cpp
 	<iostream>
 	<windows.h>
 	<stdlib.h>
@@ -155,7 +155,7 @@
 
 1590906089 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\tronco.h
 
-1590975630 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\tronco.cpp
+1590985553 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\tronco.cpp
 	"Tronco.h"
 	<iostream>
 	<windows.h>
