@@ -7,7 +7,7 @@
 	<stdio.h>
 	<cstdlib>
 
-1590987226 source:c:\users\alang\documents\github\frogger\frogger-uabcs\main.cpp
+1591074100 source:c:\users\alang\documents\github\frogger\frogger-uabcs\main.cpp
 	<iostream>
 	<windows.h>
 	<stdlib.h>
@@ -34,9 +34,9 @@
 
 1590462584 c:\users\alang\documents\github\frogger\frogger-uabcs\auto.h
 
-1590903127 c:\users\alang\documents\github\frogger\frogger-uabcs\rana.h
+1591067657 c:\users\alang\documents\github\frogger\frogger-uabcs\rana.h
 
-1590982714 source:c:\users\alang\documents\github\frogger\frogger-uabcs\rana.cpp
+1591067795 source:c:\users\alang\documents\github\frogger\frogger-uabcs\rana.cpp
 	"Rana.h"
 	<iostream>
 	<windows.h>

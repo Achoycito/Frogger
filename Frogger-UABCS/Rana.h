@@ -10,7 +10,7 @@ class Rana
         void gotoxy2(int, int);
         void printRana();
         void printRanaJR(int,int);
-        void mover(int);
+        void mover(int,bool,bool,bool,bool,bool);
         void borrarRana();
         void respawnRana();
         void recorrer(int,int);

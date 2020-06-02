@@ -64,14 +64,13 @@ void printAuto(int xT, int yT);
 }
 
 int menu(const char *titulo, const char *opciones[], int n){
-
     int tecla;
     bool repeticion = true;
 
     do{
         system("cls");
 
-        gotoxy(44, 19 + opcionSelect);
+        gotoxy(47, 19 + opcionSelect);
         SetConsoleTextAttribute(h, 3);
         cout<<"-->";
         SetConsoleTextAttribute(h, 15);
@@ -79,7 +78,7 @@ int menu(const char *titulo, const char *opciones[], int n){
         letras();
 
         for(int i = 0; i < 4; i++){
-            gotoxy(48, 20 + i ); cout<<i + 1<< ") "<<opciones[i];
+            gotoxy(51, 20 + i ); cout<<i + 1<< ") "<<opciones[i];
     	}
         do{
             tecla = getch();
@@ -107,7 +106,6 @@ int menu(const char *titulo, const char *opciones[], int n){
     }
 
     }while(repeticion);
-
 
     return opcionSelect;
 }
@@ -443,10 +441,7 @@ void imprimirMapa4(){
     bool estanque4 = true;
     bool estanque5 = true;
 
-    bool fruta1 = true;
-    bool fruta2 = false;
-    bool fruta3 = false;
-    bool fruta4 = false;
+    bool fruta = true;
     int f = 88;
     int contadorFrutas =0;
 
@@ -512,7 +507,7 @@ void imprimirMapa4(){
                     }
                 }
                 autosN2[x].mover();
-                if(autosN2[x].getxAuto()>=4 && autosN2[x].getxAuto()<=78){
+                if(autosN2[x].getxAuto()>=4 && autosN2[x].getxAuto()<=77){
                     SetConsoleTextAttribute(h, autosN2[x].getcolor());
                     autosN2[x].printAuto();
                 }
@@ -605,7 +600,7 @@ void imprimirMapa4(){
                     }
                 }
                 autosN3[x].mover();
-                if(autosN3[x].getxAuto()>=4 && autosN3[x].getxAuto()<=78){
+                if(autosN3[x].getxAuto()>=4 && autosN3[x].getxAuto()<=77){
                     SetConsoleTextAttribute(h, autosN3[x].getcolor());
                     autosN3[x].printAuto();
                 }
@@ -674,7 +669,7 @@ void imprimirMapa4(){
                     }
                 }
                 autosN4[x].mover();
-                if(autosN4[x].getxAuto()>=10 && autosN4[x].getxAuto()<=70){
+                if(autosN4[x].getxAuto()>=4 && autosN4[x].getxAuto()<=77){
                     SetConsoleTextAttribute(h, autosN4[x].getcolor());
                     autosN4[x].printAuto();
                 }
@@ -682,6 +677,7 @@ void imprimirMapa4(){
 
         }
         if (nivel == 5){
+            repeticion=false;
             contV= vidas;
             if(vidas != 0 ){
              puntuacion= puntuacion+(vidas*200) ;
@@ -689,34 +685,14 @@ void imprimirMapa4(){
             }
             system("cls");
             ganar(puntuacion, contadorFrutas, contV, ranita);
-
-
-            /*
-              gotoxy(46,24);
-            SetConsoleTextAttribute(h, 3);
-            cout<<"-->";
-            SetConsoleTextAttribute(h, 15);
-            gotoxy(50, 24);
-            printf("Presione Enter para continuar ", 163);
-
-            do{
-                tecla = getch();
-            }while(tecla != tecla_Enter);
-
-            if(tecla == tecla_Enter){
-                PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
-                ganar();
-            }
-            */
-
         }
 
-        if(fruta1 == true){
+        if(fruta == true){
             SetConsoleTextAttribute(h, 4);
             gotoxy(posxFruta, posyFruta);printf("%c\n",254);
             if((ranita.getXRana() == posxFruta && ranita.getYRana() == posyFruta) || ((ranita.getXRana()+1) == posxFruta && ranita.getYRana() == posyFruta) ){
                 PlaySound(TEXT("sfx/Fruta.wav"), NULL, SND_ASYNC);
-                fruta1 = false;
+                fruta = false;
                 puntuacion += 200;
                 contadorFrutas++;
             }
@@ -837,7 +813,6 @@ void imprimirMapa4(){
                     gotoxy(109, 12);
                     SetConsoleTextAttribute(h, 2);
                     cout<<"+"<<extensionTiempo;
-
                 }
                 gotoxy(109, 10);
                 SetConsoleTextAttribute(h, 2);
@@ -854,8 +829,13 @@ void imprimirMapa4(){
             ranita.printRanaJR(66,2);
         }
 
-        if (contador == 1){
-            PlaySound(TEXT("sfx/Nivel completo.wav"), NULL, SND_ASYNC);
+        if (contador == 5){
+            if(nivel<4){
+                PlaySound(TEXT("sfx/Nivel completo.wav"), NULL, SND_ASYNC);
+            }
+            else{
+                PlaySound(TEXT("sfx/Ganar.wav"), NULL, SND_ASYNC);
+            }
             Sleep(3000);
             tiempoInic = time(NULL)+tiempoNivel;
             ranita.respawnRana();
@@ -870,7 +850,7 @@ void imprimirMapa4(){
             puntuacion += (tiempoRest*3);
             posxFruta = (rand()% 48 + 18);
             posyFruta = (rand()% 11 + 2)*2;
-            fruta1 = true;
+            fruta = true;
         }
 
         SetConsoleTextAttribute(h, 2);
@@ -878,11 +858,15 @@ void imprimirMapa4(){
                                                                                     //HUD
         SetConsoleTextAttribute(h, 15);
 
-        gotoxy(88,10);cout<<"Puntuacion: "<<puntuacion<<"          ";
+        gotoxy(88,10);cout<<"Puntuacion: "<<puntuacion;
+        gotoxy(109, 10);
+        cout<<"   ";
         tiempoActual = time(NULL);
         gotoxy(88, 12);
         tiempoRest = tiempoInic-tiempoActual;
-        cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"     ";
+        cout<<"Tiempo restante: "<<tiempoInic-tiempoActual<<"  ";
+        gotoxy(109, 12);
+        cout<<"   ";
 
         gotoxy(88,14);cout<<"Frutas recogidas";
         gotoxy(88,17);cout<<"Vidas restantes";
@@ -904,41 +888,22 @@ void imprimirMapa4(){
         cout<<"  ";
         xRanita=88;
 
-
-
         gotoxy(86,9);printf("%c\n",201);//esquina sup izq
         gotoxy(112,9);printf("%c\n",187);//esquina sup der
-
         gotoxy(86,20);printf("%c\n",200);//esquina inf izq
         gotoxy(112,20);printf("%c\n",188);//esquina inf der
-
         for(int i= 10; i<20; i++ ){
-
            gotoxy(86,i);printf("%c\n",186);
         }
-
         for(int i= 10; i<20; i++ ){
-
            gotoxy(112,i);printf("%c\n",186);
         }
-
         for(int i= 87; i<112; i++ ){
-
            gotoxy(i,20);printf("%c\n",205);
         }
-
         for(int i= 87; i<112; i++ ){
-
            gotoxy(i,9);printf("%c\n",205);
         }
-
-
-        /*
-        gotoxy(xRanita,22);
-        cout<<ranita.getXRana()<<"  ";
-        gotoxy(xRanita,23);
-        cout<<ranita.getYRana()<<"   ";
-        */
                                                                                     //Game Over
         if(tiempoActual==tiempoInic || vidas<0){
             PlaySound(TEXT("sfx/Game Over.wav"), NULL, SND_ASYNC);
@@ -949,49 +914,8 @@ void imprimirMapa4(){
                                                                                     //KBHIT
         if(kbhit()){
             tecla = getch();
-            ranita.mover(tecla);
-            if(tecla==32){
-                PlaySound(TEXT("sfx/Nivel completo.wav"), NULL, SND_ASYNC);
-                Sleep(3000);
-                tiempoInic = time(NULL)+tiempoNivel;
-                ranita.respawnRana();
-                nivel+=1;
-                system("cls");
-                estanque1 = true;
-                estanque2 = true;
-                estanque3 = true;
-                estanque4 = true;
-                estanque5 = true;
-                contador = 0;
-            }
-            if(tecla== 105){
-                if(vidas != 0 ){
-                 puntuacion= puntuacion+(vidas*200) ;
-                 vidas = 0;
-                }
-                system("cls");
-                gotoxy(50,10);cout<<"SCORE: "<<puntuacion<<endl;
-
-                gotoxy(46,24);
-                SetConsoleTextAttribute(h, 3);
-                cout<<"-->";
-                SetConsoleTextAttribute(h, 15);
-                gotoxy(50, 24);
-                printf("Presione Enter para continuar ", 163);
-
-                do{
-                    tecla = getch();
-                }while(tecla != tecla_Enter);
-
-                if(tecla == tecla_Enter){
-                    PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
-                    repeticion=false;
-                    ganar(puntuacion,contadorFrutas, vidas, ranita );
-                }
-            }
+            ranita.mover(tecla, estanque1, estanque2, estanque3, estanque4, estanque5);
         }
-
-
 
         Sleep(1);
 
@@ -1006,41 +930,43 @@ void instrucciones(){
     int ygoto = 4;
 
     SetConsoleTextAttribute(h, 3);
-    gotoxy(xgoto, ygoto);  cout<<"######  ##  ##   #####  ######  #####   ##  ##   #####   #####  ######   ####   ##  ##    #####   #####"<<endl;
+    gotoxy(xgoto, ygoto);  cout<<"######  ##  ##   #####  ######  #####   ##  ##   #####   #####  ######   ####   ##  ##   #####   #####"<<endl;
     gotoxy(xgoto, ygoto+1);cout<<"  ##    ### ##  ##        ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ### ##  ##      ##    "<<endl;
     gotoxy(xgoto, ygoto+2);cout<<"  ##    ######   ####     ##    #####   ##  ##  ##      ##        ##    ##  ##  ######  ####     #### "<<endl;
     gotoxy(xgoto, ygoto+3);cout<<"  ##    ## ###      ##    ##    ##  ##  ##  ##  ##      ##        ##    ##  ##  ## ###  ##          ##"<<endl;
     gotoxy(xgoto, ygoto+4);cout<<"######  ##  ##  #####     ##    ##  ##   ####    #####   #####  ######   ####   ##  ##   #####  ##### "<<endl;
     SetConsoleTextAttribute(h, 15);
-    gotoxy(xgoto+28, ygoto+7);
+    gotoxy(xgoto+18, ygoto+7);
     cout<<"Controles:";
-    gotoxy(xgoto+30, ygoto+8);
+    gotoxy(xgoto+20, ygoto+8);
     cout<<"-Flecha arriba: moverse hacia adelante";
-    gotoxy(xgoto+30, ygoto+9);
+    gotoxy(xgoto+20, ygoto+9);
     printf("-Flecha abajo: moverse hacia atr%cs", 160);
-    gotoxy(xgoto+30, ygoto+10);
+    gotoxy(xgoto+20, ygoto+10);
     cout<<"-Flecha izquierda: salto a la izquierda (6 espacios)";
-    gotoxy(xgoto+30, ygoto+11);
+    gotoxy(xgoto+20, ygoto+11);
     cout<<"-Flecha derecha: salto a la derecha (6 espacios)";
-    gotoxy(xgoto+30, ygoto+12);
+    gotoxy(xgoto+20, ygoto+12);
     cout<<"-A: moverse a la izquierda (un espacio)";
-    gotoxy(xgoto+30, ygoto+13);
+    gotoxy(xgoto+20, ygoto+13);
     cout<<"-D: moverse a la derecha (un espacio)";
 
-    gotoxy(xgoto+28, ygoto+15);
+    gotoxy(xgoto+18, ygoto+15);
     cout<<"Consigue puntos:";
-    gotoxy(xgoto+30, ygoto+16);
-    cout<<"-Completando el nivel en poco tiempo";
-    gotoxy(xgoto+30, ygoto+17);
-    cout<<"-Recogiendo objetos especiales";
-    gotoxy(xgoto+30, ygoto+18);
-    cout<<"-Ganando con varias vidas restantes";
+    gotoxy(xgoto+20, ygoto+16);
+    cout<<"-Llegando a un estanque (50 puntos por estanque)";
+    gotoxy(xgoto+20, ygoto+17);
+    cout<<"-Completando el nivel en poco tiempo (3 puntos por segundo restante)";
+    gotoxy(xgoto+20, ygoto+18);
+    cout<<"-Recogiendo objetos especiales (200 puntos por objeto)";
+    gotoxy(xgoto+20, ygoto+19);
+    cout<<"-Ganando el juego con varias vidas restantes (200 puntos por vida restante)";
 
-    gotoxy(25,25);
+    gotoxy(34,26);
     SetConsoleTextAttribute(h, 3);
     cout<<"-->";
     SetConsoleTextAttribute(h, 15);
-    gotoxy(29, 25);
+    gotoxy(38, 26);
     printf("Presione Enter para volver al men%c principal", 163);
 
     do{
@@ -1058,7 +984,6 @@ void creditos(){
     int xGoto=39;
     int yGoto=4;
     system("cls");
-  //  setlocale(LC_ALL, "spanish");
     SetConsoleTextAttribute(h, 3);
     gotoxy(xGoto-10, yGoto);  cout<<" #####  #####    #####  #####   ######  ######   ####    #####"<<endl;
     gotoxy(xGoto-10, yGoto+1);cout<<"##      ##  ##  ##      ##  ##    ##      ##    ##  ##  ##    "<<endl;
@@ -1083,11 +1008,11 @@ void creditos(){
     cout<<"Universidad Autonoma de Baja California Sur";
 
 
-    gotoxy(25,23);
+    gotoxy(34,23);
     SetConsoleTextAttribute(h, 3);
     cout<<"-->";
     SetConsoleTextAttribute(h, 15);
-    gotoxy(29, 23);
+    gotoxy(38, 23);
     printf("Presione Enter para volver al men%c principal", 163);
 
     do{
@@ -1142,13 +1067,11 @@ void gameOver(){
 
 void ganar(int p, int f, int v, Rana r){
     int tecla;
-    int n= 66;
-    int xRanita= 75;
+    int n= 57;
+    int xRanita= 70;
 
-    //system("cls");
     SetConsoleTextAttribute(h, 9);
     int x=12, y=2;
-    //PlaySound(TEXT("sfx/Ganar.wav"), NULL, SND_ASYNC);
     gotoxy(x+5, y);  cout<<"######   #####  ##      ######   #####  ######  #####    ####   #####    #####   #####"<<endl;Sleep(150);
     gotoxy(x+5, y+1);cout<<"##      ##      ##        ##    ##        ##    ##  ##  ##  ##  ##  ##  ##      ##    "<<endl;Sleep(150);
     gotoxy(x+5, y+2);cout<<"######  ######  ##        ##    ##        ##    ##  ##  ######  ##  ##  ######   #### "<<endl;Sleep(150);
@@ -1166,34 +1089,32 @@ void ganar(int p, int f, int v, Rana r){
     gotoxy(x, y+15);    cout<<"############  ####    ####  ####   #####  ####    ####  ############      ####      ############"<<endl;Sleep(150);
     gotoxy(x, y+16);    cout<<" ##########   ####    ####  ####    ####  ####    ####   ##########       ####       ########## "<<endl;Sleep(150);
 
-    gotoxy(32,24);
+    SetConsoleTextAttribute(h, 8);
+    gotoxy(39,21);cout<<"Puntuacion";
+    gotoxy(n-1,21);cout<<"Frutas";
+    gotoxy(xRanita,21);cout<<"Vidas restantes";
+
+    SetConsoleTextAttribute(h, 2);
+    gotoxy(40,22);cout<<p;
+
+    SetConsoleTextAttribute(h, 4);
+    for(int i=0; i<f; i++){
+        gotoxy(n,22);printf("%c\n",254);
+        n +=2;
+    }
+
+    SetConsoleTextAttribute(h, 2);
+    for(int i=0; i<v; i++){
+        r.printRanaJR(xRanita+1,22);
+        xRanita+=3;
+    }
+    Sleep(2500);
+    gotoxy(34,25);
     SetConsoleTextAttribute(h, 3);
     cout<<"-->";
     SetConsoleTextAttribute(h, 15);
-    gotoxy(36, 24);
+    gotoxy(38,25);
     printf("Presione Enter para volver al men%c principal", 163);
-
-    SetConsoleTextAttribute(h, 2);
-
-    gotoxy(50,22);cout<<"SCORE: "<<p;
-
-    SetConsoleTextAttribute(h, 4);
-
-    for(int i=0; i<f; i++){
-            gotoxy(n,22);printf("%c\n",254);
-            n +=2;
-        }
-        n=66;
-
-    SetConsoleTextAttribute(h, 2);
-        for(int i=0; i<v; i++){
-            r.printRanaJR(xRanita,22);
-            //gotoxy(xRanita,22);printf("%c\n",240);
-            xRanita+=3;
-        }
-
-        xRanita=75;
-
     do{
         tecla = getch();
     }while(tecla != tecla_Enter);
@@ -1251,7 +1172,7 @@ bool AjustarVentana(int Ancho, int Alto) {
 
 void letras(){
     SetConsoleTextAttribute(h, 2);
-    int xTitu=10;
+    int xTitu=12;
     int yTitu=5;
     gotoxy(xTitu, yTitu);   cout<<"##########    ###########     ########      ########      ########      ########    ###########   "<<endl;
     gotoxy(xTitu, yTitu+1); cout<<"############  ############  ############  ############  ############  ############  ############  "<<endl;
@@ -1267,26 +1188,4 @@ void letras(){
     gotoxy(xTitu, yTitu+11);cout<<"##            ####     ####   ########      ########      ########      ########    ####     ####  "<<endl;
     cout<<endl;
     SetConsoleTextAttribute(h, 15);
-}
-
-void contornoMapa(){
-    for(int i=9; i<77;i++){
-        gotoxy(i,0);
-        printf("%c\n",205);//205 para normal, 203 para cuadro
-    }
-    for(int i=1; i<28;i++){
-        gotoxy(8,i);
-        printf("%c\n",186); //186 para normal, 204 para cuadro
-        gotoxy(77,i);
-        printf("%c\n",186); //186 para normal, 185 para cuadro
-    }
-    for(int i=9; i<77;i++){
-        gotoxy(i,28);
-        printf("%c\n",205);//205 para normal, 202 para cuadro
-    }
-
-    gotoxy(8,28); printf("%c\n",200); //Esquina inf. izq.
-    gotoxy(77,28); printf("%c\n",188); //Esquina inf. izq.
-    gotoxy(8,0); printf("%c\n",201); //Esquina sup. izq.
-    gotoxy(77,0); printf("%c\n",187); //Esquina sup. der.
 }

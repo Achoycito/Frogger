@@ -58,7 +58,7 @@ void Rana::borrarRana(){
     gotoxy2(this->x+1, this->y+1);cout<<" ";
 }
 
-void Rana::mover(int tecla){
+void Rana::mover(int tecla, bool e1, bool e2, bool e3, bool e4, bool e5){
     if(this->y >= 4){
         if(this->y>4){
             if(tecla==tecla_Arriba){
@@ -68,7 +68,7 @@ void Rana::mover(int tecla){
             }
         }
         else if(y==4){
-            if((this->x>=16&&this->x<22) || (this->x>=28&&this->x<34) || (this->x>=40&&this->x<46) || (this->x>=52&&this->x<58) || (this->x>=64&&this->x<70)){
+            if((this->x>=16 && this->x<22 && e1==true) || (this->x>=28&&this->x<34 && e2==true) || (this->x>=40&&this->x<46 && e3==true) || (this->x>=52&&this->x<58 && e4==true) || (this->x>=64&&this->x<70 && e5==true)){
                 if(tecla==tecla_Arriba){
                     PlaySound(TEXT("sfx/Salto.wav"), NULL, SND_ASYNC);
                     borrarRana();
