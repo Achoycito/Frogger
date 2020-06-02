@@ -50,7 +50,7 @@ void jugar();
 void instrucciones();
 void creditos();
 void gameOver();
-void ganar();
+void ganar(int p,int f, int v, Rana r);
 void salir();
 void menu_principal();
 bool AjustarVentana(int Ancho, int Alto);
@@ -430,7 +430,7 @@ void imprimirMapa4(){
     int tiempoInic = time(NULL)+tiempoNivel;
     int tiempoActual;
     int tiempoRest;
-    int vidas=5;
+    int vidas=5,contV;
     bool tocandoTronco=false;
     int velTronco, direcTronco;
     int puntuacion=0;
@@ -682,14 +682,17 @@ void imprimirMapa4(){
 
         }
         if (nivel == 5){
+            contV= vidas;
             if(vidas != 0 ){
              puntuacion= puntuacion+(vidas*200) ;
              vidas = 0;
             }
             system("cls");
-            gotoxy(50,10);cout<<"SCORE: "<<puntuacion<<endl;
+            ganar(puntuacion, contadorFrutas, contV, ranita);
 
-             gotoxy(46,24);
+
+            /*
+              gotoxy(46,24);
             SetConsoleTextAttribute(h, 3);
             cout<<"-->";
             SetConsoleTextAttribute(h, 15);
@@ -704,6 +707,8 @@ void imprimirMapa4(){
                 PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
                 ganar();
             }
+            */
+
         }
 
         if(fruta1 == true){
@@ -849,7 +854,7 @@ void imprimirMapa4(){
             ranita.printRanaJR(66,2);
         }
 
-        if (contador == 5){
+        if (contador == 1){
             PlaySound(TEXT("sfx/Nivel completo.wav"), NULL, SND_ASYNC);
             Sleep(3000);
             tiempoInic = time(NULL)+tiempoNivel;
@@ -967,7 +972,7 @@ void imprimirMapa4(){
                 system("cls");
                 gotoxy(50,10);cout<<"SCORE: "<<puntuacion<<endl;
 
-                 gotoxy(46,24);
+                gotoxy(46,24);
                 SetConsoleTextAttribute(h, 3);
                 cout<<"-->";
                 SetConsoleTextAttribute(h, 15);
@@ -981,7 +986,7 @@ void imprimirMapa4(){
                 if(tecla == tecla_Enter){
                     PlaySound(TEXT("sfx/Select.wav"), NULL, SND_ASYNC);
                     repeticion=false;
-                    ganar();
+                    ganar(puntuacion,contadorFrutas, vidas, ranita );
                 }
             }
         }
@@ -1135,9 +1140,12 @@ void gameOver(){
     }
 }
 
-void ganar(){
+void ganar(int p, int f, int v, Rana r){
     int tecla;
-    system("cls");
+    int n= 66;
+    int xRanita= 75;
+
+    //system("cls");
     SetConsoleTextAttribute(h, 9);
     int x=12, y=2;
     //PlaySound(TEXT("sfx/Ganar.wav"), NULL, SND_ASYNC);
@@ -1164,6 +1172,27 @@ void ganar(){
     SetConsoleTextAttribute(h, 15);
     gotoxy(36, 24);
     printf("Presione Enter para volver al men%c principal", 163);
+
+    SetConsoleTextAttribute(h, 2);
+
+    gotoxy(50,22);cout<<"SCORE: "<<p;
+
+    SetConsoleTextAttribute(h, 4);
+
+    for(int i=0; i<f; i++){
+            gotoxy(n,22);printf("%c\n",254);
+            n +=2;
+        }
+        n=66;
+
+    SetConsoleTextAttribute(h, 2);
+        for(int i=0; i<v; i++){
+            r.printRanaJR(xRanita,22);
+            //gotoxy(xRanita,22);printf("%c\n",240);
+            xRanita+=3;
+        }
+
+        xRanita=75;
 
     do{
         tecla = getch();
