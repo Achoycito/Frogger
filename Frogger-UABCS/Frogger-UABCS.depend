@@ -86,7 +86,7 @@
 
 1590467969 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\auto.h
 
-1591063717 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\main.cpp
+1591381129 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\main.cpp
 	<iostream>
 	<windows.h>
 	<stdlib.h>
@@ -100,9 +100,9 @@
 	"Rana.h"
 	"Tronco.h"
 
-1590906089 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.h
+1591075441 c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.h
 
-1590913913 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.cpp
+1591075441 source:c:\users\lenovo\desktop\programacion\frogger2\frogger-uabcs\rana.cpp
 	"Rana.h"
 	<iostream>
 	<windows.h>
